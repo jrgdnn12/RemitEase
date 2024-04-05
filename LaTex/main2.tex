@@ -1,0 +1,163 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage[left=1cm,right=1cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{pdflscape}
+\usepackage{tikz-uml}
+
+\begin{document}
+\begin{landscape}
+\begin{tikzpicture}
+ \umlclass[type=abstract, fill = white]{User}{
+        - id : String \\
+        - password : String \\
+        - permissionLevel : Integer
+    }{
+        + User(id : String, password : String, permissionLevel : Integer) \\
+        + getId() : String \\
+        + setId(id : String) : void \\
+        + getPassword() : String \\
+        + setPassword(password : String) : void \\
+        + getPermissionLevel() : Integer \\
+        + setPermissionLevel(permissionLevel : Integer) : void \\
+        + authenticate(password : String) : boolean
+    }
+\umlclass[y=-5]{Customer}{
+    - name : String \\
+    - phoneNumber : String \\
+    - email : String \\
+    - balance : double \\
+    - country : String \\
+    - city : String \\
+    - address : String
+}{
+    + Customer(id : String, email : String, password : String, name : String, phoneNumber : String) \\
+    + getName() : String \\
+    + setName(name : String) : void \\
+    + getPhoneNumber() : String \\
+    + setPhoneNumber(phoneNumber : String) : void \\
+    + getEmail() : String \\
+    + setEmail(email : String) : void \\
+    + getCountry() : String \\
+    + setCountry(country : String) : void \\
+    + getCity() : String \\
+    + setCity(city : String) : void \\
+    + getAddress() : String \\
+    + setAddress(address : String) : void \\
+    + getBalance() : double \\
+    + setBalance(balance : double) : void \\
+    + deposit(amount : double) : void \\
+    + withdraw(amount : double) : boolean
+}
+
+\umlclass[x=7,y=-5]{Recipient}{
+    - name : String \\
+    - phoneNumber : String \\
+    - email : String \\
+    - balance : double \\
+    - country : String \\
+    - city : String \\
+    - address : String
+}{
+    + Recipient(id : String, email : String, password : String, name : String, phoneNumber : String) \\
+    + getName() : String \\
+    + setName(name : String) : void \\
+    + getPhoneNumber() : String \\
+    + setPhoneNumber(phoneNumber : String) : void \\
+    + getEmail() : String \\
+    + setEmail(email : String) : void \\
+    + getBalance() : Double \\
+    + setBalance(balance : Double) : void \\
+    + getCountry() : String \\
+    + setCountry(country : String) : void \\
+    + getCity() : String \\
+    + setCity(city : String) : void \\
+    + getAddress() : String \\
+    + setAddress(address : String) : void \\
+    + receive(amount : double) : void
+}
+
+\umlclass[x=14,y=-5]{Partner}{
+    - name : String \\
+    - type : String \\
+    - country : String \\
+    - city : String \\
+    - address : String \\
+    - balance : double
+}{
+    + Partner(id : String, password : String, name : String, type : String) \\
+    + getType() : String \\
+    + setType(type : String) : void \\
+    + getCountry() : String \\
+    + setCountry(country : String) : void \\
+    + getCity() : String \\
+    + setCity(city : String) : void \\
+    + getAddress() : String \\
+    + setAddress(address : String) : void \\
+    + getBalance() : double \\
+    + deposit(amount : double) : void \\
+    + withdraw(amount : double) : void \\
+    + addPartner(partner : Partner) : void \\
+ 
+}
+
+
+\umlclass[x=7,y=-10]{Remittance}{
+    - transactionId : String \\
+    - sender : Customer \\
+    - recipient : Recipient \\
+    - partner : Partner \\
+    - amount : double \\
+    - currency : String \\
+    - status : String \\
+    - createdAt : DateTime \\
+    - updatedAt : DateTime \\
+    - cancellationReason : String \\
+    - confirmationDetails : String
+}{
+    + Remittance(transactionId : String, sender : Customer, recipient : Recipient, partner : Partner, amount : double, currency : String) \\
+    + getTransactionId() : String \\
+    + setTransactionId(transactionId : String) : void \\
+    + getSender() : Customer \\
+    + setSender(sender : Customer) : void \\
+    + getRecipient() : Recipient \\
+    + setRecipient(recipient : Recipient) : void \\
+    + getPartner() : Partner \\
+    + setPartner(partner : Partner) : void \\
+    + getAmount() : double \\
+    + setAmount(amount : double) : void \\
+    + getCurrency() : String \\
+    + setCurrency(currency : String) : void \\
+    + getStatus() : String \\
+    + setStatus(status : String) : void \\
+    + getCreatedAt() : DateTime \\
+    + getUpdatedAt() : DateTime \\
+    + setUpdatedAt(updatedAt : DateTime) : void \\
+    + getCancellationReason() : String \\
+    + setCancellationReason(cancellationReason : String) : void \\
+    + getConfirmationDetails() : String \\
+    + setConfirmationDetails(confirmationDetails : String) : void \\
+    + processTransaction() : boolean \\
+    + handleTransactionError(errorMessage : String) : void \\
+    + sendEmailUpdate(message : String) : void \\
+    + sendSMSUpdate(message : String) : void
+}
+
+
+
+
+  \umlclass{ExchangeRateManager}{
+    - exchangeRates : Map<String, Map<String, Double>>
+  }{
+    + ExchangeRateManager() \\
+    + getExchangeRate(from: String, to: String) : double \\
+    + updateExchangeRate(from: String, to: String, rate: double) : void
+  }
+
+
+
+\umlinherit{Customer}{User}
+\umlinherit{Recipient}{User}
+\umlinherit{Partner}{User}
+
+\end{tikzpicture}
+\end{landscape}
+\end{document}

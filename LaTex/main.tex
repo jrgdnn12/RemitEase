@@ -1,0 +1,104 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[left=1cm,right=1cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{tikz-uml}
+
+\begin{document}
+\begin{tikzpicture}
+\umlclass{Customer}{
+    - id : String \\
+    - name : String \\
+    - email : String \\
+    - phoneNumber : String
+}{
+    + Customer(id : String, name : String, email : String, phoneNumber : String) \\
+    + getId() : String \\
+    + setId(id : String) : void \\
+    + getName() : String \\
+    + setName(name : String) : void \\
+    + getEmail() : String \\
+    + setEmail(email : String) : void \\
+    + getPhoneNumber() : String \\
+    + setPhoneNumber(phoneNumber : String) : void
+}
+
+
+
+
+\umlclass[x=8]{Partner}{
+    - id : String \\
+    - name : String \\
+    - type : String \\
+    - location : Location
+}{
+    + Partner(id : String, name : String, type : String, location : Location) \\
+    + getId() : String \\
+    + setId(id : String) : void \\
+    + getName() : String \\
+    + setName(name : String) : void \\
+    + getType() : String \\
+    + setType(type : String) : void \\
+    + getLocation() : Location \\
+    + setLocation(location : Location) : void
+}
+
+\umlclass[y=-5]{Location}{
+    - country : String \\
+    - city : String \\
+    - address : String
+}{
+    + Location(country : String, city : String, address : String) \\
+    + getCountry() : String \\
+    + setCountry(country : String) : void \\
+    + getCity() : String \\
+    + setCity(city : String) : void \\
+    + getAddress() : String \\
+    + setAddress(address : String) : void
+}
+
+\umlclass[x=8,y=-5]{Recipient}{
+    - id : String \\
+    - name : String \\
+    - email : String \\
+    - phoneNumber : String \\
+    - location : Location
+}{
+    + Recipient(id : String, name : String, email : String, phoneNumber : String, location : Location) \\
+    + getId() : String \\
+    + setId(id : String) : void \\
+    + getName() : String \\
+    + setName(name : String) : void \\
+    + getEmail() : String \\
+    + setEmail(email : String) : void \\
+    + getPhoneNumber() : String \\
+    + setPhoneNumber(phoneNumber : String) : void \\
+    + getLocation() : Location \\
+    + setLocation(location : Location) : void
+}
+
+\umlclass[y=-10, x=4]{Remittance}{
+    - transactionId : String \\
+    - sender : Customer \\
+    - recipient : Recipient \\
+    - partner : Partner \\
+    - amount : double \\
+    - currency : String \\
+    - location : Location
+}{
+    + Remittance(transactionId : String, sender : Customer, recipient : Recipient, partner : Partner, amount : double, currency : String, location : Location) \\
+    + getTransactionId() : String \\
+    + setTransactionId(transactionId : String) : void \\
+    + getSender() : Customer \\
+    + setSender(sender : Customer) : void \\
+    + getRecipient() : Recipient \\
+    + setRecipient(recipient : Recipient) : void \\
+    + getPartner() : Partner \\
+    + setPartner(partner : Partner) : void \\
+    + getAmount() : double \\
+    + setAmount(amount : double) : void \\
+    + getCurrency() : String \\
+    + setCurrency(currency : String) : void \\
+    + getLocation() : Location \\
+    + setLocation(location : Location) : void
+}
+\end{tikzpicture}
+\end{document}

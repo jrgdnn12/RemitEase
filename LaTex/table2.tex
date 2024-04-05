@@ -1,0 +1,67 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[left=1cm,right=1cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{longtable}
+
+\begin{document}
+
+\section*{Database Schema for Remittance System}
+
+The database schema outlined below is designed to support a remittance system that facilitates international money transfers. The schema consists of five main tables: Customer, Partner, Location, Recipient, and Remittance. Each table plays a crucial role in storing data related to the system's operations, from user information to transaction details. The relationships between these tables ensure the integrity and consistency of the data, enabling efficient and secure processing of remittances.
+
+\subsection*{Customer Table}
+The Customer table stores information about the users of the remittance system. It includes details such as the user's name, email, and phone number, essential for account management and transaction processing.
+
+\subsection*{Partner Table}
+The Partner table contains data about partners involved in the remittance process. These partners could be banks, financial institutions, or money transfer operators that facilitate the remittance in the recipient's country. The table includes information about the partner's name, type, and location.
+
+\subsection*{Location Table}
+The Location table is a shared resource that stores address information. It centralizes location data for partners, recipients, and transactions, reducing redundancy and simplifying updates to address information.
+
+\subsection*{Recipient Table}
+The Recipient table holds information about the individuals who receive the remittance. This includes their name, contact information, and location, ensuring that funds are accurately directed to the intended recipient.
+
+\subsection*{Remittance Table}
+The Remittance table is the core of the system, tracking each transaction's details, including the sender, recipient, amount, currency, and the partner facilitating the transaction. This table is crucial for managing and auditing remittances.
+
+\begin{longtable}{|l|l|l|l|}
+\hline
+\textbf{Table Name} & \textbf{Column Name} & \textbf{Type} & \textbf{Description} \\ \hline
+\endhead
+
+% Customer Table
+Customer & id & VARCHAR(255) & Primary Key \\ \cline{2-4} 
+ & name & VARCHAR(255) &  \\ \cline{2-4} 
+ & email & VARCHAR(255) &  \\ \cline{2-4} 
+ & phoneNumber & VARCHAR(255) &  \\ \hline
+ 
+% Partner Table
+Partner & id & VARCHAR(255) & Primary Key \\ \cline{2-4} 
+ & name & VARCHAR(255) &  \\ \cline{2-4} 
+ & type & VARCHAR(255) &  \\ \cline{2-4} 
+ & location\_id & VARCHAR(255) & Foreign Key (Location) \\ \hline
+
+% Location Table
+Location & id & VARCHAR(255) & Primary Key \\ \cline{2-4} 
+ & country & VARCHAR(255) &  \\ \cline{2-4} 
+ & city & VARCHAR(255) &  \\ \cline{2-4} 
+ & address & VARCHAR(255) &  \\ \hline
+
+% Recipient Table
+Recipient & id & VARCHAR(255) & Primary Key \\ \cline{2-4} 
+ & name & VARCHAR(255) &  \\ \cline{2-4} 
+ & email & VARCHAR(255) &  \\ \cline{2-4} 
+ & phoneNumber & VARCHAR(255) &  \\ \cline{2-4} 
+ & location\_id & VARCHAR(255) & Foreign Key (Location) \\ \hline
+ 
+% Remittance Table
+Remittance & transactionId & VARCHAR(255) & Primary Key \\ \cline{2-4} 
+ & sender\_id & VARCHAR(255) & Foreign Key (Customer) \\ \cline{2-4} 
+ & recipient\_id & VARCHAR(255) & Foreign Key (Recipient) \\ \cline{2-4} 
+ & partner\_id & VARCHAR(255) & Foreign Key (Partner) \\ \cline{2-4} 
+ & amount & DOUBLE &  \\ \cline{2-4} 
+ & currency & VARCHAR(255) &  \\ \cline{2-4} 
+ & location\_id & VARCHAR(255) & Foreign Key (Location) \\ \hline
+
+\end{longtable}
+
+\end{document}

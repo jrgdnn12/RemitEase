@@ -1,0 +1,48 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[left=1cm,right=1cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{longtable}
+
+\begin{document}
+
+\begin{longtable}{|l|l|l|l|}
+\hline
+\textbf{Table Name} & \textbf{Column Name} & \textbf{Type} & \textbf{Description} \\ \hline
+\endhead
+
+% Customer Table
+Customer & id & VARCHAR(255) & Primary Key \\ \cline{2-4} 
+ & name & VARCHAR(255) &  \\ \cline{2-4} 
+ & email & VARCHAR(255) &  \\ \cline{2-4} 
+ & phoneNumber & VARCHAR(255) &  \\ \hline
+ 
+% Partner Table
+Partner & id & VARCHAR(255) & Primary Key \\ \cline{2-4} 
+ & name & VARCHAR(255) &  \\ \cline{2-4} 
+ & type & VARCHAR(255) &  \\ \cline{2-4} 
+ & location\_id & VARCHAR(255) & Foreign Key (Location) \\ \hline
+
+% Location Table
+Location & id & VARCHAR(255) & Primary Key \\ \cline{2-4} 
+ & country & VARCHAR(255) &  \\ \cline{2-4} 
+ & city & VARCHAR(255) &  \\ \cline{2-4} 
+ & address & VARCHAR(255) &  \\ \hline
+
+% Recipient Table
+Recipient & id & VARCHAR(255) & Primary Key \\ \cline{2-4} 
+ & name & VARCHAR(255) &  \\ \cline{2-4} 
+ & email & VARCHAR(255) &  \\ \cline{2-4} 
+ & phoneNumber & VARCHAR(255) &  \\ \cline{2-4} 
+ & location\_id & VARCHAR(255) & Foreign Key (Location) \\ \hline
+ 
+% Remittance Table
+Remittance & transactionId & VARCHAR(255) & Primary Key \\ \cline{2-4} 
+ & sender\_id & VARCHAR(255) & Foreign Key (Customer) \\ \cline{2-4} 
+ & recipient\_id & VARCHAR(255) & Foreign Key (Recipient) \\ \cline{2-4} 
+ & partner\_id & VARCHAR(255) & Foreign Key (Partner) \\ \cline{2-4} 
+ & amount & DOUBLE &  \\ \cline{2-4} 
+ & currency & VARCHAR(255) &  \\ \cline{2-4} 
+ & location\_id & VARCHAR(255) & Foreign Key (Location) \\ \hline
+
+\end{longtable}
+
+\end{document}
