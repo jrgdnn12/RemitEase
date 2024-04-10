@@ -8,8 +8,8 @@ public class HelloWorld {
 		System.out.println("RemitEase is Global Remittance System Application built in javaFX.");
 		System.out.println("This Project Will Fullfill the requirements for MIS 768 Software Concepts");
 		System.out.println("Authors: Jorge Alvarez & Phillip Mensa");
-		System.out.println("doing sum testing")''
-		
+		System.out.println("doing sum testing");
+		//hotfix 2
 	}
 
 }
