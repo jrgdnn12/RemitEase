@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.unlv.mis768.assignments.JoeAutomotiveController">
+   <children>
+      <VBox fx:id="servicesVBox" layoutY="1.0" prefHeight="462.0" prefWidth="787.0">
+         <children>
+            <Label fx:id="selectionLabel" text="Please select the service you want:">
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
+            </Label>
+            <CheckBox fx:id="oilChangeCheckbox" mnemonicParsing="false" onAction="#handleCheckboxClicked" text="Oil Change">
+               <padding>
+                  <Insets left="20.0" right="20.0" top="10.0" />
+               </padding>
+            </CheckBox>
+            <CheckBox fx:id="lubeJobCheckbox" mnemonicParsing="false" onAction="#handleCheckboxClicked" text="Lube Job">
+               <padding>
+                  <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+               </padding>
+            </CheckBox>
+            <CheckBox fx:id="radiatorFlushCheckbox" mnemonicParsing="false" onAction="#handleCheckboxClicked" text="Radiator Flush">
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
+            </CheckBox>
+            <CheckBox fx:id="transMissionFlushCheckbox" mnemonicParsing="false" onAction="#handleCheckboxClicked" text="Transmission Flush">
+               <padding>
+                  <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+               </padding>
+            </CheckBox>
+            <CheckBox fx:id="inspectionCheckbox" mnemonicParsing="false" onAction="#handleCheckboxClicked" text="Inspection">
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
+            </CheckBox>
+            <CheckBox fx:id="mufflerReplacementCheckbox" mnemonicParsing="false" onAction="#handleCheckboxClicked" text="Muffler Replacement">
+               <padding>
+                  <Insets left="20.0" right="20.0" top="10.0" />
+               </padding>
+            </CheckBox>
+            <CheckBox fx:id="tireRotationCheckbox" mnemonicParsing="false" onAction="#handleCheckboxClicked" text="Tire Rotation">
+               <padding>
+                  <Insets left="20.0" right="20.0" top="10.0" />
+               </padding>
+            </CheckBox>
+            <Label fx:id="hoursLabel" text="Enter number of hours:">
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets left="15.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="laborHoursField" maxHeight="100.0" maxWidth="126.0" onAction="#calculateTotal" prefHeight="26.0" prefWidth="126.0">
+               <VBox.margin>
+                  <Insets bottom="25.0" left="150.0" top="-18.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
+            </TextField>
+            <Label fx:id="costLabel" text="Enter cost of a part:">
+               <VBox.margin>
+                  <Insets left="15.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="partCostField" maxWidth="126.0" onAction="#calculateTotal" prefHeight="26.0" prefWidth="126.0">
+               <VBox.margin>
+                  <Insets bottom="25.0" left="150.0" top="-17.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
+            </TextField>
+            <RadioButton fx:id="tenPercentDiscountRadioButton" mnemonicParsing="false" onAction="#getDiscountFromRadioButtons" text="10%">
+               <VBox.margin>
+                  <Insets left="70.0" />
+               </VBox.margin>
+            </RadioButton>
+            <Label fx:id="discountLabel" text="Discount" />
+            <RadioButton fx:id="twentyPercentDiscountRadioButton" mnemonicParsing="false" onAction="#getDiscountFromRadioButtons" text="20%">
+               <VBox.margin>
+                  <Insets left="70.0" />
+               </VBox.margin>
+            </RadioButton>
+            <Button fx:id="calculateButton" mnemonicParsing="false" onAction="#calculateTotal" text="Calculate" />
+            <Label fx:id="resultLabel" prefHeight="18.0" prefWidth="342.0" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
