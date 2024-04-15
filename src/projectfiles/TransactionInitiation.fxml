@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21">
+   <children>
+      <VBox prefHeight="500.0" prefWidth="700.0">
+         <children>
+            <Label fx:id="transactionInitiationLabel" text="Transaction Initiation">
+               <font>
+                  <Font size="27.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="200.0" />
+               </VBox.margin>
+            </Label>
+            <Button fx:id="sendMoneyButton" mnemonicParsing="false" prefWidth="100.0" text="Send Money">
+               <VBox.margin>
+                  <Insets left="20.0" top="40.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="transferHistoryButton" mnemonicParsing="false" prefWidth="100.0" text="Transfer history">
+               <VBox.margin>
+                  <Insets left="20.0" top="30.0" />
+               </VBox.margin>
+            </Button>
+            <Label fx:id="exchangeRateButton" text="Exchange Rate">
+               <VBox.margin>
+                  <Insets left="20.0" top="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <VBox fx:id="textArea" prefHeight="219.0" prefWidth="700.0">
+               <children>
+                  <Label fx:id="selectCountryLabel" text="Please select the country of your recipient:">
+                     <VBox.margin>
+                        <Insets left="20.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ChoiceBox fx:id="dropDownChoiceBox" prefWidth="100.0">
+                     <VBox.margin>
+                        <Insets left="300.0" top="-20.0" />
+                     </VBox.margin>
+                  </ChoiceBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </VBox>
+            <Button mnemonicParsing="false" text="Back">
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
