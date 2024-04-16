@@ -1,4 +1,4 @@
-package projectfiles;
+package projectfiles.model;
 
 public class Recipient extends User {
     private String name;
