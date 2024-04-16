@@ -1,4 +1,4 @@
-package projectfiles;
+package projectfiles.model;
 
 public class User {
     private String userID;

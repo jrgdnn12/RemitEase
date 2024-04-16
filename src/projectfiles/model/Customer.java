@@ -1,6 +1,6 @@
-package projectfiles;
+package projectfiles.model;
 
-public class Recipient extends User {
+public class Customer extends User {
     private String name;
     private String phoneNumber;
     private String email;
@@ -9,11 +9,11 @@ public class Recipient extends User {
     private String city;
     private String address;
 
-    public Recipient() {
+    public Customer() {
         // Default constructor
     }
 
-    public Recipient(String id, String email, String password, String name, String phoneNumber) {
+    public Customer(String id, String email, String password, String name, String phoneNumber) {
         super(id, password);
         this.email = email;
         this.name = name;
@@ -76,7 +76,24 @@ public class Recipient extends User {
         this.address = address;
     }
 
-    public void receive(double amount) {
+    public void deposit(double amount) {
         balance += amount;
+    }
+
+    public boolean withdraw(double amount) {
+        if (balance >= amount) {
+            balance -= amount;
+            return true;
+        }
+        return false;
+    }
+
+    public void sendEmailUpdate(String message) {
+        // Implementation for sending email update
+        System.out.println("Email sent: " + message);
+    }
+
+    public void deleteAccount() {
+        // Implementation for deleting customer account
     }
 }

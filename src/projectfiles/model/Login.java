@@ -1,4 +1,4 @@
-package projectfiles;
+package projectfiles.model;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class SignUp extends Application {
+public class Login extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -16,7 +16,7 @@ public class SignUp extends Application {
 		// the FXMLLoader object to load the UI
 		FXMLLoader loader = new FXMLLoader();
 		//specify the file location
-    	loader.setLocation(getClass().getResource("SignUp.fxml"));  	
+    	loader.setLocation(getClass().getResource("Login.fxml"));  	
 		// load the UI
 		Parent parent = loader.load();
    	  	
@@ -24,7 +24,7 @@ public class SignUp extends Application {
     	// Pass the ResultSet object to the Scene
     	
 		// set the title of the window
-		primaryStage.setTitle("Sign Up");
+		primaryStage.setTitle("Login");
 		
 		// set the scene
 		Scene scene = new Scene(parent);
