@@ -153,30 +153,48 @@ public class Customer extends User {
     /**
      * Deposits the specified amount to the customer's account balance.
      * @param amount A double containing the amount to be added to the balance.
+     * return {@code true} if the withdrawal is successful. {@code false} otherwise.
      */
     public void deposit(double amount) {
         balance += amount; //what if the value is negative? there migth be an exception needed here?
     }
 
     /**
-     * The specified amount will substa
+     * The specified amount will be substacted/withdrawn from the balance
      * @param amount
      * @return
      */
     public boolean withdraw(double amount) {
         if (balance >= amount) {
-            balance -= amount;
+            balance -= amount; //how do we handle negative numbers
             return true;
         }
         return false;
     }
-
+    
+    /**
+     * Send an email update to the customer with the message specified.
+     * @param message
+     */
     public void sendEmailUpdate(String message) {
         // Implementation for sending email update
         System.out.println("Email sent: " + message);
     }
-
+    
+    /**
+     * Send an SMS update to the customer with the message specified.
+     */
+    public void sendSMSupdate() {
+    	// actual implementation for sending sms is to be done here
+    	
+    }
+    /**
+     * A method to delete a customer and all data associated.
+     * This method will handle all necessary cleanup and notifications associated with account deletion.
+     */
     public void deleteAccount() {
         // Implementation for deleting customer account
     }
+    
+    
 }
