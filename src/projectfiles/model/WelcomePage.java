@@ -1,4 +1,4 @@
-package projectfiles;
+package projectfiles.model;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,13 +10,21 @@ public class WelcomePage extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("WelcomePage.fxml"));
-        primaryStage.setTitle("Welcome to RemitEase");
+        // Load the FXML file
+        Parent root = FXMLLoader.load(getClass().getResource("/projectfiles/view/WelcomePage.fxml"));
+        
+        // Set the scene
         primaryStage.setScene(new Scene(root));
+        
+        // Set the stage title
+        primaryStage.setTitle("Welcome to RemitEase");
+        
+        // Show the stage
         primaryStage.show();
     }
 
     public static void main(String[] args) {
+        // Launch the application
         launch(args);
     }
 }

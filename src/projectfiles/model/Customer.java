@@ -1,4 +1,4 @@
-package projectfiles;
+package projectfiles.model;
 
 public class Customer extends User {
     private String name;
