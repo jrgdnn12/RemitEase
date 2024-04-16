@@ -10,7 +10,7 @@ public class Customer extends User {
     private String address;
 
     public Customer() {
-        // Default constructor
+        // Default constructors
     }
 
     public Customer(String id, String email, String password, String name, String phoneNumber) {
