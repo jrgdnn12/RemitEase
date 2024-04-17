@@ -4,9 +4,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DatabaseSetup {
-    private static final String URL = "jdbc:mysql://localhost:3306/remittance_system?useSSL=false&serverTimezone=UTC";
-    private static final String USER = "your_username";
-    private static final String PASSWORD = "your_password";
+    private static final String URL = "jdbc:mysql://remitease.cr2esock8dpy.us-west-2.rds.amazonaws.com:3306/RemitEaseDev?useSSL=false&serverTimezone=UTC";
+    private static final String USER = "admin";
+    private static final String PASSWORD = "rEmitEase$";
 
     public static void main(String[] args) {
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
