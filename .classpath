@@ -46,5 +46,10 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/philm/OneDrive/Documents/UNIVERSITY OF NEVADA, LAS VEGAS/COURSES/SPRING 2024/MIS 768/Java/mysql-connector-j-8.3.0/mysql-connector-j-8.3.0.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
