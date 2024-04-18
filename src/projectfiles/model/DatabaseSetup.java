@@ -17,9 +17,27 @@ public class DatabaseSetup {
             ex.printStackTrace();
         }
     }
+    
+    
+
 
     private static void createTables(Connection conn) throws SQLException {
         try (Statement stmt = conn.createStatement()) {
+        	
+            // Disable foreign key checks
+            stmt.execute("SET FOREIGN_KEY_CHECKS = 0");
+
+            // Drop tables
+            stmt.execute("DROP TABLE IF EXISTS Remittance");
+            stmt.execute("DROP TABLE IF EXISTS ExchangeRate");
+            stmt.execute("DROP TABLE IF EXISTS Customer");
+            stmt.execute("DROP TABLE IF EXISTS Recipient");
+            stmt.execute("DROP TABLE IF EXISTS Partner");
+            stmt.execute("DROP TABLE IF EXISTS User");
+
+            // Re-enable foreign key checks
+            stmt.execute("SET FOREIGN_KEY_CHECKS = 1");
+            
             // User Table
             stmt.execute("CREATE TABLE IF NOT EXISTS User (" +
                          "UserId VARCHAR(255) PRIMARY KEY, " +
@@ -82,11 +100,11 @@ public class DatabaseSetup {
             stmt.execute("INSERT INTO User VALUES ('RCP124','5748')");
             stmt.execute("INSERT INTO User VALUES ('RCP125','5748')");
             
-            // Customer Table
+         // Customer Table
             stmt.execute("CREATE TABLE IF NOT EXISTS Customer (" +
                          "CustomerId VARCHAR(255) PRIMARY KEY, " +
-                         "First Name VARCHAR(255), " +
-                         "Last Name VARCHAR(255)" +
+                         "First_Name VARCHAR(255), " +
+                         "Last_Name VARCHAR(255), " +
                          "PhoneNumber VARCHAR(255), " +
                          "Email VARCHAR(255), " +
                          "Balance DOUBLE, " +
@@ -128,8 +146,8 @@ public class DatabaseSetup {
             // Recipient Table
             stmt.execute("CREATE TABLE IF NOT EXISTS Recipient (" +
                          "RecipientId VARCHAR(255) PRIMARY KEY, " +
-                         "First Name VARCHAR(255), " +
-                         "Last Name VARCHAR(255), " +
+                         "First_Name VARCHAR(255), " +
+                         "Last_Name VARCHAR(255), " +
                          "PhoneNumber VARCHAR(255), " +
                          "Email VARCHAR(255), " +
                          "Balance DOUBLE, " +
