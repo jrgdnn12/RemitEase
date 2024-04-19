@@ -1,11 +1,5 @@
 package projectfiles.model;
 
-/**
- * This model class represents a customer.
- * <p>
- * This class extends the User Class, adds more attributes pertinent to the customer.
- */
-
 public class Customer extends User {
     private String name;
     private String phoneNumber;
