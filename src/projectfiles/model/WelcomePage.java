@@ -10,6 +10,7 @@ public class WelcomePage extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
         Parent root = FXMLLoader.load(getClass().getResource("WelcomePage.fxml"));
         primaryStage.setTitle("Welcome to RemitEase");
         primaryStage.setScene(new Scene(root));
@@ -17,6 +18,7 @@ public class WelcomePage extends Application {
     }
 
     public static void main(String[] args) {
+        // Launch the application
         launch(args);
     }
 }
