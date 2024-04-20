@@ -20,38 +20,76 @@ public class Remittance {
     private String cancellationReason;
     private String confirmationDetails;
 
+    /**
+     * Getter for remittance transaction ID
+     * @return A unique identifier for the remittance transaction.
+     */
     public String getTransactionId() {
         return transactionId;
     }
 
+    /**
+     * Setter for TransactionID.
+     * Deprecated by database primary key autoincrement feature
+     * @param transactionId A unique identifier for the remittance 
+     */
     public void setTransactionId(String transactionId) {
         this.transactionId = transactionId;
     }
-
-    public Customer getSender() {
+    
+    /**
+     * Getter for the senderID linked to transactionID
+     * @return A unique identifier for the remittance sender
+     */
+    public Customer getSenderID() {
         return senderID;
     }
-
-    public void setSender(Customer sender) {
+    
+    /**
+     * Links transaction to the sender
+     * @param sender Unique identifier for remittance sender
+     */
+    public void setSenderID(Customer sender) {
         this.senderID = sender;
     }
 
-    public Recipient getRecipient() {
+    /**
+     * Getter for the recipientID linked to the transaction.  
+     * @return Recipients unique identifier.
+     */
+    public Recipient getRecipientID() {
         return recipientID;
     }
-
-    public void setRecipient(Recipient recipient) {
+    
+    /**
+     * Setter for the recipientID, deprecated by database auto-increment primary key feature.
+     * @param recipient An unique identifier for the recipient
+     */
+    public void setRecipientID(Recipient recipient) {
         this.recipientID = recipient;
     }
 
-    public Partner getPartner() {
+    
+    /**
+     * Getter for the partner ID linked to transaction
+     * @return A unique identifier for the partner.
+     */
+    public Partner getPartnerID() {
         return partnerID;
     }
 
-    public void setPartner(Partner partner) {
+    /**
+     * Setter for the partner ID linked to the transaction.
+     * @param partner A unique identifier for the partner.
+     */
+    public void setPartnerID(Partner partner) {
         this.partnerID = partner;
     }
 
+    /**
+     * Getter for the remittance amount
+     * @return A double containing the remittance amount.
+     */
     public double getAmount() {
         return amount;
     }
