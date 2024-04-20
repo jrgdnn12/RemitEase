@@ -1,7 +1,8 @@
 package projectfiles.model;
 
 public class Customer extends User {
-    private String name;
+    private String firstName;
+    private String lastName;
     private String phoneNumber;
     private String email;
     private double balance;
@@ -21,10 +22,11 @@ public class Customer extends User {
      * @param name The full name of the customer.
      * @param phoneNumber The contact phoner number of the customer
      */
-    public Customer(String id, String email, String password, String name, String phoneNumber) {
+    public Customer(String id, String email, String password, String firstName,String lastName, String phoneNumber) {
         super(id, password, 0); //here we assume 0 is the default permission.
         this.email = email;
-        this.name = name;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.balance = 0.00; //Assuming default balance is 0
     }
@@ -32,19 +34,35 @@ public class Customer extends User {
     //Getter and setter for name
     
     /**
-     * Gets the name of the customer.
-     * @return A string with the name of the customer.
+     * Gets the first name of the customer.
+     * @return A string with the first name of the customer.
      */
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
     
     /**
-     * Sets the name of the customer
-     * @param name A string with the name of the customer.
+     * Sets the first name of the customer
+     * @param firstName A string with the name of the customer.
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String firstName) {
+        this.firstName = firstName;
+    }
+    
+    /**
+     * Gets the last name of the customer.
+     * @return A string with the last name of the customer.
+     */
+    public String getLasttName() {
+        return lastName;
+    }
+    
+    /**
+     * Sets the last name of the customer
+     * @param firstName A string with the last name of the customer.
+     */
+    public void setlastName(String lastName) {
+        this.lastName = lastName;
     }
     
     /**
