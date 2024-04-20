@@ -3,7 +3,7 @@ package projectfiles.model;
 import java.time.LocalDateTime;
 
 /**
- * This models a single remittance. 
+ * This models a single remittance.  
  */
 
 public class Remittance {
