@@ -7,7 +7,8 @@ package projectfiles.model;
  */
 
 public class Recipient extends User {
-    private String name;
+    private String firstName;
+    private String lastName;
     private String phoneNumber;
     private String email;
     private double balance;
@@ -24,14 +25,16 @@ public class Recipient extends User {
      * @param id The unique identifier for the recipient
      * @param email The email address of the recipient
      * @param password Not sure how the recipient will use this, should this parameter be removed?
-     * @param name The full name of the recipient
+     * @param firstName The the first name of the recipient
+     * @param lastName the last name of the recipient
      * @param phoneNumber The contact phone number of the recipient.
      * @param balance The balance in US dollars.
      */
-    public Recipient(String id, String email, String password, String name, String phoneNumber) {
+    public Recipient(String id, String email, String password, String firstname, String lastName, String phoneNumber) {
         super(id, password, 0); //Default user permission.
         this.email = email;
-        this.name = name;
+        this.firstName = firstname;
+        this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.balance = 0.00; //intiallize the balance to 0.00
     }
@@ -39,24 +42,38 @@ public class Recipient extends User {
     //Getter and setters
     
     /**
-     * Get the name of the recipient
+     * Getter for the first name of the recipient
      * @return A string containing the name of the recipient.
      */
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
     
     /**
-     * Sets the name of the recipient
+     * Setter for the first name of the recipient
      * @param name A string containing the name of the recipient
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String name) {
+        this.firstName = name;
     }
     
-    /**
+    /** Getter for the last name of recipient
+	 * @return the lastName
+	 */
+	public String getLastName() {
+		return lastName;
+	}
+
+	/** Setter for the last name of recipient.
+	 * @param lastName the lastName to set
+	 */
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	/**
      * Get the contact phone number of the recipient
-     * @return A String containing the contact phone numbe of the recipient.
+     * @return A String containing the contact phone number of the recipient.
      */
     public String getPhoneNumber() {
         return phoneNumber;

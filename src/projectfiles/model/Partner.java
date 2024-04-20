@@ -26,11 +26,25 @@ public class Partner extends User {
      */
     public Partner(String id, String password, String name, String type) {
         super(id, password, 1); //level 1 permission allows for partner role.
-        this.name = name;
+        this.setName(name);
         this.type = type;
     }
 
     /**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
      * Gets the type of the partner.
      * @return A String that contains the type of the partner.
      */
