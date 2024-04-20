@@ -2,13 +2,18 @@ package projectfiles.model;
 
 import java.time.LocalDateTime;
 
+/**
+ * This models a single remittance. 
+ */
+
 public class Remittance {
     private String transactionId;
-    private Customer sender;
-    private Recipient recipient;
-    private Partner partner;
+    private Customer senderID;
+    private Recipient recipientID;
+    private Partner partnerID;
     private double amount;
-    private String currency;
+    private String localCurrency;
+    private String targetCurency;
     private String status;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
@@ -24,27 +29,27 @@ public class Remittance {
     }
 
     public Customer getSender() {
-        return sender;
+        return senderID;
     }
 
     public void setSender(Customer sender) {
-        this.sender = sender;
+        this.senderID = sender;
     }
 
     public Recipient getRecipient() {
-        return recipient;
+        return recipientID;
     }
 
     public void setRecipient(Recipient recipient) {
-        this.recipient = recipient;
+        this.recipientID = recipient;
     }
 
     public Partner getPartner() {
-        return partner;
+        return partnerID;
     }
 
     public void setPartner(Partner partner) {
-        this.partner = partner;
+        this.partnerID = partner;
     }
 
     public double getAmount() {
@@ -55,15 +60,29 @@ public class Remittance {
         this.amount = amount;
     }
 
-    public String getCurrency() {
-        return currency;
+    public String getLocalCurrency() {
+        return localCurrency;
     }
 
-    public void setCurrency(String currency) {
-        this.currency = currency;
+    public void setLocalCurrency(String localCurrency) {
+        this.localCurrency = localCurrency;
     }
 
-    public String getStatus() {
+    /**
+	 * @return the targetCurency
+	 */
+	public String getTargetCurency() {
+		return targetCurency;
+	}
+
+	/**
+	 * @param targetCurency the targetCurency to set
+	 */
+	public void setTargetCurency(String targetCurency) {
+		this.targetCurency = targetCurency;
+	}
+
+	public String getStatus() {
         return status;
     }
 
