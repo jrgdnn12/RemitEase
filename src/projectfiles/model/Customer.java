@@ -1,5 +1,8 @@
 package projectfiles.model;
 
+/**
+ * This model class models a RemitEAse customer that is the sender of remittance. 
+ */
 public class Customer extends User {
     private String firstName;
     private String lastName;
