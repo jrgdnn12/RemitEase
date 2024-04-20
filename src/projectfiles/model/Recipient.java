@@ -1,11 +1,5 @@
 package projectfiles.model;
 
-/**
- * This model class represents a recipient of remittance. 
- * This class extends the {@code User} class, adding more attributes and methods
- * that are specific to the remittance recipient.  
- */
-
 public class Recipient extends User {
     private String firstName;
     private String lastName;
