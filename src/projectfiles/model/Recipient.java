@@ -77,6 +77,7 @@ public class Recipient extends User {
 	 * Set the contact phone number of the recipient
 	 * @param phoneNumber A String containing the contact phone number of the recipient.
 	 */
+
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
@@ -142,10 +143,11 @@ public class Recipient extends User {
      * Sets the name of the recipients city.
      * @param city A String containing the name of the recipient's city
      */
+
     public void setCity(String city) {
         this.city = city;
     }
-
+  
     /**
      * Gets the address of the recipient
      * @return A String containing the address of the recipient.
@@ -153,6 +155,7 @@ public class Recipient extends User {
     public String getAddress() {
         return address;
     }
+
 
     /**
      * Set the address of the recipient

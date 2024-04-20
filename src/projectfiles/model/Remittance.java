@@ -90,6 +90,7 @@ public class Remittance {
      * Getter for the remittance amount
      * @return A double containing the remittance amount.
      */
+
     public double getAmount() {
         return amount;
     }
@@ -228,6 +229,7 @@ public class Remittance {
     public void handleTransactionError(String errorMessage) {
         // Implementation for handling transaction error
     }
+
 
     /**
      * Method for sending email update

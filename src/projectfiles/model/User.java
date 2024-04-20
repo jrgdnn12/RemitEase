@@ -5,7 +5,6 @@ public class User {
     private String password;
     private int permissionLevel;
 
-    
     public User() {
         // Default constructor
     }
@@ -50,6 +49,7 @@ public class User {
      * Sets the user's password
      * @param password A string containing the new password for the user
      */
+
     public void setPassword(String password) {
         this.password = password;
     }
@@ -75,6 +75,7 @@ public class User {
      * Sets the permission level of the user
      * @param permissionLevel An integer containing the new permission level for the user
      */
+
     public void setPermissionLevel(int permissionLevel) {
         this.permissionLevel = permissionLevel;
     }

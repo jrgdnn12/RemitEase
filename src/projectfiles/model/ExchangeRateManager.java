@@ -7,7 +7,6 @@ import java.util.Map;
 /**
  * This class models  the exchange rate of currency.
  */
-
 public class ExchangeRateManager {
     private Map<String, Map<String, Double>> exchangeRates;
 

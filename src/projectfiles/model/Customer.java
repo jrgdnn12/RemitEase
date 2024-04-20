@@ -1,11 +1,10 @@
 package projectfiles.model;
 
-/**
- * This model class models a RemitEAse customer that is the sender of remittance. 
- */
+
 public class Customer extends User {
     private String firstName;
     private String lastName;
+
     private String phoneNumber;
     private String email;
     private double balance;
@@ -16,6 +15,7 @@ public class Customer extends User {
     public Customer() {
         // Default constructor
     }
+
     
     /**
      * Constructor for objects of the class Customer
@@ -80,6 +80,7 @@ public class Customer extends User {
      * Sets the phone number of the customer 
      * @param phoneNumber A String with the phone number of the customer.
      */
+
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
@@ -144,6 +145,7 @@ public class Customer extends User {
      * Sets the name of the city.
      * @param city A String containing the name if the customer's city.
      */
+  
     public void setCity(String city) {
         this.city = city;
     }
@@ -212,4 +214,3 @@ public class Customer extends User {
     }
     
     
-}

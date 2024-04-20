@@ -6,27 +6,37 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+
+import java.io.IOException;
+
 public class SignUp extends Application {
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        try {
-            // Load the FXML file
-            Parent root = FXMLLoader.load(getClass().getResource("/projectfiles/view/SignUp.fxml"));
+	@Override
+	public void start(Stage primaryStage) throws Exception {
 
-            // Set up the scene
-            Scene scene = new Scene(root);
+		// the FXMLLoader object to load the UI
+		FXMLLoader loader = new FXMLLoader();
+		//specify the file location
+    	loader.setLocation(getClass().getResource("SignUp.fxml"));  	
+		// load the UI
+		Parent parent = loader.load();
+   	  	
+    	// call the method in the controller class
+    	// Pass the ResultSet object to the Scene
+    	
+		// set the title of the window
+		primaryStage.setTitle("Sign Up");
+		
+		// set the scene
+		Scene scene = new Scene(parent);
+		// set the scene for the stage
+		primaryStage.setScene(scene);
 
-            // Set the stage
-            primaryStage.setScene(scene);
-            primaryStage.setTitle("Sign Up");
-            primaryStage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+		// show the stage
+		primaryStage.show();
+	}
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+	public static void main(String[] args) {
+		launch(args);
+	}
 }
