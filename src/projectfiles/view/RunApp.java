@@ -5,29 +5,30 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import projectfiles.view.LoginController;
+import projectfiles.view.SignUpController;
+import projectfiles.view.WelcomePageController;
+
 import java.io.IOException;
 
 public class RunApp extends Application {
 
     @Override
-    public void start(Stage primaryStage) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("WelcomePage.fxml"));
-            Parent root = loader.load();
-            WelcomePageController controller = loader.getController();
-            controller.setPrimaryStage(primaryStage);
-            primaryStage.setScene(new Scene(root));
-            primaryStage.setTitle("Welcome to RemitEase");
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void start(Stage primaryStage) throws Exception {
+        // Load WelcomePage.fxml
+        FXMLLoader welcomeLoader = new FXMLLoader(getClass().getResource("WelcomePage.fxml"));
+        Parent welcomeRoot = welcomeLoader.load();
+        WelcomePageController welcomeController = welcomeLoader.getController();
+        welcomeController.setPrimaryStage(primaryStage);
+
+        // Set up the scene with WelcomePage.fxml
+        Scene scene = new Scene(welcomeRoot);
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Welcome to RemitEase");
+        primaryStage.show();
     }
 
-
-	public static void main(String[] args) {
-		launch(args);
-
-	}
-
+    public static void main(String[] args) {
+        launch(args);
+    }
 }

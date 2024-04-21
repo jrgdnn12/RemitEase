@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21">
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox prefHeight="500.0" prefWidth="700.0">
          <children>
@@ -38,6 +37,11 @@
             <Button mnemonicParsing="false" prefWidth="70.0" text="Back">
                <VBox.margin>
                   <Insets left="20.0" top="150.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" prefWidth="100.0" text="Continue">
+               <VBox.margin>
+                  <Insets left="580.0" top="-27.0" />
                </VBox.margin>
             </Button>
          </children>
