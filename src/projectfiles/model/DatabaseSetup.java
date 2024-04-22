@@ -217,8 +217,10 @@ public class DatabaseSetup {
                          "SenderId VARCHAR(255), " +
                          "RecipientId INT, " +
                          "PartnerId VARCHAR(255), " +
-                         "Amount DOUBLE, " +
-                         "Currency VARCHAR(255), " +
+                         "AmountSent DOUBLE, " +
+                         "AmountReceived DOUBLE, " +
+                         "SourceCurrency VARCHAR(255), " +
+                         "TargetCurrency VARCHAR(255), " +
                          "Status VARCHAR(255), " +
                          "CreatedAt DATETIME, " +
                          "UpdatedAt DATETIME, " +
@@ -228,7 +230,8 @@ public class DatabaseSetup {
                          "FOREIGN KEY (RecipientId) REFERENCES Recipient(RecipientId), " +
                          "FOREIGN KEY (PartnerId) REFERENCES Partner(PartnerId));");
 
-        	//Start transactionID at 100
+        	//Start transactionID at 1000
+            stmt.execute("ALTER TABLE Remittance AUTO_INCREMENT = 4514564");
             
             // ExchangeRate Table
             stmt.execute("CREATE TABLE IF NOT EXISTS ExchangeRate (" +
