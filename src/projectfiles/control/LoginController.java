@@ -1,4 +1,4 @@
-package projectfiles.view;
+package projectfiles.control;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

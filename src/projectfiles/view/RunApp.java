@@ -5,9 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import projectfiles.view.LoginController;
-import projectfiles.view.SignUpController;
-import projectfiles.view.WelcomePageController;
+import projectfiles.control.LoginController;
+import projectfiles.control.SignUpController;
+import projectfiles.control.WelcomePageController;
 
 import java.io.IOException;
 
