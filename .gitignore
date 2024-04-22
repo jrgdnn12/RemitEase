@@ -1,1 +1,26 @@
 /bin/
+
+
+.classpath
+.project
+.settings/
+
+# Compiled class files
+*.class
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+
+# Gradle
+.gradle/
+build/
+
+# Various log files
+*.log
+
+# OS specific
+.DS_Store
+Thumbs.db
