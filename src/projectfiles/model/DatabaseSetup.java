@@ -41,7 +41,7 @@ public class DatabaseSetup {
             // User Table
             stmt.execute("CREATE TABLE IF NOT EXISTS User (" +
                          "UserId VARCHAR(255) PRIMARY KEY, " +
-                         "Password VARCHAR(255) NOT NULL);");
+                         "Password VARCHAR(255) NOT NULL),;");
             
             //Insert into User's table
             stmt.execute("INSERT INTO User VALUES ('CSR100','1234')");
