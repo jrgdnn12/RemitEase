@@ -202,8 +202,8 @@ public class Customer extends User {
      * Send an SMS update to the customer with the message specified.
      */
     public void sendSMSupdate() {
-    	// actual implementation for sending sms is to be done here
-    	
+        // actual implementation for sending sms is to be done here
+        
     }
     /**
      * A method to delete a customer and all data associated.
@@ -212,5 +212,6 @@ public class Customer extends User {
     public void deleteAccount() {
         // Implementation for deleting customer account
     }
+} // Inserted closing curly brace to complete the class body
     
     
