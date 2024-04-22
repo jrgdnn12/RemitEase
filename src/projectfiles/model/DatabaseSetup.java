@@ -165,46 +165,51 @@ public class DatabaseSetup {
 
             // Recipient Table
             stmt.execute("CREATE TABLE IF NOT EXISTS Recipient (" +
-                         "RecipientId VARCHAR(255) PRIMARY KEY, " +
-                         "First_Name VARCHAR(255), " +
-                         "Last_Name VARCHAR(255), " +
-                         "PhoneNumber VARCHAR(255), " +
-                         "Email VARCHAR(255), " +
-                         "Balance DOUBLE, " +
-                         "Country VARCHAR(255), " +
-                         "City VARCHAR(255), " +
-                         "Address VARCHAR(255), " +
-                         "FOREIGN KEY (RecipientId) REFERENCES User(UserId));");
-            
-            // Insert into Recipient's table
-            stmt.execute("INSERT INTO Recipient VALUES ('RCP100','Rex','Cobbs','574-937-0853','rexcobbs@gmail.com',10.00,'Ecuador','Ambato','123 King Street')");
-            stmt.execute("INSERT INTO Recipient VALUES ('RCP101','Henry','Gaither','235-643-6434','henrygaither@gmail.com',10.00,'Ecuador','Ambato','124 King Street')");
-            stmt.execute("INSERT INTO Recipient VALUES ('RCP102','Prince','Stone','694-696-3246','princestone@gmail.com',10.00,'Ecuador','Ambato','125 King Street')");
-            stmt.execute("INSERT INTO Recipient VALUES ('RCP103','Leslie','Song','754-596-4575','lesliesong@gmail.com',10.00,'Ecuador','Ambato','126 King Street')");
-            stmt.execute("INSERT INTO Recipient VALUES ('RCP104','Maxwell','Gonzalez','796-059-9563','maxwellgonzalez@gmail.com',10.00,'Ecuador','Ambato','127 Prince Street')");
-            stmt.execute("INSERT INTO Recipient VALUES ('RCP105','Harry','Williamson','345-564-9482','harrywilliamson@gmail.com',20.00,'Ecuador','Ambato','128 King Street')");
-            stmt.execute("INSERT INTO Recipient VALUES ('RCP106','Ben','Dickson','452-293-9683','bendickson@gmail.com',20.00,'Ecuador','Ambato','129 King Street')");
-            stmt.execute("INSERT INTO Recipient VALUES ('RCP107','Fred','Johnson','239-069-4964','fredjohnson@gmail.com',20.00,'Ecuador','Quito','130 Royal Street')");
-            stmt.execute("INSERT INTO Recipient VALUES ('RCP108','Daniel','Timson','904-486-4963','danieltimson@gmail.com',20.00,'Ecuador','Quito','131 King Street')");
-            stmt.execute("INSERT INTO Recipient VALUES ('RCP109','Moses','Hall','694-923-1942','moseshall@gmail.com',20.00,'Ecuador','Quito','342 School Circle')");
-            stmt.execute("INSERT INTO Recipient VALUES ('RCP110','Marsh','Wilberforce','683-495-0634','marshwilberforce@gmail.com',20.00,'Ecuador','Quito','343 School Circle')");
-            stmt.execute("INSERT INTO Recipient VALUES ('RCP111','Herbert','Livingstone','234-695-0593','herbertlivingstone@gmail.com',20.00,'Ecuador','Quito','344 School Circle')");
-            stmt.execute("INSERT INTO Recipient VALUES ('RCP112','Bill','Patterson','434-059-4329','billpatterson@gmail.com',20.00,'Ghana','Kumasi','573 Screen Grove')");
-            stmt.execute("INSERT INTO Recipient VALUES ('RCP113','William','Peterson','406-596-4923','williampeterson@gmail.com',20.00,'Ghana','Kumasi','574 Screen Grove')");
-            stmt.execute("INSERT INTO Recipient VALUES ('RCP114','Catherine','Well','679-458-0493','catherinewell@gmail.com',15.00,'Ghana','Kumasi','575 Screen Grove')");
-            stmt.execute("INSERT INTO Recipient VALUES ('RCP115','Lovert','Realson','458-0795-0694','lovertrealson@gmail.com',15.00,'Ghana','Kumasi','576 Screen Grove')");
-            stmt.execute("INSERT INTO Recipient VALUES ('RCP116','Precious','Walker','753-948-9583','preciouswalker@gmail.com',15.00,'Ghana','Kumasi','577 Screen Grove')");
-            stmt.execute("INSERT INTO Recipient VALUES ('RCP117','Emmanuel','Isaccs','590-058-3133','emmanuelisaccs@gmail.com',15.00,'Ghana','Kumasi','578 Screen Grove')");
-            stmt.execute("INSERT INTO Recipient VALUES ('RCP118','Philip','Mensah','586-964-8235','philipmensah@gmail.com',15.00,'Ghana','Kumasi','579 Screen Grove')");
-            stmt.execute("INSERT INTO Recipient VALUES ('RCP119','Jorge','Alvarez','732-984-2834','jorgealvarez@gmail.com',15.00,'Ghana','Kumasi','742 Hilton Parkway')");
-            stmt.execute("INSERT INTO Recipient VALUES ('RCP120','William','Forge','964-485-9684','williamforge@gmail.com',15.00,'Ghana','Kumasi','743 Hilton Parkway')");
-            stmt.execute("INSERT INTO Recipient VALUES ('RCP121','Hill','Forceful','903-482-0482','hillforceful@gmail.com',15.00,'Ghana','Accra','744 Hilton Parkway')");
-            stmt.execute("INSERT INTO Recipient VALUES ('RCP122','Tremzol','King','233-595-6964','tremzolking@gmail.com',20.00,'Ghana','Accra','745 Hilton Parkway')");
-            stmt.execute("INSERT INTO Recipient VALUES ('RCP123','Fierl','Haizel','694-683-5066','fierlhaizel@gmail.com',20.00,'Ghana','Accra','746 Hilton Parkway')");
-            stmt.execute("INSERT INTO Recipient VALUES ('RCP124','Howard','Solid','593-906-9683','howardsolid@gmail.com',20.00,'Ghana','Accra','747 Hilton Parkway')");
-            stmt.execute("INSERT INTO Recipient VALUES ('RCP125','Seth','Jones','860-492-4955','sethjones@gmail.com',20.00,'Ghana','Accra','748 Hilton Parkway')");
-            
-            
+                        "RecipientId INT AUTO_INCREMENT PRIMARY KEY, " +
+                        "First_Name VARCHAR(255), " +
+                        "Last_Name VARCHAR(255), " +
+                        "PhoneNumber VARCHAR(255), " +
+                        "Email VARCHAR(255), " +
+                        "Balance DOUBLE, " +
+                        "Country VARCHAR(255), " +
+                        "City VARCHAR(255), " +
+                        "Address VARCHAR(255));");
+                        // Insert into Recipient's table
+
+            //set initial auto increment value
+            stmt.execute("ALTER TABLE Recipient AUTO_INCREMENT = 1000");
+
+            //inser datta
+            // Insert into Recipient's table without specifying RecipientId
+            stmt.execute("INSERT INTO Recipient (First_Name, Last_Name, PhoneNumber, Email, Balance, Country, City, Address) VALUES " +
+                        "('Rex', 'Cobbs', '574-937-0853', 'rexcobbs@gmail.com', 10.00, 'Ecuador', 'Ambato', '123 King Street'), " +
+                        "('Henry', 'Gaither', '235-643-6434', 'henrygaither@gmail.com', 10.00, 'Ecuador', 'Ambato', '124 King Street'), " +
+                        "('Prince', 'Stone', '694-696-3246', 'princestone@gmail.com', 10.00, 'Ecuador', 'Ambato', '125 King Street'), " +
+                        "('Leslie', 'Song', '754-596-4575', 'lesliesong@gmail.com', 10.00, 'Ecuador', 'Ambato', '126 King Street'), " +
+                        "('Maxwell', 'Gonzalez', '796-059-9563', 'maxwellgonzalez@gmail.com', 10.00, 'Ecuador', 'Ambato', '127 Prince Street'), " +
+                        "('Harry', 'Williamson', '345-564-9482', 'harrywilliamson@gmail.com', 20.00, 'Ecuador', 'Ambato', '128 King Street'), " +
+                        "('Ben', 'Dickson', '452-293-9683', 'bendickson@gmail.com', 20.00, 'Ecuador', 'Ambato', '129 King Street'), " +
+                        "('Fred', 'Johnson', '239-069-4964', 'fredjohnson@gmail.com', 20.00, 'Ecuador', 'Quito', '130 Royal Street'), " +
+                        "('Daniel', 'Timson', '904-486-4963', 'danieltimson@gmail.com', 20.00, 'Ecuador', 'Quito', '131 King Street'), " +
+                        "('Moses', 'Hall', '694-923-1942', 'moseshall@gmail.com', 20.00, 'Ecuador', 'Quito', '342 School Circle'), " +
+                        "('Marsh', 'Wilberforce', '683-495-0634', 'marshwilberforce@gmail.com', 20.00, 'Ecuador', 'Quito', '343 School Circle'), " +
+                        "('Herbert', 'Livingstone', '234-695-0593', 'herbertlivingstone@gmail.com', 20.00, 'Ecuador', 'Quito', '344 School Circle'), " +
+                        "('Bill', 'Patterson', '434-059-4329', 'billpatterson@gmail.com', 20.00, 'Ghana', 'Kumasi', '573 Screen Grove'), " +
+                        "('William', 'Peterson', '406-596-4923', 'williampeterson@gmail.com', 20.00, 'Ghana', 'Kumasi', '574 Screen Grove'), " +
+                        "('Catherine', 'Well', '679-458-0493', 'catherinewell@gmail.com', 15.00, 'Ghana', 'Kumasi', '575 Screen Grove'), " +
+                        "('Lovert', 'Realson', '458-0795-0694', 'lovertrealson@gmail.com', 15.00, 'Ghana', 'Kumasi', '576 Screen Grove'), " +
+                        "('Precious', 'Walker', '753-948-9583', 'preciouswalker@gmail.com', 15.00, 'Ghana', 'Kumasi', '577 Screen Grove'), " +
+                        "('Emmanuel', 'Isaccs', '590-058-3133', 'emmanuelisaccs@gmail.com', 15.00, 'Ghana', 'Kumasi', '578 Screen Grove'), " +
+                        "('Philip', 'Mensah', '586-964-8235', 'philipmensah@gmail.com', 15.00, 'Ghana', 'Kumasi', '579 Screen Grove'), " +
+                        "('Jorge', 'Alvarez', '732-984-2834', 'jorgealvarez@gmail.com', 15.00, 'Ghana', 'Kumasi', '742 Hilton Parkway'), " +
+                        "('William', 'Forge', '964-485-9684', 'williamforge@gmail.com', 15.00, 'Ghana', 'Kumasi', '743 Hilton Parkway'), " +
+                        "('Hill', 'Forceful', '903-482-0482', 'hillforceful@gmail.com', 15.00, 'Ghana', 'Accra', '744 Hilton Parkway'), " +
+                        "('Tremzol', 'King', '233-595-6964', 'tremzolking@gmail.com', 20.00, 'Ghana', 'Accra', '745 Hilton Parkway'), " +
+                        "('Fierl', 'Haizel', '694-683-5066', 'fierlhaizel@gmail.com', 20.00, 'Ghana', 'Accra', '746 Hilton Parkway'), " +
+                        "('Howard', 'Solid', '593-906-9683', 'howardsolid@gmail.com', 20.00, 'Ghana', 'Accra', '747 Hilton Parkway'), " +
+                        "('Seth', 'Jones', '860-492-4955', 'sethjones@gmail.com', 20.00, 'Ghana', 'Accra', '748 Hilton Parkway');");
+
+                        
             // Partner Table
             stmt.execute("CREATE TABLE IF NOT EXISTS Partner (" +
                          "PartnerId VARCHAR(255) PRIMARY KEY, " +
