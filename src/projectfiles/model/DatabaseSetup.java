@@ -11,7 +11,6 @@ public class DatabaseSetup {
 
     public static void main(String[] args) {
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
-            clearDatabase(conn);
             createTables(conn);
             System.out.println("All tables created successfully.");
         } catch (SQLException ex) {
@@ -20,26 +19,7 @@ public class DatabaseSetup {
     }
     
     
-     /**
-     * Clear all data from the database to ensure a fresh setup.
-     * @param conn The connection to the database.
-     */
-    private static void clearDatabase(Connection conn) throws SQLException {
-        try (Statement stmt = conn.createStatement()) {
-            // Disable foreign key checks to allow deletion of all data
-            stmt.execute("SET FOREIGN_KEY_CHECKS = 0");
 
-            // List all tables and delete data from them
-            String[] tables = {"Remittance", "ExchangeRate", "Customer", "Recipient", "Partner", "User"};
-            for (String table : tables) {
-                stmt.execute("DELETE FROM " + table);
-            }
-
-            // Re-enable foreign key checks
-            stmt.execute("SET FOREIGN_KEY_CHECKS = 1");
-            System.out.println("All data cleared successfully.");
-        }
-    }
 
     private static void createTables(Connection conn) throws SQLException {
         try (Statement stmt = conn.createStatement()) {
@@ -179,7 +159,7 @@ public class DatabaseSetup {
             //set initial auto increment value
             stmt.execute("ALTER TABLE Recipient AUTO_INCREMENT = 1000");
 
-            //inser datta
+         
             // Insert into Recipient's table without specifying RecipientId
             stmt.execute("INSERT INTO Recipient (First_Name, Last_Name, PhoneNumber, Email, Balance, Country, City, Address) VALUES " +
                         "('Rex', 'Cobbs', '574-937-0853', 'rexcobbs@gmail.com', 10.00, 'Ecuador', 'Ambato', '123 King Street'), " +
@@ -233,9 +213,9 @@ public class DatabaseSetup {
             
             // Remittance Table
             stmt.execute("CREATE TABLE IF NOT EXISTS Remittance (" +
-                         "TransactionId VARCHAR(255) PRIMARY KEY, " +
+                         "TransactionId INT AUTO_INCREMENT PRIMARY KEY, " +
                          "SenderId VARCHAR(255), " +
-                         "RecipientId VARCHAR(255), " +
+                         "RecipientId INT, " +
                          "PartnerId VARCHAR(255), " +
                          "Amount DOUBLE, " +
                          "Currency VARCHAR(255), " +
@@ -248,6 +228,8 @@ public class DatabaseSetup {
                          "FOREIGN KEY (RecipientId) REFERENCES Recipient(RecipientId), " +
                          "FOREIGN KEY (PartnerId) REFERENCES Partner(PartnerId));");
 
+        	//Start transactionID at 100
+            
             // ExchangeRate Table
             stmt.execute("CREATE TABLE IF NOT EXISTS ExchangeRate (" +
                          "ExchangeRateId INT AUTO_INCREMENT PRIMARY KEY, " +
