@@ -11,6 +11,7 @@ public class DatabaseSetup {
 
     public static void main(String[] args) {
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
+            clearDatabase(conn);
             createTables(conn);
             System.out.println("All tables created successfully.");
         } catch (SQLException ex) {
@@ -19,7 +20,26 @@ public class DatabaseSetup {
     }
     
     
+     /**
+     * Clear all data from the database to ensure a fresh setup.
+     * @param conn The connection to the database.
+     */
+    private static void clearDatabase(Connection conn) throws SQLException {
+        try (Statement stmt = conn.createStatement()) {
+            // Disable foreign key checks to allow deletion of all data
+            stmt.execute("SET FOREIGN_KEY_CHECKS = 0");
 
+            // List all tables and delete data from them
+            String[] tables = {"Remittance", "ExchangeRate", "Customer", "Recipient", "Partner", "User"};
+            for (String table : tables) {
+                stmt.execute("DELETE FROM " + table);
+            }
+
+            // Re-enable foreign key checks
+            stmt.execute("SET FOREIGN_KEY_CHECKS = 1");
+            System.out.println("All data cleared successfully.");
+        }
+    }
 
     private static void createTables(Connection conn) throws SQLException {
         try (Statement stmt = conn.createStatement()) {
