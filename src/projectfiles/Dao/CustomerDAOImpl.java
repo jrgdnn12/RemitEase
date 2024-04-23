@@ -83,7 +83,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 
     @Override
     public void updateCustomer(Customer customer) throws SQLException {
-        String sql = "UPDATE Customer SET Email = ?, FirstName = ?, LastName = ?, PhoneNumber = ?, Balance = ?, Country = ?, City = ?, Address = ? WHERE UserId = ?";
+        String sql = "UPDATE Customer SET Email = ?, FirstName = ?, LastName = ?, PhoneNumber = ?, Balance = ?, Country = ?, City = ?, Address = ? WHERE CustomerId = ?";
         try (Connection conn = DatabaseCreds.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, customer.getEmail());
