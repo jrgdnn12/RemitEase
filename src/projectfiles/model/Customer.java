@@ -24,15 +24,19 @@ public class Customer extends User {
      * @param name The full name of the customer.
      * @param phoneNumber The contact phoner number of the customer
      */
-    public Customer(String id, String email, String password, String firstName,String lastName, String phoneNumber) {
-        super(id, password, 0); //here we assume 0 is the default permission.
+
+    public Customer(String id, String password , String email, String firstName, String lastName, String phoneNumber, double balance, String country, String city, String address) {
+        super(id, password);  // Pass an empty string or null for password
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
-        this.balance = 0.00; //Assuming default balance is 0
+        this.balance = balance;
+        this.country = country;
+        this.city = city;
+        this.address = address;
     }
-    
+
     //Getter and setter for name
     
     /**
@@ -47,7 +51,7 @@ public class Customer extends User {
      * Sets the first name of the customer
      * @param firstName A string with the name of the customer.
      */
-    public void setName(String firstName) {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
     
@@ -55,7 +59,7 @@ public class Customer extends User {
      * Gets the last name of the customer.
      * @return A string with the last name of the customer.
      */
-    public String getLasttName() {
+    public String getLastName() {
         return lastName;
     }
     

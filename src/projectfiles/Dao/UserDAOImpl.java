@@ -1,72 +1,67 @@
 package projectfiles.Dao;
 
+import projectfiles.model.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.mysql.cj.protocol.a.SqlDateValueEncoder;
-
-import projectfiles.model.User;
-
-
-public class UserDAOImpl implements UserDAO{
+public class UserDAOImpl implements UserDAO {
 
     @Override
-    public boolean doesUserExist(String userID) throws SQLException {
-        String sql = "SELECT * FROM users WHERE userID = ?";
-        try (Connection conn = DatabaseCreds.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(sql);
-        ) {
-            stmt.setString(1, userID);
-            ResultSet rs = stmt.executeQuery();
-            return rs.next(); //return true when userID exists
-        }   
-    }
-
-    @Override
-    public void addUser(User userId) throws SQLException {
-        if (!doesUserExist(userId.getId())) {
-            String sql = "INSERT INTO User (UserID, Password) VALUES (?, ?)";
+    public void addUser(User user) throws SQLException {
+        if (!doesUserExist(user.getId())) {
+            String sql = "INSERT INTO User (UserId, Password) VALUES (?, ?)";
             try (Connection conn = DatabaseCreds.getConnection();
-                PreparedStatement smt = conn.prepareStatement(sql)) {
-                    smt.setString(1, userId.getId());
-                    smt.setString(2, userId.getPassword());
-                }
+                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                pstmt.setString(1, user.getId());
+                pstmt.setString(2, user.getPassword());
+                pstmt.executeUpdate();
+            }
         } else {
-                throw new SQLException("User already exists");
-                //How are we going to hanfle this Expection?
+            System.out.println("User with ID " + user.getId() + " already exists.");
+            // Optionally, throw an exception or handle this case as needed.
+        }
+    }
+    
+    @Override 
+    public boolean doesUserExist(String userId) throws SQLException {
+        String sql = "SELECT 1 FROM User WHERE UserId = ?";
+        try (Connection conn = DatabaseCreds.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, userId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                return rs.next(); // Returns true if there is at least one result, meaning the user ID exists.
+            }
         }
     }
 
     @Override
-    public User getUserByID(String userId) throws SQLException {
+    public User getUserById(String userId) throws SQLException {
         String sql = "SELECT * FROM User WHERE UserId = ?";
         try (Connection conn = DatabaseCreds.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(sql)) {
-                stmt.setString(1, userId);
-                ResultSet rs = stmt.executeQuery();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, userId);
+            try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
-                    User userbyid = new User();
-                    userbyid.setId(rs.getString("UserId"));
-                    userbyid.setPassword(rs.getString("Password"));
-                    return userbyid;
+                    User user = new User();
+                    user.setId(rs.getString("UserId"));
+                    user.setPassword(rs.getString("Password"));
+                    return user;
                 }
             }
-            return null;
-        } 
-
+        }
+        return null;
+    }
 
     @Override
     public void updatePassword(String userId, String newPassword) throws SQLException {
-        String sql = "UPDATE USER SET Password = ? WHERE UserID = ?";
-        try (Connection conn = DatabaseCreds.getConnection(); 
-            PreparedStatement stmt = conn.prepareStatement(sql)) {
-                stmt.setString(1, userId);
-                stmt.setString(2, newPassword);
-                stmt.executeUpdate();
-            }
+        String sql = "UPDATE User SET Password = ? WHERE UserId = ?";
+        try (Connection conn = DatabaseCreds.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, newPassword);
+            pstmt.setString(2, userId);
+            pstmt.executeUpdate();
+        }
     }
-    
-
 }

@@ -22,7 +22,7 @@ public class TestUserDAO {
 
             // Test getUserByID
             System.out.println("Testing getUserByID...");
-            User fetchedUser = userDao.getUserByID("testUser01");
+            User fetchedUser = userDao.getUserById("testUser01");
             if (fetchedUser != null) {
                 System.out.println("User Found: ID = " + fetchedUser.getId() + ", Password = " + fetchedUser.getPassword());
             } else {
@@ -36,7 +36,7 @@ public class TestUserDAO {
 
             // Verify password update
             System.out.println("Verifying password update...");
-            User updatedUser = userDao.getUserByID("testUser01");
+            User updatedUser = userDao.getUserById("testUser01");
             if (updatedUser != null && "newTestPassword".equals(updatedUser.getPassword())) {
                 System.out.println("Password update verified.");
             } else {
