@@ -44,7 +44,7 @@ public class UserDAOImpl implements UserDAO{
         String sql = "SELECT * FROM User WHERE UserId = ?";
         try (Connection conn = DatabaseCreds.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)) {
-                stmt.setString(1, UserId);
+                stmt.setString(1, userId);
                 ResultSet rs = stmt.executeQuery();
                 if (rs.next()) {
                     User userbyid = new User();
@@ -60,7 +60,7 @@ public class UserDAOImpl implements UserDAO{
     @Override
     public void updatePassword(String userId, String newPassword) throws SQLException {
         String sql = "UPDATE USER SET Password = ? WHERE UserID = ?";
-        try (Connection conn = DatabaseCreds.getConnection(): 
+        try (Connection conn = DatabaseCreds.getConnection(); 
             PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setString(1, userId);
                 stmt.setString(2, newPassword);
