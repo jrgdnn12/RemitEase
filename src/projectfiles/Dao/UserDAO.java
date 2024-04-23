@@ -1,4 +1,4 @@
-package projectfiles.DAO;
+package projectfiles.Dao;
 
 import java.sql.SQLException;
 import projectfiles.model.User;
@@ -7,7 +7,7 @@ import projectfiles.model.User;
  */
 public interface UserDAO {
     boolean doesUserExist(String userId) throws SQLException;
-    void addUser(User user) throws SQLException;
+    void addUser(User userId) throws SQLException;
     User getUserByID(String userId) throws SQLException;
     void updatePassword(String userId, String newPassword) throws SQLException;
 

@@ -1,4 +1,4 @@
-package projectfiles.DAO;
+package projectfiles.Dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import com.mysql.cj.protocol.a.SqlDateValueEncoder;
 
 import projectfiles.model.User;
-import projectfiles.DAO.DatabaseCreds;
 
 
 public class UserDAOImpl implements UserDAO{
@@ -17,7 +16,7 @@ public class UserDAOImpl implements UserDAO{
     public boolean doesUserExist(String userID) throws SQLException {
         String sql = "SELECT * FROM users WHERE userID = ?";
         try (Connection conn = DatabaseCreds.getConnection();
-            PreparedStatement stmt = con.prepareStatement(sql);
+            PreparedStatement stmt = conn.prepareStatement(sql);
         ) {
             stmt.setString(1, userID);
             ResultSet rs = stmt.executeQuery();
@@ -53,6 +52,19 @@ public class UserDAOImpl implements UserDAO{
                     userbyid.setPassword(rs.getString("Password"));
                     return userbyid;
                 }
+            }
+            return null;
+        } 
+
+
+    @Override
+    public void updatePassword(String userId, String newPassword) throws SQLException {
+        String sql = "UPDATE USER SET Password = ? WHERE UserID = ?";
+        try (Connection conn = DatabaseCreds.getConnection(): 
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+                stmt.setString(1, userId);
+                stmt.setString(2, newPassword);
+                stmt.executeUpdate();
             }
     }
     
