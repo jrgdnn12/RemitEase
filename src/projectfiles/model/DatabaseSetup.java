@@ -41,7 +41,7 @@ public class DatabaseSetup {
             // User Table
             stmt.execute("CREATE TABLE IF NOT EXISTS User (" +
                          "UserId VARCHAR(255) PRIMARY KEY, " +
-                         "Password VARCHAR(255) NOT NULL),;");
+                         "Password VARCHAR(255) NOT NULL);");
             
             //Insert into User's table
             stmt.execute("INSERT INTO User VALUES ('CSR100','1234')");
@@ -103,8 +103,8 @@ public class DatabaseSetup {
          // Customer Table
             stmt.execute("CREATE TABLE IF NOT EXISTS Customer (" +
                          "CustomerId VARCHAR(255) PRIMARY KEY, " +
-                         "First_Name VARCHAR(255), " +
-                         "Last_Name VARCHAR(255), " +
+                         "FirstName VARCHAR(255), " +
+                         "LastName VARCHAR(255), " +
                          "PhoneNumber VARCHAR(255), " +
                          "Email VARCHAR(255), " +
                          "Balance DOUBLE, " +
@@ -146,8 +146,8 @@ public class DatabaseSetup {
             // Recipient Table
             stmt.execute("CREATE TABLE IF NOT EXISTS Recipient (" +
                         "RecipientId INT AUTO_INCREMENT PRIMARY KEY, " +
-                        "First_Name VARCHAR(255), " +
-                        "Last_Name VARCHAR(255), " +
+                        "FirstName VARCHAR(255), " +
+                        "LastName VARCHAR(255), " +
                         "PhoneNumber VARCHAR(255), " +
                         "Email VARCHAR(255), " +
                         "Balance DOUBLE, " +
@@ -161,7 +161,7 @@ public class DatabaseSetup {
 
          
             // Insert into Recipient's table without specifying RecipientId
-            stmt.execute("INSERT INTO Recipient (First_Name, Last_Name, PhoneNumber, Email, Balance, Country, City, Address) VALUES " +
+            stmt.execute("INSERT INTO Recipient (FirstName, LastName, PhoneNumber, Email, Balance, Country, City, Address) VALUES " +
                         "('Rex', 'Cobbs', '574-937-0853', 'rexcobbs@gmail.com', 10.00, 'Ecuador', 'Ambato', '123 King Street'), " +
                         "('Henry', 'Gaither', '235-643-6434', 'henrygaither@gmail.com', 10.00, 'Ecuador', 'Ambato', '124 King Street'), " +
                         "('Prince', 'Stone', '694-696-3246', 'princestone@gmail.com', 10.00, 'Ecuador', 'Ambato', '125 King Street'), " +
@@ -241,7 +241,6 @@ public class DatabaseSetup {
                          "Rate DOUBLE, " +
                          "LastUpdated DATETIME);");
 
-            // Additional tables can be added here following the same pattern
         }
     }
 }
