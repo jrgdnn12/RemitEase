@@ -3,7 +3,6 @@ package projectfiles.model;
 public class User {
     private String userID;
     private String password;
-    private int permissionLevel;
 
     public User() {
         // Default constructor
@@ -13,12 +12,10 @@ public class User {
 	 *Constructor for objects of class User.
 	 *@param id The user unique identifier.
 	 *@param password The user's password.
-	 *@param permissionLevel The level of permission.
 	 */
-    public User(String id, String password, int permissionLevel) {
+    public User(String id, String password) {
         this.userID = id;
         this.password = password;
-        this.permissionLevel = permissionLevel;
     }
     
     /**
@@ -63,20 +60,5 @@ public class User {
         return this.password.equals(password);
     }
     
-    /**
-     * Gets the permission level of the user.
-     * @return An integer representing the user's permission level
-     */
-    public int getPermissionLevel() {
-        return permissionLevel;
-    }
-    
-    /**
-     * Sets the permission level of the user
-     * @param permissionLevel An integer containing the new permission level for the user
-     */
 
-    public void setPermissionLevel(int permissionLevel) {
-        this.permissionLevel = permissionLevel;
-    }
 }

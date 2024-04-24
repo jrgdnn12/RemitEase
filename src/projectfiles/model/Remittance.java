@@ -11,8 +11,9 @@ public class Remittance {
     private Customer senderID;
     private Recipient recipientID;
     private Partner partnerID;
-    private double amount;
-    private String localCurrency;
+    private double SendAmount;
+    private double Receiveamount;
+    private String SourceCurrency;
     private String targetCurency;
     private String status;
     private LocalDateTime createdAt;
@@ -91,32 +92,50 @@ public class Remittance {
      * @return A double containing the remittance amount.
      */
 
-    public double getAmount() {
-        return amount;
+    public double getSendAmount() {
+        return SendAmount;
     }
 
     /**
      * Setter for the remittance amount
-     * @param amount A double containing the remittance amount.
+     * @param sendAmount A double containing the remittance amount.
      */
-    public void setAmount(double amount) {
-        this.amount = amount;
+    public void setSendAmount(double sendAmount) {
+        this.SendAmount = sendAmount;
     }
 
+
+    /**
+     * Getter for the receive amount
+     * @return A double containing the receive amount.
+     */
+    public double getReceiveamount() {
+        return Receiveamount;
+    }
+
+    /**
+     * Setter for the receive amount
+     * @return
+     */
     /**
      * Getter for the local currency
      * @return A string containing the local currency.
      */
-    public String getLocalCurrency() {
-        return localCurrency;
+    public void setReceiveamount(double receiveAmount) {
+        this.Receiveamount = receiveAmount;
+    }
+
+     
+    public String getSourceCurrency() {
+        return SourceCurrency;
     }
 
     /**
      * Setter for the local currency
-     * @param localCurrency A string containing the local currency.
+     * @param SourceCurrency A string containing the local currency.
      */
-    public void setLocalCurrency(String localCurrency) {
-        this.localCurrency = localCurrency;
+    public void setSourceCurrency(String SourceCurrency) {
+        this.SourceCurrency = SourceCurrency;
     }
 
     /**

@@ -1,11 +1,12 @@
 package projectfiles.model;
 
-public class Recipient extends User {
+
+public class Recipient  {
+    private String recipientId;
     private String firstName;
     private String lastName;
     private String phoneNumber;
     private String email;
-    private double balance;
     private String country;
     private String city;
     private String address;
@@ -16,24 +17,30 @@ public class Recipient extends User {
     
     /**
      * Constructs the new recipient with specified identification and contact details.
-     * @param id The unique identifier for the recipient
+     * @param id Specified by the database autoincrement feature.
      * @param email The email address of the recipient
-     * @param password Not sure how the recipient will use this, should this parameter be removed?
      * @param firstName The the first name of the recipient
      * @param lastName the last name of the recipient
      * @param phoneNumber The contact phone number of the recipient.
-     * @param balance The balance in US dollars.
      */
-    public Recipient(String id, String email, String password, String firstname, String lastName, String phoneNumber) {
-        super(id, password, 0); //Default user permission.
+    public Recipient( String email, String firstname, String lastName, String phoneNumber) {
         this.email = email;
         this.firstName = firstname;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
-        this.balance = 0.00; //intiallize the balance to 0.00
     }
     
     //Getter and setters
+
+    /**
+     * Getter for the recipient ID
+     * @return A string containing the recipient ID.
+     *
+     */
+    public String getRecipientId() {
+        return recipientId;
+    }
+
     
     /**
      * Getter for the first name of the recipient
@@ -98,21 +105,7 @@ public class Recipient extends User {
         this.email = email;
     }
 
-    /**
-     * Gets the balance of the recipients account.
-     * @return A double to represent the recipients available balance.
-     */
-    public double getBalance() {
-        return balance;
-    }
 
-    /**
-     * Sets the balance. Use carefully, may be deprecated by deposit and withdraw method
-     * @param balance A double containing the amount to arbitrarily change balance to.
-     */
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
 
     /**
      * Get the name of the recipient country.
@@ -165,24 +158,7 @@ public class Recipient extends User {
         this.address = address;
     }
     
-    //Methods for balance management
-    
-    /**
-     * Method to receive remittance, add to the balance. 
-     * @param amount
-     */
-    public void receive(double amount) {
-        balance += amount;
-    }
-    
-    /**
-     * Method to update balance after a partner remittance disbursement.
-     * @param amount
-     */
-    public void disburse(double amount) {
-    	balance -= amount;
-    }
-    
+
     /**
      * Send an email update to the customer with the message specified.
      * @param message
