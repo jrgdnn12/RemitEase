@@ -8,12 +8,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21">
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox prefHeight="500.0" prefWidth="700.0">
+      <VBox fx:id="recipientVBox" prefHeight="500.0" prefWidth="700.0">
          <children>
-            <Label text="Recipient Information">
+            <Label fx:id="recipientInformationLabel" text="Recipient Information">
                <font>
                   <Font size="25.0" />
                </font>
@@ -21,7 +20,7 @@
                   <Insets left="200.0" />
                </VBox.margin>
             </Label>
-            <Label text="Name:">
+            <Label fx:id="nameLabel" text="Name:">
                <font>
                   <Font size="14.0" />
                </font>
@@ -29,12 +28,12 @@
                   <Insets left="20.0" top="10.0" />
                </VBox.margin>
             </Label>
-            <TextField maxWidth="300.0">
+            <TextField fx:id="nameTextField" maxWidth="300.0">
                <VBox.margin>
                   <Insets left="150.0" top="-20.0" />
                </VBox.margin>
             </TextField>
-            <Label text="Email:">
+            <Label fx:id="emailLabel" text="Email:">
                <VBox.margin>
                   <Insets left="20.0" top="20.0" />
                </VBox.margin>
@@ -42,12 +41,12 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField maxWidth="300.0">
+            <TextField fx:id="emailTextField" maxWidth="300.0">
                <VBox.margin>
                   <Insets left="150.0" top="-25.0" />
                </VBox.margin>
             </TextField>
-            <Label text="Phone Number:">
+            <Label fx:id="phoneNumberLabel" text="Phone Number:">
                <VBox.margin>
                   <Insets left="20.0" top="20.0" />
                </VBox.margin>
@@ -55,12 +54,12 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField maxWidth="300.0">
+            <TextField fx:id="phoneNumberTextField" maxWidth="300.0">
                <VBox.margin>
                   <Insets left="150.0" top="-22.0" />
                </VBox.margin>
             </TextField>
-            <Label text="Country:">
+            <Label fx:id="countryLabel" text="Country:">
                <VBox.margin>
                   <Insets left="20.0" top="20.0" />
                </VBox.margin>
@@ -68,12 +67,12 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField maxWidth="300.0">
+            <TextField fx:id="countryTextField" maxWidth="300.0">
                <VBox.margin>
                   <Insets left="150.0" top="-22.0" />
                </VBox.margin>
             </TextField>
-            <Label text="City:">
+            <Label fx:id="cityLabel" text="City:">
                <VBox.margin>
                   <Insets left="20.0" top="20.0" />
                </VBox.margin>
@@ -81,12 +80,12 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField maxWidth="300.0">
+            <TextField fx:id="cityTextField" maxWidth="300.0">
                <VBox.margin>
                   <Insets left="150.0" top="-22.0" />
                </VBox.margin>
             </TextField>
-            <Label text="Address:">
+            <Label fx:id="addressLabel" text="Address:">
                <VBox.margin>
                   <Insets left="20.0" top="20.0" />
                </VBox.margin>
@@ -94,7 +93,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField maxWidth="300.0">
+            <TextField fx:id="addressTextField" maxWidth="300.0">
                <VBox.margin>
                   <Insets left="150.0" top="-22.0" />
                </VBox.margin>
@@ -104,17 +103,17 @@
                   <Insets left="30.0" top="30.0" />
                </VBox.margin>
             </Label>
-            <Button mnemonicParsing="false" text="Continue">
+            <Button fx:id="continueButton" mnemonicParsing="false" text="Continue">
                <VBox.margin>
                   <Insets left="600.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" text="Reset">
+            <Button fx:id="resetButton" mnemonicParsing="false" text="Reset">
                <VBox.margin>
                   <Insets left="300.0" top="-25.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="50.0" text="Back">
+            <Button fx:id="backButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="50.0" text="Back">
                <VBox.margin>
                   <Insets left="20.0" top="-25.0" />
                </VBox.margin>

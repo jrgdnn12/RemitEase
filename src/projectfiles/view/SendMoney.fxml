@@ -9,7 +9,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox prefHeight="500.0" prefWidth="700.0">
+      <VBox fx:id="sendMoneyVBox" prefHeight="500.0" prefWidth="700.0">
          <children>
             <Label fx:id="sendMoneyLabel" text="Send Money">
                <font>
@@ -24,24 +24,14 @@
                   <Insets left="220.0" top="50.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefWidth="200.0" text="1st Previous Recipient">
+            <Button fx:id="previousRecipientsButton" mnemonicParsing="false" prefWidth="200.0" text="Previous Recipients">
                <VBox.margin>
                   <Insets left="220.0" top="50.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefWidth="200.0" text="2nd Previous Recipient">
+            <Button fx:id="backButton" mnemonicParsing="false" prefWidth="70.0" text="Back">
                <VBox.margin>
-                  <Insets left="220.0" top="50.0" />
-               </VBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" prefWidth="70.0" text="Back">
-               <VBox.margin>
-                  <Insets left="20.0" top="150.0" />
-               </VBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" prefWidth="100.0" text="Continue">
-               <VBox.margin>
-                  <Insets left="580.0" top="-27.0" />
+                  <Insets left="20.0" top="250.0" />
                </VBox.margin>
             </Button>
          </children>

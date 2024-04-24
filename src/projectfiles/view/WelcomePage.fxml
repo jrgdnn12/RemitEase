@@ -7,10 +7,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projectfiles.view.WelcomePageController">
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projectfiles.control.WelcomePageController">
    <children>
-      <VBox prefHeight="500.0" prefWidth="700.0">
+      <VBox fx:id="welcomePageVBox" prefHeight="500.0" prefWidth="700.0">
          <children>
             <Label fx:id="welcomeToRemitEaseLabel" text="Welcome to RemitEase">
                <font>

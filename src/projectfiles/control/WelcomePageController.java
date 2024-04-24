@@ -21,7 +21,7 @@ public class WelcomePageController {
 	    @FXML
 	    private void handleLoginButtonAction(ActionEvent event) {
 	        try {
-	            FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+	            FXMLLoader loader = new FXMLLoader(getClass().getResource("/projectfiles/view/Login.fxml"));
 	            Parent root = loader.load();
 	            Stage stage = new Stage();
 	            stage.setScene(new Scene(root));
@@ -35,7 +35,7 @@ public class WelcomePageController {
 	    @FXML
 	    private void handleSignUpButtonAction(ActionEvent event) {
 	        try {
-	            FXMLLoader loader = new FXMLLoader(getClass().getResource("SignUp.fxml"));
+	            FXMLLoader loader = new FXMLLoader(getClass().getResource("/projectfiles/view/SignUp.fxml"));
 	            Parent root = loader.load();
 	            Stage stage = new Stage();
 	            stage.setScene(new Scene(root));

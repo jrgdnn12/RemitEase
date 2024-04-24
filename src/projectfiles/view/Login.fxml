@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projectfiles.view.LoginController">
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projectfiles.control.LoginController">
    <children>
-      <VBox layoutX="-14.0" prefHeight="536.0" prefWidth="700.0">
+      <VBox fx:id="loginVBox" layoutX="-14.0" prefHeight="536.0" prefWidth="700.0">
 
          <children>
             <Label fx:id="loginLabel" text="Login">
@@ -26,7 +26,7 @@
                   <Font size="14.0" />
                </font>
                <VBox.margin>
-                  <Insets left="20.0" top="20.0" />
+                  <Insets left="30.0" top="20.0" />
                </VBox.margin>
             </Label>
             <TextField fx:id="userIDTextField" maxWidth="300.0">
@@ -36,7 +36,7 @@
             </TextField>
             <Label fx:id="passwordLabel" text="Password:">
                <VBox.margin>
-                  <Insets left="20.0" top="30.0" />
+                  <Insets left="30.0" top="30.0" />
                </VBox.margin>
                <font>
                   <Font size="14.0" />
@@ -54,7 +54,7 @@
             </Button>
             <Button fx:id="backButton" mnemonicParsing="false" prefWidth="100.0" text="Back">
                <VBox.margin>
-                  <Insets left="20.0" top="-30.0" />
+                  <Insets left="30.0" top="-30.0" />
                </VBox.margin>
             </Button>
             <Button fx:id="resetButton" mnemonicParsing="false" prefWidth="100.0" text="Reset">

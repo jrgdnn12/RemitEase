@@ -14,7 +14,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import projectfiles.view.RunApp;
 
 import javafx.scene.Node;
 import javafx.event.ActionEvent;
@@ -24,6 +23,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import projectfiles.app.RunApp;
 
 public class SignUpController {
 	
@@ -151,7 +151,7 @@ public class SignUpController {
         } else {
             statusLabel.setText("Error occurred while creating your account. Please try again.");
         }
-    }
+    
         
         // Check if First Name is empty
         if (isFirstNameEmpty()) {

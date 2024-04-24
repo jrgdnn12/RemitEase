@@ -1,4 +1,4 @@
-package projectfiles.model;
+package projectfiles.app;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
