@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="357.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.unlv.mis768.labwork16.ReadFileController">
+   <children>
+      <VBox layoutX="65.0" prefHeight="357.0" prefWidth="235.0" spacing="20.0">
+         <children>
+            <Label text="Select the file with sales data:" />
+            <Button fx:id="browseButton" mnemonicParsing="false" onAction="#browseButtonListener" text="Browse" />
+            <Label fx:id="fileNameLabel" />
+            <Button fx:id="calculateButton" mnemonicParsing="false" onAction="#calcButtonListener" text="Calculate the Average" />
+            <Label fx:id="resultLabel" />
+         </children>
+         <padding>
+            <Insets top="30.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>
