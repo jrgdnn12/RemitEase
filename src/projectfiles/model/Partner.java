@@ -24,10 +24,13 @@ public class Partner extends User {
      * @param name The name of the partner.
      * @param type What is the role of the partner.
      */
-    public Partner(String id, String password, String name, String type) {
-        super(id, password, 1); //level 1 permission allows for partner role.
+    public Partner(String id, String password, String name, String type, String country, String city, String address) {
+        super(id, password); 
         this.setName(name);
         this.type = type;
+        this.country = country;
+        this.city = city;
+        this.address = address; 
     }
 
     /**
