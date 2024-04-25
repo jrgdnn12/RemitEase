@@ -47,11 +47,7 @@ public class CustomerDAOImpl implements CustomerDAO {
                 pstmt.setString(9, customer.getAddress());
                 pstmt.executeUpdate();
                 
-            } catch (SQLException e) {
-                // Proper error logging and rethrowing exception
-                System.err.println("SQL exception occurred while adding customer: " + e.getMessage());
-                throw e;
-            }
+            } 
         
         }
     
@@ -118,10 +114,7 @@ public class CustomerDAOImpl implements CustomerDAO {
                 pstmt.setString(9, customer.getId());
                 pstmt.executeUpdate();
                 
-            } catch (SQLException e) {
-                System.err.println("SQL Error during Customer Update: " + e.getMessage());
-                throw e;
-            }
+            } 
         } else {
             throw new SQLException("No Customer found with ID: " + customer.getId());
         }

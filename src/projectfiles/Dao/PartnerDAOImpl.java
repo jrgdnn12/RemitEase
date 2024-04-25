@@ -8,17 +8,32 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+
+/**
+ * The PartnerDAO interface provides the methods that must be implemented by any class that will provide the data access object for the Partner model.
+ */
 public class PartnerDAOImpl implements PartnerDAO {
     private UserDAO userDAO; // Dependency to handle User related database operations
-
+    
+    /**
+     * Constructor to initialize the UserDAO dependency.
+     */
     public PartnerDAOImpl() {
         this.userDAO = new UserDAOImpl(); // Initialize with concrete implementation
     }
-
+    
+    /**
+     * Add a new partner to the Partner database. Takes {@link Partner} object and uses methods in the super class User to add 
+     * to PartnerID (userID foreing refference) and password to the user table, the rest of the partner object is added to the partner table.
+     * @param partner The partner object to be added.
+     * @throws SQLException If an error occurs during the database operation.
+     * @throws SQLException If the user already exists in the database. Handled by the {@link UserDAO#doesUserExist(String)} method.
+     * @return void
+     */
     @Override
     public void addPartner(Partner partner) throws SQLException {
         // Check if the user already exists using the provided UserDAO
-        if (!userDAO.doesUserExist(partner.getId())) {
+       
             // Since the user does not exist, add them to the User table first
             userDAO.addUser(partner);  // This handles the insertion into the 'users' table
 
@@ -33,23 +48,18 @@ public class PartnerDAOImpl implements PartnerDAO {
                 pstmt.setString(5, partner.getCity());
                 pstmt.setString(6, partner.getAddress());
 
-                int affectedRows = pstmt.executeUpdate();
-                if (affectedRows == 0) {
-                    // No rows affected indicates that the insertion failed
-                    throw new SQLException("Creating partner failed, no rows affected.");
-                }
-            } catch (SQLException e) {
-                // Proper error logging and re-throwing exception
-                System.err.println("SQL exception occurred while adding customer: " + e.getMessage());
-                throw e;
-            }
-        } else {
-            // Handle the case where the user already exists
-            throw new SQLException("User already exists with ID: " + partner.getId());
-        }
+                pstmt.executeUpdate();
+            } 
+        
     }
 
-    
+    /**
+     * Retrieve a {@link Partner} object from the database using the {@link Partner#getId() PartnerId}.
+     * @param partnerId The ID of the partner to retrieve.
+     * @return The partner object if found, otherwise null.
+     * @throws SQLException If an error occurs during the database operation.
+     * @throws SQLException If no partner is found with the given ID.
+     */
     @Override
     public Partner getPartnerById(String partnerId) throws SQLException {
         String sql = "SELECT PartnerId, Name, Type, Country, City, Address FROM Partner WHERE PartnerId = ?";  // Exclude password for security
@@ -67,28 +77,37 @@ public class PartnerDAOImpl implements PartnerDAO {
                         rs.getString("City"),
                         rs.getString("Address")
                     );
-                }
+                }else{
+                    throw new SQLException("Partner not found with partnerID: "+ partnerId );
+                    }
+                }   
             }
-        } catch (SQLException e) {
-            System.err.println("SQL Error: " + e.getMessage());
-            throw e;
-        }
-        return null;
     }
 
-
+    /**
+     * Update the details of a partner in the Partner database. Takes {@link Partner} object and updates the values in the database where PartnerID = partner.getID().
+     * @param partner The partner object to be updated.
+     * @throws SQLException If an error occurs during the database operation.
+     * @throws SQLException If the partner does not exist in the database. Handled by the {@link UserDAO#doesUserExist(String)} method.
+     * @return void
+     */
     @Override
     public void updatePartner(Partner partner) throws SQLException {
-        String sql = "UPDATE Partner SET Name = ?, Type = ?, Country = ?, City = ?, Address = ? WHERE PartnerId = ?";
-        try (Connection conn = DatabaseCreds.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, partner.getName());
-            pstmt.setString(2, partner.getType());
-            pstmt.setString(3, partner.getCountry());
-            pstmt.setString(4, partner.getCity());
-            pstmt.setString(5, partner.getAddress());
-            pstmt.setString(6, partner.getId());
-            pstmt.executeUpdate();
+        if (userDAO.doesUserExist(partner.getId())) {//check if user exists
+            String sql = "UPDATE Partner SET Name = ?, Type = ?, Country = ?, City = ?, Address = ? WHERE PartnerId = ?";
+            try (Connection conn = DatabaseCreds.getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                pstmt.setString(1, partner.getName());
+                pstmt.setString(2, partner.getType());
+                pstmt.setString(3, partner.getCountry());
+                pstmt.setString(4, partner.getCity());
+                pstmt.setString(5, partner.getAddress());
+                pstmt.setString(6, partner.getId());
+                pstmt.executeUpdate();
+            } 
+            
+        }else {
+            throw new SQLException("Partner not found with partnerID: "+ partner.getId());
         }
     }
 
