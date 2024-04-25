@@ -75,10 +75,7 @@ public class UserDAOImpl implements UserDAO {
             pstmt.setString(1, userId);
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
-                    User user = new User();
-                    user.setId(rs.getString("UserId"));
-                    user.setPassword(rs.getString("Password"));
-                    return user;
+                    return new User(rs.getString("UserId"), rs.getString("Password"));
                 } else {
                     throw new SQLException("No User found with ID: " + userId);
                 }

@@ -10,7 +10,7 @@ public class TestUserDAO {
 
     public static void main(String[] args) {
         UserDAOImpl userDao = new UserDAOImpl();
-        User newUser = new User("ghefwergf", "testPassword");
+        User newUser = new User("ghefwfegfhgfrfergf", "testPassword");
         try {
             // Test addUser
             System.out.println("Testing addUser...");
@@ -50,7 +50,7 @@ public class TestUserDAO {
 
             // Verify password update
             System.out.println("Verifying password update...");
-            User updatedUser = userDao.getUserById("testUrthgsrser01");
+            User updatedUser = userDao.getUserById(newUser.getId());
             if (updatedUser != null && "newTestPasshrtshrsthword".equals(updatedUser.getPassword())) {
                 System.out.println("Password update verified.");
             }

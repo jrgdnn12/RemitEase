@@ -4,7 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * Class to handle the database credentials and database secrets.
+ */
 public class DatabaseCreds {
+    //no need to document static final as they are only visible within the class
     private static final String URL = "jdbc:mysql://remitease.cr2esock8dpy.us-west-2.rds.amazonaws.com:3306/RemitEaseDev?useSSL=false&serverTimezone=UTC";
     private static final String USER = "admin";
     private static final String PASSWORD = "rEmitEase$";
