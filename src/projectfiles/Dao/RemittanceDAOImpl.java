@@ -1,8 +1,6 @@
 package projectfiles.Dao;
 
-import projectfiles.model.Customer;
-import projectfiles.model.Partner;
-import projectfiles.model.Recipient;
+
 import projectfiles.model.Remittance;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,9 +11,15 @@ import java.sql.Statement;
 
 public class RemittanceDAOImpl implements RemittanceDAO {
 
+    /**
+     * Adds a new remittance object to the database.
+     * @param remittance the {@link Remittance} object to be added.
+     * @throws SQLException If an error occurs during the database operation.
+     * @return An integer containing the database generated TransactionId for the newly added remittance object.
+     */
     @Override
     public int addRemittance(Remittance remittance) throws SQLException {
-        String sql = "INSERT INTO Remittance (SenderId, RecipientId, PartnerId, AmountSent, AmountReceived, SourceCurrency, TargetCurrency, Status, CreatedAt, UpdatedAt, CancellationReason, ConfirmationDetails) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Remittance (SenderId, RecipientId, PartnerId, AmountSent, AmountReceived, SourceCurrency, TargetCurrency, Status, CancellationReason, ConfirmationDetails) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DatabaseCreds.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -25,19 +29,18 @@ public class RemittanceDAOImpl implements RemittanceDAO {
             stmt.setDouble(4, remittance.getAmountSent());
             stmt.setDouble(5, remittance.getAmountReceived());
             stmt.setString(6, remittance.getSourceCurrency());
-            stmt.setString(7, remittance.getTargetCurency());
+            stmt.setString(7, remittance.getTargetCurrency());
             stmt.setString(8, remittance.getStatus());
-            stmt.setTimestamp(9, Timestamp.valueOf(remittance.getCreatedAt()));
-            stmt.setTimestamp(10, Timestamp.valueOf(remittance.getUpdatedAt()));
-            stmt.setString(11, remittance.getCancellationReason());
-            stmt.setString(12, remittance.getConfirmationDetails());
+            stmt.setString(9, remittance.getCancellationReason());
+            stmt.setString(10, remittance.getConfirmationDetails());
             
             try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     return generatedKeys.getInt(1); // Assuming the auto-incremented key is the first column
-                } else {
+                } else {}
+                    
                     throw new SQLException("Creating remittance failed, no ID obtained.");
-                }
+                
             }
         }
     }
@@ -60,8 +63,8 @@ public class RemittanceDAOImpl implements RemittanceDAO {
                 return new Remittance(
                     rs.getInt("TransactionId"),
                     customerDAO.getCustomerById(rs.getString("SenderId")),
-                    partnerDAO.getPartnerById(rs.getString("PartnerId")),
                     recipientDAO.getRecipientById(rs.getInt("RecipientId")),
+                    partnerDAO.getPartnerById(rs.getString("PartnerId")),
                     rs.getDouble("AmountSent"),
                     rs.getDouble("AmountReceived"),
                     rs.getString("SourceCurrency"),
@@ -72,29 +75,38 @@ public class RemittanceDAOImpl implements RemittanceDAO {
                     rs.getString("CancellationReason"),
                     rs.getString("ConfirmationDetails")
                 );
+            } else {
+                throw new SQLException("SQL Error: No remittance with ID " + remittanceId + " found. ");
             }
         }
  
     }
 
+    /**
+     * Upadate the details of a remittance in the REmittance table. Takes {@link Remittance} and {@link Customer#getId() } to force new values into the correct remittance transaction record
+     * @param remittance A Remittance object contianing at least the RemittanceId and the other values to be updated. 
+     * @throws SQLException IF an error occurs when doing database operation.
+     */
     @Override
     public void updateRemittance(Remittance remittance) throws SQLException {
+        // No need to check if user remittance ID exists, handled by the SQL execption
         String sql = "UPDATE Remittance SET SenderId = ?, RecipientId = ?, PartnerId = ?, AmountSent = ?, AmountReceived = ?, SourceCurrency = ?, TargetCurrency = ?, Status = ?, UpdatedAt = ?, CancellationReason = ?, ConfirmationDetails = ? WHERE TransactionId = ?";
 
         try (Connection conn = DatabaseCreds.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, remittance.getSenderID().getId());
-            stmt.setString(2, remittance.getRecipientID().getId());
-            stmt.setString(3, remittance.getPartnerID().getId());
+            stmt.setString(1, remittance.getSenderID().getId()); // Not sending the entire object, just the ID strign.
+            stmt.setInt(2, remittance.getRecipientID().getId()); // Not sending the entire object, just the ID strign.
+            stmt.setString(3, remittance.getPartnerID().getId()); // Not sending the entire object, just the ID strign.
             stmt.setDouble(4, remittance.getAmountSent());
             stmt.setDouble(5, remittance.getAmountReceived());
             stmt.setString(6, remittance.getSourceCurrency());
-            stmt.setString(7, remittance.getTargetCurency());
+            stmt.setString(7, remittance.getTargetCurrency());
             stmt.setString(8, remittance.getStatus());
+            //no created at time stamp
             stmt.setTimestamp(9, Timestamp.valueOf(remittance.getUpdatedAt()));
             stmt.setString(10, remittance.getCancellationReason());
             stmt.setString(11, remittance.getConfirmationDetails());
-            stmt.setString(12, remittance.getTransactionId());
+            stmt.setInt(12, remittance.getTransactionId());
 
             stmt.executeUpdate();
         }
