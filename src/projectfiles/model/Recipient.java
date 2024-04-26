@@ -2,7 +2,7 @@ package projectfiles.model;
 
 
 public class Recipient  {
-    private String recipientId;
+    private int recipientId;
     private String firstName;
     private String lastName;
     private String phoneNumber;
@@ -23,22 +23,34 @@ public class Recipient  {
      * @param lastName the last name of the recipient
      * @param phoneNumber The contact phone number of the recipient.
      */
-    public Recipient( String email, String firstname, String lastName, String phoneNumber) {
+    public Recipient( int id, String email, String firstname, String lastName, String phoneNumber, String country, String city, String address ) {
+        this.recipientId = id;
         this.email = email;
         this.firstName = firstname;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
+        this.country = country;
+        this.city = city;
+        this.address = address; 
     }
     
     //Getter and setters
 
     /**
      * Getter for the recipient ID
-     * @return A string containing the recipient ID.
+     * @return A integer containing the recipient ID.
      *
      */
-    public String getRecipientId() {
+    public int getId() {
         return recipientId;
+    }
+
+    /**
+     * Setter for the recipient ID
+     * @return void
+     */
+    public void setId(int id) {
+        this.recipientId = id;
     }
 
     
