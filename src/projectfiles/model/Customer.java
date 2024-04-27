@@ -215,7 +215,5 @@ public class Customer extends User {
     public void deleteAccount() {
         // Implementation for deleting customer account
     }
-
-
-} 
-
+} // Inserted closing curly brace to complete the class body
+    
