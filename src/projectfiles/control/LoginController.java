@@ -48,7 +48,12 @@ public class LoginController {
         resetButton.setOnAction(event -> resetFields());
     }
     
-    @FXML
+    private Object resetFields() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@FXML
     void handleBackButtonAction(ActionEvent event) {
         openWelcomePage();
     }
