@@ -222,8 +222,8 @@ public class DatabaseSetup {
                          "SourceCurrency VARCHAR(255), " +
                          "TargetCurrency VARCHAR(255), " +
                          "Status VARCHAR(255), " +
-                         "CreatedAt DATETIME, " +
-                         "UpdatedAt DATETIME, " +
+                         "CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP, " +
+                         "UpdatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP," +
                          "CancellationReason VARCHAR(255), " +
                          "ConfirmationDetails VARCHAR(255), " +
                          "FOREIGN KEY (SenderId) REFERENCES Customer(CustomerId), " +
