@@ -1,12 +1,12 @@
 package projectfiles.Dao;
 
 
+import projectfiles.model.Customer;
 import projectfiles.model.Remittance;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.sql.Statement;
 
 public class RemittanceDAOImpl implements RemittanceDAO {
@@ -19,8 +19,7 @@ public class RemittanceDAOImpl implements RemittanceDAO {
      */
     @Override
     public int addRemittance(Remittance remittance) throws SQLException {
-        String sql = "INSERT INTO Remittance (SenderId, RecipientId, PartnerId, AmountSent, AmountReceived, SourceCurrency, TargetCurrency, Status, CancellationReason, ConfirmationDetails) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
+String sql = "INSERT INTO Remittance (SenderId, RecipientId, PartnerId, AmountSent, AmountReceived, SourceCurrency, TargetCurrency, Status, CancellationReason, ConfirmationDetails) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseCreds.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setString(1, remittance.getSenderID().getId()); // Assuming getSenderID returns a Customer object with an getId method
@@ -33,19 +32,31 @@ public class RemittanceDAOImpl implements RemittanceDAO {
             stmt.setString(8, remittance.getStatus());
             stmt.setString(9, remittance.getCancellationReason());
             stmt.setString(10, remittance.getConfirmationDetails());
-            
+            stmt.executeUpdate();
+
             try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     return generatedKeys.getInt(1); // Assuming the auto-incremented key is the first column
-                } else {}
+                } else {
                     
-                    throw new SQLException("Creating remittance failed, no ID obtained.");
-                
-            }
+                   throw new SQLException("Creating remittance failed, no ID obtained.");
+                } 
+            } 
+            
+        
+        }catch (SQLException e) {
+            throw new SQLException("SQL Error: " + e.getMessage());
         }
+            
+            
     }
 
-
+    /**
+     * Remittance method for retrieving a {@link Remittance} object by their {@link Remittance#getRemittanceId() RemittanceId}.
+     * @param remittanceId The RemittanceId of the remittance to be retrieved.
+     * @throws SQLException If an error occurs during the database operation.
+     * @return A {@link Remittance} object with the given RemittanceId.
+     */
     @Override
     public Remittance getRemittanceById(int remittanceId) throws SQLException {
         String sql = "SELECT * FROM Remittance WHERE TransactionId = ?";
@@ -86,15 +97,16 @@ public class RemittanceDAOImpl implements RemittanceDAO {
      * Upadate the details of a remittance in the REmittance table. Takes {@link Remittance} and {@link Customer#getId() } to force new values into the correct remittance transaction record
      * @param remittance A Remittance object contianing at least the RemittanceId and the other values to be updated. 
      * @throws SQLException IF an error occurs when doing database operation.
+     * @return void
      */
     @Override
     public void updateRemittance(Remittance remittance) throws SQLException {
         // No need to check if user remittance ID exists, handled by the SQL execption
-        String sql = "UPDATE Remittance SET SenderId = ?, RecipientId = ?, PartnerId = ?, AmountSent = ?, AmountReceived = ?, SourceCurrency = ?, TargetCurrency = ?, Status = ?, UpdatedAt = ?, CancellationReason = ?, ConfirmationDetails = ? WHERE TransactionId = ?";
+        String sql = "UPDATE Remittance SET SenderId = ?, RecipientId = ?, PartnerId = ?, AmountSent = ?, AmountReceived = ?, SourceCurrency = ?, TargetCurrency = ?, Status = ?, CancellationReason = ?, ConfirmationDetails = ? WHERE TransactionId = ?";
 
         try (Connection conn = DatabaseCreds.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, remittance.getSenderID().getId()); // Not sending the entire object, just the ID strign.
+            stmt.setString(1, remittance.getSenderID().getId()); // Not sending the entire object, just the ID strign. {@phildeemed56}
             stmt.setInt(2, remittance.getRecipientID().getId()); // Not sending the entire object, just the ID strign.
             stmt.setString(3, remittance.getPartnerID().getId()); // Not sending the entire object, just the ID strign.
             stmt.setDouble(4, remittance.getAmountSent());
@@ -102,13 +114,15 @@ public class RemittanceDAOImpl implements RemittanceDAO {
             stmt.setString(6, remittance.getSourceCurrency());
             stmt.setString(7, remittance.getTargetCurrency());
             stmt.setString(8, remittance.getStatus());
-            //no created at time stamp
-            stmt.setTimestamp(9, Timestamp.valueOf(remittance.getUpdatedAt()));
-            stmt.setString(10, remittance.getCancellationReason());
-            stmt.setString(11, remittance.getConfirmationDetails());
-            stmt.setInt(12, remittance.getTransactionId());
-
+            stmt.setString(9, remittance.getCancellationReason());
+            stmt.setString(10, remittance.getConfirmationDetails());
+            stmt.setInt(11, remittance.getTransactionId());
             stmt.executeUpdate();
+            
+            if (stmt.getUpdateCount() == 0) {
+                throw new SQLException("SQL Error: No remittance with ID " + remittance.getTransactionId() + " found. ");
+            }
         }
     }
+
 }

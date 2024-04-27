@@ -14,7 +14,7 @@ public class Remittance {
     private double amountSent;
     private double amountReceived;
     private String SourceCurrency;
-    private String targetCurency;
+    private String targetCurrency;
     private String status;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
@@ -53,7 +53,7 @@ public class Remittance {
         this.amountSent = amountSent;
         this.amountReceived = amountReceived;
         this.SourceCurrency = SourceCurrency;
-        this.targetCurency = targetCurency;
+        this.targetCurrency = targetCurency;
         this.status = status;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
@@ -181,15 +181,15 @@ public class Remittance {
     /**
 	 * @return the targetCurency
 	 */
-	public String getTargetCurency() {
-		return targetCurency;
+	public String getTargetCurrency() {
+		return targetCurrency;
 	}
 
 	/**
 	 * @param targetCurency the targetCurency to set
 	 */
-	public void setTargetCurency(String targetCurency) {
-		this.targetCurency = targetCurency;
+	public void setTargetCurrency(String targetCurency) {
+		this.targetCurrency = targetCurency;
 	}
 
     /**
