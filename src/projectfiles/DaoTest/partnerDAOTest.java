@@ -12,7 +12,7 @@ public class partnerDAOTest {
         PartnerDAOImpl partnerDAO = new PartnerDAOImpl();
 
         // Create a new Partner object
-        Partner newPartner = new Partner("partner01", "password123", "RemitEase", "Credit Union ", "USA", "City", "123 ABC Strerge");
+        Partner newPartner = new Partner("payjihyjh01", "password123", "RemitEase", "Credit Union ", "USA", "City", "123 ABC Strerge");
 
         try {
             // Add a partner to the database
@@ -20,26 +20,23 @@ public class partnerDAOTest {
             partnerDAO.addPartner(newPartner);
             System.out.println("New partner added successfully!");
         } catch (SQLException e) {
-        	System.err.println("Was not able to add customer");
+        	System.err.println(e.getMessage());
         }
         	
         try {
             // Retrieve a partner from the database
             System.out.println("Retrieving partner...");
-            Partner retrievedPartner = partnerDAO.getPartnerById("partner01");
-            if (retrievedPartner != null) {
-                System.out.println("Partner retrieved: " + retrievedPartner.getName());
-            } else {
-                System.out.println("Partner not found.");
-            }
+            Partner retrievedPartner = partnerDAO.getPartnerById(newPartner.getId());
+            System.out.println("Partner retrieved: " + retrievedPartner.getName()); 
         } catch (SQLException e) {
-        	System.err.println("Failed to retrive customer");
+        	System.err.println("Failed to retrive customer: "+ e.getMessage()) ;
         }
             
         try {
             	
             // Update partner details
             System.out.println("Updating partner...");
+            newPartner.setId(newPartner.getId());//invalidate test
             newPartner.setCity("Brooklyn");
             partnerDAO.updatePartner(newPartner);
             System.out.println("Partner updated successfully!");
@@ -54,7 +51,8 @@ public class partnerDAOTest {
             }
 
         } catch (SQLException e) {
-            System.err.println("Database operation failed: " + e.getMessage());
+            System.err.println( e.getMessage());
         }
+        
     }
 }

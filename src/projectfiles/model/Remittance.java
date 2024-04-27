@@ -7,25 +7,65 @@ import java.time.LocalDateTime;
  */
 
 public class Remittance {
-    private String transactionId;
+    private int transactionId;
     private Customer senderID;
     private Recipient recipientID;
     private Partner partnerID;
-    private double SendAmount;
-    private double Receiveamount;
+    private double amountSent;
+    private double amountReceived;
     private String SourceCurrency;
-    private String targetCurency;
+    private String targetCurrency;
     private String status;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private String cancellationReason;
     private String confirmationDetails;
+    
+    /**
+     * Empty constructor
+     */
+    public Remittance() {
+        // Default constructor
+    
+    }
 
+    /**
+     * Full contructor
+     * @param transactionId A unique identifier for the remittance transaction.
+     * @param senderID A Customer object
+     * @param recipientID A Recipient object
+     * @param partnerID A Partner object
+     * @param amountSent A double containing the remittance amount.
+     * @param amountReceived A double containing the receive amount.
+     * @param SourceCurrency A string containing the local currency.
+     * @param targetCurency A string containing the target currency.
+     * @param status A string containing the status of the remittance.
+     * @param createdAt A LocalDateTime containing the creation date of the remittance. 
+     * @param updatedAt A LocalDateTime containing the update date of the remittance.
+     * @param cancellationReason A string containing the cancellation reason of the remittance.
+     * @param confirmationDetails A string containing the confirmation details of the remittance.
+     */
+    public Remittance(int transactionId, Customer senderID, Recipient recipientID, Partner partnerID, double amountSent, double amountReceived, String SourceCurrency, String targetCurency, String status, LocalDateTime createdAt, LocalDateTime updatedAt, String cancellationReason, String confirmationDetails) {
+        this.transactionId = transactionId;
+        this.senderID = senderID;
+        this.recipientID = recipientID;
+        this.partnerID = partnerID;
+        this.amountSent = amountSent;
+        this.amountReceived = amountReceived;
+        this.SourceCurrency = SourceCurrency;
+        this.targetCurrency = targetCurency;
+        this.status = status;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.cancellationReason = cancellationReason;
+        this.confirmationDetails = confirmationDetails;
+
+    }
     /**
      * Getter for remittance transaction ID
      * @return A unique identifier for the remittance transaction.
      */
-    public String getTransactionId() {
+    public int getTransactionId() {
         return transactionId;
     }
 
@@ -34,7 +74,7 @@ public class Remittance {
      * Deprecated by database primary key autoincrement feature
      * @param transactionId A unique identifier for the remittance 
      */
-    public void setTransactionId(String transactionId) {
+    public void setTransactionId(int transactionId) {
         this.transactionId = transactionId;
     }
     
@@ -92,16 +132,16 @@ public class Remittance {
      * @return A double containing the remittance amount.
      */
 
-    public double getSendAmount() {
-        return SendAmount;
+    public double getAmountSent() {
+        return amountSent;
     }
 
     /**
      * Setter for the remittance amount
      * @param sendAmount A double containing the remittance amount.
      */
-    public void setSendAmount(double sendAmount) {
-        this.SendAmount = sendAmount;
+    public void setAmountSent(double sendAmount) {
+        this.amountSent = sendAmount;
     }
 
 
@@ -109,8 +149,8 @@ public class Remittance {
      * Getter for the receive amount
      * @return A double containing the receive amount.
      */
-    public double getReceiveamount() {
-        return Receiveamount;
+    public double getAmountReceived() {
+        return amountReceived;
     }
 
     /**
@@ -121,8 +161,8 @@ public class Remittance {
      * Getter for the local currency
      * @return A string containing the local currency.
      */
-    public void setReceiveamount(double receiveAmount) {
-        this.Receiveamount = receiveAmount;
+    public void setAmountReceived(double receiveAmount) {
+        this.amountReceived = receiveAmount;
     }
 
      
@@ -141,15 +181,15 @@ public class Remittance {
     /**
 	 * @return the targetCurency
 	 */
-	public String getTargetCurency() {
-		return targetCurency;
+	public String getTargetCurrency() {
+		return targetCurrency;
 	}
 
 	/**
 	 * @param targetCurency the targetCurency to set
 	 */
-	public void setTargetCurency(String targetCurency) {
-		this.targetCurency = targetCurency;
+	public void setTargetCurrency(String targetCurency) {
+		this.targetCurrency = targetCurency;
 	}
 
     /**
