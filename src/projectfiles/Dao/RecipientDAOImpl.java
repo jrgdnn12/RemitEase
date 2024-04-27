@@ -20,7 +20,7 @@ public class RecipientDAOImpl implements RecipientDAO {
      */
     @Override
     public int addRecipient(Recipient recipient) throws SQLException {
-        String sql = "INSERT INTO recipient (FirstName, LastName, PhoneNumber, Email, Country, City, Address) VALUES (?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO Recipient (FirstName, LastName, PhoneNumber, Email, Country, City, Address) VALUES (?,?,?,?,?,?,?)";
 
         try (Connection conn = DatabaseCreds.getConnection();
             PreparedStatement pstm = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -28,8 +28,9 @@ public class RecipientDAOImpl implements RecipientDAO {
             pstm.setString(2, recipient.getLastName());
             pstm.setString(3, recipient.getPhoneNumber());
             pstm.setString(4, recipient.getEmail());
-            pstm.setString(6, recipient.getCountry());
-            pstm.setString(8, recipient.getAddress());
+            pstm.setString(5, recipient.getCountry());
+            pstm.setString(6, recipient.getCity());
+            pstm.setString(7, recipient.getAddress());
             pstm.executeUpdate();
             
             try (ResultSet generatedKeys = pstm.getGeneratedKeys()) {//try with resources
@@ -78,6 +79,7 @@ public class RecipientDAOImpl implements RecipientDAO {
     }
 
     /**
+     * DEPRECATED. Do not use.
      * Update the details of a recipient in the Recipient database. Takes {@link Recipient} object and updates the values in the database where RecipientID = recipient.getID().
      * @param recipient The recipient object to be updated.
      * @throws SQLException If an error occurs during the database operation.
@@ -99,6 +101,10 @@ public class RecipientDAOImpl implements RecipientDAO {
             pstm.setString(7, recipient.getAddress());
             pstm.setInt(8, recipient.getId());
             pstm.executeUpdate();
+           
+            if (pstm.getUpdateCount() == 0) {
+                throw new SQLException("SQL Error: No Recipient with ID " + recipient.getId() + " found. ");
+            }
             
         }
 
