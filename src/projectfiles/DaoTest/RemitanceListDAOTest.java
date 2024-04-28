@@ -28,6 +28,7 @@ public class RemitanceListDAOTest {
                 System.out.println("Status: " + remittancelist.getRemittanceList().get(i).getStatus());
                 System.out.println("Description: " + remittancelist.getRemittanceList().get(i).getUpdatedAt());
                 System.out.println(" ");
+                
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
