@@ -30,9 +30,9 @@ public class RecipientList {
      * Method to find a recipient by their ID
      * @param recipientId The ID of the recipient to find
      */
-    public Recipient findRecipientById(String recipientId) {
+    public Recipient findRecipientById(int recipientId) {
         for (Recipient recipient : recipientsList) {
-            if (recipient.getId().equals(recipientId)) {
+            if (recipient.getId() == recipientId) {
                 return recipient;
             }
         }
