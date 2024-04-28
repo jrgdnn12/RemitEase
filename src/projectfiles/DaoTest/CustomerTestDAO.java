@@ -12,6 +12,7 @@ public class CustomerTestDAO {
         Customer testCustomer = new Customer(
             "fghdsdffgfhddfgfsd", // Assuming 'testUsedfgdfgrId123' does not exist in your DB
             "password",
+            1,
             "test@example.com",
             "Test",
             "User",

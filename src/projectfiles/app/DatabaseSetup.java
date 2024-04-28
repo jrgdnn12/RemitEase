@@ -40,65 +40,43 @@ public class DatabaseSetup {
             
             // User Table
             stmt.execute("CREATE TABLE IF NOT EXISTS User (" +
-                         "UserId VARCHAR(255) PRIMARY KEY, " +
-                         "Password VARCHAR(255) NOT NULL);");
+            "UserId VARCHAR(255) PRIMARY KEY, " +
+            "Password VARCHAR(255) NOT NULL, " +
+            "PermissionLevel INT NOT NULL, " +
+            "CONSTRAINT CHK_PermissionLevel CHECK (PermissionLevel IN (1, 2)));");
+
             
             //Insert into User's table
-            stmt.execute("INSERT INTO User VALUES ('CSR100','1234')");
-            stmt.execute("INSERT INTO User VALUES ('CSR101','1234')");
-            stmt.execute("INSERT INTO User VALUES ('CSR103','1234')");
-            stmt.execute("INSERT INTO User VALUES ('CSR104','1234')");
-            stmt.execute("INSERT INTO User VALUES ('CSR105','1234')");
-            stmt.execute("INSERT INTO User VALUES ('CSR106','1234')");
-            stmt.execute("INSERT INTO User VALUES ('CSR107','1234')");
-            stmt.execute("INSERT INTO User VALUES ('CSR108','1234')");
-            stmt.execute("INSERT INTO User VALUES ('CSR109','1234')");
-            stmt.execute("INSERT INTO User VALUES ('CSR110','1234')");
-            stmt.execute("INSERT INTO User VALUES ('CSR111','1234')");
-            stmt.execute("INSERT INTO User VALUES ('CSR112','1234')");
-            stmt.execute("INSERT INTO User VALUES ('CSR113','1234')");
-            stmt.execute("INSERT INTO User VALUES ('CSR114','1234')");
-            stmt.execute("INSERT INTO User VALUES ('CSR115','1234')");
-            stmt.execute("INSERT INTO User VALUES ('CSR116','1234')");
-            stmt.execute("INSERT INTO User VALUES ('CSR117','1234')");
-            stmt.execute("INSERT INTO User VALUES ('CSR118','1234')");
-            stmt.execute("INSERT INTO User VALUES ('CSR119','1234')");
-            stmt.execute("INSERT INTO User VALUES ('CSR120','1234')");
-            stmt.execute("INSERT INTO User VALUES ('CSR121','1234')");
-            stmt.execute("INSERT INTO User VALUES ('CSR122','1234')");
-            stmt.execute("INSERT INTO User VALUES ('CSR123','1234')");
-            stmt.execute("INSERT INTO User VALUES ('CSR124','1234')");
-            stmt.execute("INSERT INTO User VALUES ('CSR125','1234')");
-            stmt.execute("INSERT INTO User VALUES ('PRT100','7352')");
-            stmt.execute("INSERT INTO User VALUES ('PRT101','7352')");
-            stmt.execute("INSERT INTO User VALUES ('PRT102','7352')");
-            stmt.execute("INSERT INTO User VALUES ('PRT103','7352')");
-            stmt.execute("INSERT INTO User VALUES ('RCP100','5748')");
-            stmt.execute("INSERT INTO User VALUES ('RCP101','5748')");
-            stmt.execute("INSERT INTO User VALUES ('RCP102','5748')");
-            stmt.execute("INSERT INTO User VALUES ('RCP103','5748')");
-            stmt.execute("INSERT INTO User VALUES ('RCP104','5748')");
-            stmt.execute("INSERT INTO User VALUES ('RCP105','5748')");
-            stmt.execute("INSERT INTO User VALUES ('RCP106','5748')");
-            stmt.execute("INSERT INTO User VALUES ('RCP107','5748')");
-            stmt.execute("INSERT INTO User VALUES ('RCP108','5748')");
-            stmt.execute("INSERT INTO User VALUES ('RCP109','5748')");
-            stmt.execute("INSERT INTO User VALUES ('RCP110','5748')");
-            stmt.execute("INSERT INTO User VALUES ('RCP111','5748')");
-            stmt.execute("INSERT INTO User VALUES ('RCP112','5748')");
-            stmt.execute("INSERT INTO User VALUES ('RCP113','5748')");
-            stmt.execute("INSERT INTO User VALUES ('RCP114','5748')");
-            stmt.execute("INSERT INTO User VALUES ('RCP115','5748')");
-            stmt.execute("INSERT INTO User VALUES ('RCP116','5748')");
-            stmt.execute("INSERT INTO User VALUES ('RCP117','5748')");
-            stmt.execute("INSERT INTO User VALUES ('RCP118','5748')");
-            stmt.execute("INSERT INTO User VALUES ('RCP119','5748')");
-            stmt.execute("INSERT INTO User VALUES ('RCP120','5748')");
-            stmt.execute("INSERT INTO User VALUES ('RCP121','5748')");
-            stmt.execute("INSERT INTO User VALUES ('RCP122','5748')");
-            stmt.execute("INSERT INTO User VALUES ('RCP123','5748')");
-            stmt.execute("INSERT INTO User VALUES ('RCP124','5748')");
-            stmt.execute("INSERT INTO User VALUES ('RCP125','5748')");
+            stmt.execute("INSERT INTO User VALUES ('CSR100','1234', 1)");
+            stmt.execute("INSERT INTO User VALUES ('CSR101','1234', 1)");
+            stmt.execute("INSERT INTO User VALUES ('CSR103','1234', 1)");
+            stmt.execute("INSERT INTO User VALUES ('CSR104','1234', 1)");
+            stmt.execute("INSERT INTO User VALUES ('CSR105','1234', 1)");
+            stmt.execute("INSERT INTO User VALUES ('CSR106','1234', 1)");
+            stmt.execute("INSERT INTO User VALUES ('CSR107','1234', 1)");
+            stmt.execute("INSERT INTO User VALUES ('CSR108','1234', 1)");
+            stmt.execute("INSERT INTO User VALUES ('CSR109','1234', 1)");
+            stmt.execute("INSERT INTO User VALUES ('CSR110','1234', 1)");
+            stmt.execute("INSERT INTO User VALUES ('CSR111','1234', 1)");
+            stmt.execute("INSERT INTO User VALUES ('CSR112','1234', 1)");
+            stmt.execute("INSERT INTO User VALUES ('CSR113','1234', 1)");
+            stmt.execute("INSERT INTO User VALUES ('CSR114','1234', 1)");
+            stmt.execute("INSERT INTO User VALUES ('CSR115','1234', 1)");
+            stmt.execute("INSERT INTO User VALUES ('CSR116','1234', 1)");
+            stmt.execute("INSERT INTO User VALUES ('CSR117','1234', 1)");
+            stmt.execute("INSERT INTO User VALUES ('CSR118','1234', 1)");
+            stmt.execute("INSERT INTO User VALUES ('CSR119','1234', 1)");
+            stmt.execute("INSERT INTO User VALUES ('CSR120','1234', 1)");
+            stmt.execute("INSERT INTO User VALUES ('CSR121','1234', 1)");
+            stmt.execute("INSERT INTO User VALUES ('CSR122','1234', 1)");
+            stmt.execute("INSERT INTO User VALUES ('CSR123','1234', 1)");
+            stmt.execute("INSERT INTO User VALUES ('CSR124','1234', 1)");
+            stmt.execute("INSERT INTO User VALUES ('CSR125','1234', 1)");
+            stmt.execute("INSERT INTO User VALUES ('PRT100','7352', 2)");
+            stmt.execute("INSERT INTO User VALUES ('PRT101','7352', 2)");
+            stmt.execute("INSERT INTO User VALUES ('PRT102','7352', 2)");
+            stmt.execute("INSERT INTO User VALUES ('PRT103','7352', 2)");
+           
             
          // Customer Table
             stmt.execute("CREATE TABLE IF NOT EXISTS Customer (" +

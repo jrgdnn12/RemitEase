@@ -70,6 +70,7 @@ public class CustomerDAOImpl implements CustomerDAO {
                     return new Customer(
                         rs.getString("CustomerId"),
                         "",
+                        1,
                         rs.getString("Email"),
                         rs.getString("FirstName"),
                         rs.getString("LastName"),

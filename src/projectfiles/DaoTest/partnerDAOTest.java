@@ -12,7 +12,7 @@ public class partnerDAOTest {
         PartnerDAOImpl partnerDAO = new PartnerDAOImpl();
 
         // Create a new Partner object
-        Partner newPartner = new Partner("payjihyjh01", "password123", "RemitEase", "Credit Union ", "USA", "City", "123 ABC Strerge");
+        Partner newPartner = new Partner("payjihyjh01", "password123",2,  "RemitEase", "Credit Union ", "USA", "City", "123 ABC Strerge");
 
         try {
             // Add a partner to the database
@@ -36,14 +36,14 @@ public class partnerDAOTest {
             	
             // Update partner details
             System.out.println("Updating partner...");
-            newPartner.setId(newPartner.getId());//invalidate test
+            //newPartner.setId(newPartner.getId());//invalidate test
             newPartner.setCity("Brooklyn");
             partnerDAO.updatePartner(newPartner);
             System.out.println("Partner updated successfully!");
 
             // Retrieve updated partner to verify changes
             System.out.println("Verifying update...");
-            Partner updatedPartner = partnerDAO.getPartnerById("partner01");
+            Partner updatedPartner = partnerDAO.getPartnerById(newPartner.getId());
             if (updatedPartner != null && "Brooklyn".equals(updatedPartner.getCity())) {
                 System.out.println("Update verified: Partner city is now " + updatedPartner.getCity());
             } else {

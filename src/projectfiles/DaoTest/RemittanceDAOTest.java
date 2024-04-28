@@ -26,7 +26,7 @@ public class RemittanceDAOTest {
         //need to create new customer, partner,and user object.
             Customer testCustomer = customerDAO.getCustomerById("CSR100");
             Partner testPartner = partnerDAO.getPartnerById("PRT100");
-            Recipient testRecipient = recipientDAO.getRecipientById(1000); //need to develop
+            Recipient testRecipient = recipientDAO.getRecipientById(1002); 
         //debug
         System.out.println("Customer: " + testCustomer.getId());
         System.out.println("Partner: " + testPartner.getId());

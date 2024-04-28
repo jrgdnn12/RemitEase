@@ -2,6 +2,7 @@ package projectfiles.model;
 
 import java.util.ArrayList;
 
+
 /**
  * This class manages a collection of recipients list.
  */
@@ -23,13 +24,15 @@ public class RecipientList {
     public ArrayList<Recipient> getRecipientsList() {
         return recipientsList;
     }
+
+
     /**
      * Method to find a recipient by their ID
      * @param recipientId The ID of the recipient to find
      */
-    public Recipient findRecipientById(String recipientId) {
+    public Recipient findRecipientById(int recipientId) {
         for (Recipient recipient : recipientsList) {
-            if (recipient.getRecipientId().equals(recipientId)) {
+            if (recipient.getId() == recipientId) {
                 return recipient;
             }
         }

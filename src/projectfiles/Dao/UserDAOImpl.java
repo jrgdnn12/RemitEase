@@ -22,11 +22,12 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public void addUser(User user) throws SQLException {
         if (!doesUserExist(user.getId())) {
-            String sql = "INSERT INTO User (UserId, Password) VALUES (?, ?)";
+            String sql = "INSERT INTO User (UserId, Password, PermissionLevel) VALUES (?, ?, ?)";
             try  (Connection conn = DatabaseCreds.getConnection();
                  PreparedStatement pstmt = conn.prepareStatement(sql)) {
                 pstmt.setString(1, user.getId());
                 pstmt.setString(2, user.getPassword());
+                pstmt.setInt(3, user.getPermissionLevel());
                 pstmt.executeUpdate();
             } catch (SQLException e) {
                 System.err.println( e.getMessage());
@@ -75,7 +76,10 @@ public class UserDAOImpl implements UserDAO {
             pstmt.setString(1, userId);
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
-                    return new User(rs.getString("UserId"), rs.getString("Password"));
+                    return new User(
+                    rs.getString("UserId"), 
+                    rs.getString("Password"),
+                    rs.getInt("PermissionLevel"));
                 } else {
                     throw new SQLException("No User found with ID: " + userId);
                 }

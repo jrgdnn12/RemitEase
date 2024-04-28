@@ -45,13 +45,15 @@ public class RemittanceList {
         return remittanceList;
     }
 
+
     /**
-     * Method to return a remittance object by transactionID. 
-     * @param remittanceID The unique identifier of the remittance object.  
+     * Retrieves a list of remittance objets by Customer ID
+     * @param customerId The ID of the customer to retrieve remittances for.
+     * @return A list of remittance objects.
      */
-    public Remittance getRemittance(String remittanceID) {
+    public Remittance getRemittance(int remittanceID) {
         for (Remittance remittance : remittanceList) {
-            if (remittance.getTransactionId().equals(remittanceID)) {
+            if (remittance.getTransactionId() == remittanceID) {
                 return remittance;
             }
         }

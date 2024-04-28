@@ -24,8 +24,8 @@ public class Partner extends User {
      * @param name The name of the partner.
      * @param type What is the role of the partner.
      */
-    public Partner(String id, String password, String name, String type, String country, String city, String address) {
-        super(id, password); 
+    public Partner(String id, String password, int permissionLevel, String name, String type, String country, String city, String address) {
+        super(id, password, permissionLevel); 
         this.setName(name);
         this.type = type;
         this.country = country;

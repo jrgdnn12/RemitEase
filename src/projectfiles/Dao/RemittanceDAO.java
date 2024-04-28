@@ -31,6 +31,7 @@ public interface RemittanceDAO {
      * @return void
      */
     void updateRemittance(Remittance remittance) throws SQLException;
+    
 
     
 }
