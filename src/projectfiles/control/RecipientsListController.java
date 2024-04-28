@@ -10,6 +10,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.text.Text;
 import projectfiles.model.Recipient;
+import projectfiles.model.RecipientList;
 import projectfiles.model.RemittanceList;
 import projectfiles.Dao.RemittanceDAOImpl;
 import projectfiles.Dao.RemittanceListDAOImpl;
@@ -27,9 +28,15 @@ public class RecipientsListController {
     }
 
     
+    private void openWelcomePage() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'openWelcomePage'");
+    }
+
+
     public void initialize() {
         
-        ArrayList<Recipient> recipients = new ArrayList<>();
+        RecipientList recipients = new RecipientList();
 //        recipients.add(new Recipient("email@example.com", "John", "Doe", "1234567890"));
 //        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
 //        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
@@ -37,63 +44,7 @@ public class RecipientsListController {
 //        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
 //        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
 //        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("email@example.com", "John", "Doe", "1234567890"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("email@example.com", "John", "Doe", "1234567890"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("email@example.com", "John", "Doe", "1234567890"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("email@example.com", "John", "Doe", "1234567890"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("email@example.com", "John", "Doe", "1234567890"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("email@example.com", "John", "Doe", "1234567890"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        recipients.add(new Recipient("another@example.com", "Jane", "Roe", "0987654321"));
-//        
+    
         
     	//Instantiate a remittance list
         RemittanceList remittanceList = new RemittanceList();
@@ -101,24 +52,17 @@ public class RecipientsListController {
         //Instantiate a DAO for remittance list
         RemittanceListDAOImpl remittanceListDAO = new RemittanceListDAOImpl();
         
-        remittanceList = 
-        		
-        //traverse through remitana list
-        for (int i = 0; i < remittancelist.getRemittanceList().size(); i++) {
-            System.out.println("Remittance ID: " + remittancelist.getRemittanceList().get(i).getTransactionId());
-            System.out.println("Amount: " + remittancelist.getRemittanceList().get(i).getAmountSent());
-            System.out.println("Recipient ID: " + remittancelist.getRemittanceList().get(i).getRecipientID().getId());
-            System.out.println("Customer ID: " + remittancelist.getRemittanceList().get(i).getSenderID().getFirstName());
-            System.out.println("Date: " + remittancelist.getRemittanceList().get(i).getCreatedAt());
-            System.out.println("Status: " + remittancelist.getRemittanceList().get(i).getStatus());
-            System.out.println("Description: " + remittancelist.getRemittanceList().get(i).getUpdatedAt());
-            System.out.println(" ");
-            
-        }		
-        		
-        		
+        remittanceList = remittanceListDAO.getRemittanceList("CSR100"); 
+        recipients.extractRecipientsFromRemittanceList(remittanceList);
+
+        recipientsListView.getItems().addAll(recipients.getRecipientsList());
+          		
         recipientsListView.setCellFactory(listView -> new RecipientCell());
-    }
+      
+
+    }		
+        		
+
 
     static class RecipientCell extends ListCell<Recipient> {
         HBox hbox = new HBox();
@@ -153,4 +97,4 @@ public class RecipientsListController {
         }
     }
     
-    
+}
