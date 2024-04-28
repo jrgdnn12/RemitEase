@@ -1,7 +1,7 @@
 package projectfiles.model;
 
 import java.util.ArrayList;
-import projectfiles.model.Recipient;
+
 
 /**
  * This class manages a collection of recipients list.

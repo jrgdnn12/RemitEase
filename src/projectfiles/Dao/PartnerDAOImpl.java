@@ -71,6 +71,7 @@ public class PartnerDAOImpl implements PartnerDAO {
                     return new Partner(
                         rs.getString("PartnerId"),
                         "",
+                        2,
                         rs.getString("Name"),
                         rs.getString("Type"),
                         rs.getString("Country"),

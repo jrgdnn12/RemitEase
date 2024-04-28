@@ -34,6 +34,7 @@ public class RemittanceListDAOImpl implements RemittanceListDAO {
                     new Customer(
                         rs.getString("CustomerId"),
                         "",
+                        1,
                         rs.getString("CustomerEmail"),
                         rs.getString("CustomerFirstName"), 
                         rs.getString("CustomerLastName"),
@@ -56,6 +57,7 @@ public class RemittanceListDAOImpl implements RemittanceListDAO {
                     new Partner(
                         rs.getString("PartnerId"),
                         "",
+                        2,
                         rs.getString("PartnerName"), 
                         rs.getString("PartnerType"),
                         rs.getString("PartnerCountry"),

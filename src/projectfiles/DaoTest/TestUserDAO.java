@@ -10,7 +10,7 @@ public class TestUserDAO {
 
     public static void main(String[] args) {
         UserDAOImpl userDao = new UserDAOImpl();
-        User newUser = new User("ghefwfegfhgfrfergf", "testPassword");
+        User newUser = new User("ghefwfegfhgfrfergf", "testPassword", 1);
         try {
             // Test addUser
             System.out.println("Testing addUser...");

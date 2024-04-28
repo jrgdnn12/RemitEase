@@ -25,8 +25,8 @@ public class Customer extends User {
      * @param phoneNumber The contact phoner number of the customer
      */
 
-    public Customer(String id, String password , String email, String firstName, String lastName, String phoneNumber, double balance, String country, String city, String address) {
-        super(id, password);  // Pass an empty string or null for password
+    public Customer(String id, String password ,int permissionLevel , String email, String firstName, String lastName, String phoneNumber, double balance, String country, String city, String address) {
+        super(id, password, permissionLevel);  // Pass an empty string or null for password
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
