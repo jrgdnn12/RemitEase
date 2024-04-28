@@ -1,5 +1,6 @@
 package projectfiles.control;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -16,6 +17,11 @@ public class RecipientsListController {
 
     @FXML
     private ListView<Recipient> recipientsListView;
+    
+    @FXML
+    private void handleBackButtonAction(ActionEvent event) {
+        openWelcomePage();
+    }
 
     
     public void initialize() {
@@ -122,4 +128,5 @@ public class RecipientsListController {
             System.out.println("Update requested for: " + recipient.getEmail());
         }
     }
-}
+    
+    
