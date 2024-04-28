@@ -36,22 +36,22 @@
                   <Insets top="20.0" />
                </VBox.margin>
                <children>
-                  <Button fx:id="sendMoneyButton" maxWidth="150.0" mnemonicParsing="false" onAction="#openSendMoney" text="Send Money">
+                  <Button fx:id="sendMoneyButton" maxWidth="150.0" mnemonicParsing="false" onAction="#handleSendMoneyButtonAction" text="Send Money">
                      <GridPane.margin>
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button fx:id="recipientHistoryButton" maxWidth="150.0" mnemonicParsing="false" text="Recipient History" GridPane.rowIndex="2">
+                  <Button fx:id="recipientHistoryButton" maxWidth="150.0" mnemonicParsing="false" onAction="#handleRecipientHistoryButtonAction" text="Recipient History" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button fx:id="transactionHistoryButton" maxWidth="150.0" mnemonicParsing="false" text="Transaction History" GridPane.columnIndex="1">
+                  <Button fx:id="transactionHistoryButton" maxWidth="150.0" mnemonicParsing="false" onAction="#handleTransactionHistoryButtonAction" text="Transaction History" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button fx:id="logOutButton" maxWidth="150.0" mnemonicParsing="false" text="Log Out" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <Button fx:id="logOutButton" maxWidth="150.0" mnemonicParsing="false" onAction="#handleLogOutButtonAction" text="Log Out" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="20.0" />
                      </GridPane.margin>

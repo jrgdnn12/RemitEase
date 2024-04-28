@@ -33,6 +33,7 @@ public class RecipientController {
     @FXML
     void handleContinueButtonAction(ActionEvent event) {
         openTransaction();
+        closeRecipientWindow();
     }
 
     @FXML
@@ -76,5 +77,10 @@ public class RecipientController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    private void closeRecipientWindow() {
+        Stage stage = (Stage) nameTextField.getScene().getWindow();
+        stage.close();
     }
 }

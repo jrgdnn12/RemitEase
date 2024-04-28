@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projectfiles.control.TransactionController">
    <children>
       <VBox fx:id="transactionVBox" prefHeight="500.0" prefWidth="700.0">
          <children>
@@ -69,17 +69,14 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="amountReceiveTextField" maxWidth="280.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <GridPane.margin>
-                        <Insets left="10.0" />
-                     </GridPane.margin>
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </TextField>
-                  <Label fx:id="localCurrencyLabel" prefHeight="18.0" prefWidth="38.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Label fx:id="localCurrencyLabel" prefHeight="18.0" prefWidth="38.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="305.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="amountTheyReceiveLabel" maxHeight="50.0" maxWidth="280.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
                </children>
@@ -193,17 +190,17 @@
                   <Insets top="20.0" />
                </VBox.margin>
                <children>
-                  <Button fx:id="backButton" mnemonicParsing="false" prefWidth="100.0" text="Back">
+                  <Button fx:id="backButton" mnemonicParsing="false" onAction="#handleBackButtonAction" prefWidth="100.0" text="Back">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button fx:id="resetButton" mnemonicParsing="false" prefWidth="100.0" text="Reset">
+                  <Button fx:id="resetButton" mnemonicParsing="false" onAction="#handleResetButtonAction" prefWidth="100.0" text="Reset">
                      <GridPane.margin>
                         <Insets left="280.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button fx:id="continueButton" mnemonicParsing="false" prefWidth="100.0" text="Continue">
+                  <Button fx:id="continueButton" mnemonicParsing="false" onAction="#handleContinueButtonAction" prefWidth="100.0" text="Continue">
                      <GridPane.margin>
                         <Insets left="580.0" />
                      </GridPane.margin>

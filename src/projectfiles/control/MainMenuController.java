@@ -31,7 +31,8 @@ public class MainMenuController {
     void handleLogOutButtonAction(ActionEvent event) {
         openWelcomePage(event);
     }
-
+    
+    @FXML
     private void openSendMoney(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/projectfiles/view/SendMoney.fxml"));
@@ -43,7 +44,8 @@ public class MainMenuController {
             e.printStackTrace();
         }
     }
-
+    
+    @FXML
     private void openRecipientHistory(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/projectfiles/view/RecipientHistory.fxml"));
@@ -56,6 +58,7 @@ public class MainMenuController {
         }
     }
 
+    @FXML
     private void openTransactionHistory(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/projectfiles/view/TransactionHistory.fxml"));
@@ -68,6 +71,7 @@ public class MainMenuController {
         }
     }
 
+    @FXML
     private void openWelcomePage(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/projectfiles/view/WelcomePage.fxml"));

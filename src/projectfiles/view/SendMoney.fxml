@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projectfiles.control.SendMoneyController">
    <children>
       <VBox fx:id="sendMoneyVBox" prefHeight="500.0" prefWidth="700.0">
          <children>
@@ -19,17 +19,17 @@
                   <Insets left="250.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="newRecipientButton" mnemonicParsing="false" prefWidth="200.0" text="New Recipient">
+            <Button fx:id="newRecipientButton" mnemonicParsing="false" onAction="#handleNewRecipientButtonAction" prefWidth="200.0" text="New Recipient">
                <VBox.margin>
                   <Insets left="220.0" top="50.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="previousRecipientsButton" mnemonicParsing="false" prefWidth="200.0" text="Previous Recipients">
+            <Button fx:id="previousRecipientsButton" mnemonicParsing="false" onAction="#handlePreviousRecipientsButtonAction" prefWidth="200.0" text="Previous Recipients">
                <VBox.margin>
                   <Insets left="220.0" top="50.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="backButton" mnemonicParsing="false" prefWidth="70.0" text="Back">
+            <Button fx:id="backButton" mnemonicParsing="false" onAction="#handleBackButtonAction" prefWidth="70.0" text="Back">
                <VBox.margin>
                   <Insets left="20.0" top="250.0" />
                </VBox.margin>
