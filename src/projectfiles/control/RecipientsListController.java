@@ -17,13 +17,24 @@ import projectfiles.Dao.RemittanceListDAOImpl;
 
 import java.util.ArrayList;
 
-public class RecipientsListController {
+import javafx.fxml.FXML;
+import javafx.scene.control.ListView;
 
+
+public class RecipientsListController {
+    @FXML
+    private Button backButton;
+
+
+    @FXML
+    void handlebackbutton(ActionEvent event) {
+    }
+	
     @FXML
     private ListView<Recipient> recipientsListView;
     
     @FXML
-    private void handleBackButtonAction(ActionEvent event) {
+    public void handleBackButtonAction(ActionEvent event) {
         openWelcomePage();
     }
 
