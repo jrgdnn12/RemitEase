@@ -3,6 +3,7 @@ package projectfiles.control;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -27,6 +28,10 @@ public class WelcomePageController {
 	            stage.setScene(new Scene(root));
 	            stage.setTitle("Login");
 	            stage.show();
+	            
+	         // Close the current welcome page window
+	            Stage welcomeStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	            welcomeStage.close();
 	        } catch (IOException e) {
 	            e.printStackTrace();
 	        }
@@ -41,6 +46,10 @@ public class WelcomePageController {
 	            stage.setScene(new Scene(root));
 	            stage.setTitle("Sign Up");
 	            stage.show();
+	            
+	         // Close the current welcome page window
+	            Stage welcomeStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	            welcomeStage.close();
 	        } catch (IOException e) {
 	            e.printStackTrace();
 	        }

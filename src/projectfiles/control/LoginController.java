@@ -4,19 +4,18 @@ import java.io.IOException;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
-import javafx.event.ActionEvent;
 import javafx.stage.Stage;
+import javafx.event.ActionEvent;
 
 public class LoginController {
-	
-	
-	private Stage primaryStage;
+
+    private Stage primaryStage;
 
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -47,43 +46,43 @@ public class LoginController {
         backButton.setOnAction(event -> openWelcomePage());
         resetButton.setOnAction(event -> resetFields());
     }
-    
-    private Object resetFields() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@FXML
-    void handleBackButtonAction(ActionEvent event) {
+    @FXML
+    private void handleBackButtonAction(ActionEvent event) {
         openWelcomePage();
     }
-    
-    @FXML
-    void handleResetButtonAction(ActionEvent event) {
-        userIDTextField.setText("");
-        passwordTextField.setText("");
-    }
-    
-    @FXML
-    void handleContinueButtonAction(ActionEvent event) {
-        openMainMenu();
-    }
 
+    @FXML
+    private void resetFields() {
+        // Clear the text fields
+        userIDTextField.clear();
+        passwordTextField.clear();
+    }
+    
+    @FXML
+    private void login(ActionEvent event) {
+        login(); // Call the login method
+    }
 
     private void login() {
-        String userID = userIDTextField.getText();
-        String password = passwordTextField.getText();
-
-        // Here you would check if the userID and password match those in the database
-        // For demonstration purposes, let's assume userID is "admin" and password is "password"
-        if (userID.equals("admin") && password.equals("password")) {
-            statusLabel.setText("Login successful");
-            openMainMenu();
-        } else {
-            statusLabel.setText("Error: User ID or Password is incorrect.");
-        }
+//        String userID = userIDTextField.getText();
+//        String password = passwordTextField.getText();
+//
+//        // Here you would check if the userID and password match those in the database
+//        // For demonstration purposes, let's assume userID is "admin" and password is "password"
+//        if (userID.equals("admin") && password.equals("password")) {
+//            statusLabel.setText("Login successful");
+//            openMainMenu();
+//        } else {
+//            statusLabel.setText("Error: User ID or Password is incorrect.");
+//        }
+   
+    	 openMainMenu();
     }
-
+    
+    
+    
+    @FXML
     private void openWelcomePage() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/projectfiles/view/WelcomePage.fxml"));
@@ -95,17 +94,22 @@ public class LoginController {
             e.printStackTrace();
         }
     }
+
+    @FXML
     private void openMainMenu() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/projectfiles/view/MainMenu.fxml"));
-            Stage stage = (Stage) userIDTextField.getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/projectfiles/view/MainMenu.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Main Menu");
             stage.show();
+
+            // Close the current login window
+            Stage loginStage = (Stage) userIDTextField.getScene().getWindow();
+            loginStage.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    
-    
 }

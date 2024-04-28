@@ -86,12 +86,16 @@ public class SignUpController {
     @FXML
     private void openWelcomePage(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("WelcomePage.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/projectfiles/view/WelcomePage.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.setTitle("WelcomePage");
             stage.show();
+            
+         // Close the current sign-up window
+            Stage signUpStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            signUpStage.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -100,12 +104,16 @@ public class SignUpController {
     @FXML
     private void openLoginPage(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/projectfiles/view/Login.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.setTitle("Login");
             stage.show();
+            
+         // Close the current sign-up window
+            Stage signUpStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            signUpStage.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -384,7 +392,8 @@ public class SignUpController {
             return false;
         }
     }
- 
+    	
+    	@FXML
         private void resetFields() {
             // Clear all text fields
             firstNameTextField.clear();

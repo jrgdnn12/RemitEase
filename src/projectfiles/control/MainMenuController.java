@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class MainMenuController {
+	
 
     @FXML
     void handleSendMoneyButtonAction(ActionEvent event) {
