@@ -17,6 +17,7 @@ public class RecipientsListController {
     @FXML
     private ListView<Recipient> recipientsListView;
 
+    
     public void initialize() {
         // Sample data for demonstration
         ArrayList<Recipient> recipients = new ArrayList<>();
