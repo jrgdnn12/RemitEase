@@ -57,7 +57,7 @@ public class RecipientUpdateController {
 
     @FXML
     void handleResetButtonAction(ActionEvent event) {
-        clearFields();
+        ResetFields();
     }
 
     @FXML
@@ -71,7 +71,7 @@ public class RecipientUpdateController {
         
     }
     
-    private void clearFields() {
+    private void ResetFields() {
     	firstNameTextField.setText(recipient.getFirstName());
         lastNameTextField.setText(recipient.getLastName());
         emailTextField.setText(recipient.getEmail());
@@ -188,12 +188,8 @@ public class RecipientUpdateController {
 		    // Initialize DAO for recipient
 		    RecipientDAOImpl recipientDAO = new RecipientDAOImpl();
 		    // Add recipient
-		    recipientDAO.updateRecipient(recipient);;
-		    if (test == 0) {
-		        return false;
-		    } else {
-		        return true;
-		    }
+		    boolean test = recipientDAO.updateRecipient(recipient);
+            return test; 
 		} catch (SQLException e) {
 		    e.printStackTrace();
 		    return false;
@@ -256,8 +252,6 @@ public class RecipientUpdateController {
 	        statusLabel.setText("Error: City cannot be empty. Please enter your city.");
 	    }
 
-
-        
 
 	    private void closeRecipientWindow() {
 	        Stage stage = (Stage) firstNameTextField.getScene().getWindow();
