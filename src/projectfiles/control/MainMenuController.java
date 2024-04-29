@@ -24,7 +24,7 @@ public class MainMenuController {
 
     @FXML
     void handleTransactionHistoryButtonAction(ActionEvent event) {
-        openTransactionHistory(event);
+        TransactionHistory(event);
     }
 
     @FXML
@@ -59,7 +59,7 @@ public class MainMenuController {
     }
 
     @FXML
-    private void openTransactionHistory(ActionEvent event) {
+    private void TransactionHistory(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/projectfiles/view/TransactionHistory.fxml"));
             Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();

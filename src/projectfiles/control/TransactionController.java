@@ -90,7 +90,7 @@ public class TransactionController {
     @FXML
     private Button continueButton;
 
-	private Recipient newRecipient;
+	Recipient newRecipient = null ;
 
     User user = SessionManager.getInstance().getCurrentUser();
 
@@ -139,10 +139,14 @@ public class TransactionController {
     }
 
     private void populatePartnerComboBox() throws SQLException {
+    	 if (newRecipient == null) {
+    	        System.out.println("Recipient data is not available.");
+    	        return; // or handle this case appropriately
+    	    }
         //Dao Partner by ID
         PartnerDAOImpl partnerDAO = new PartnerDAOImpl();
         //partner array list
-        List<Partner> partners = partnerDAO.getPartnerById(newRecipient.getCountry());
+        List<Partner> partners = partnerDAO.getPartnerByCountry(newRecipient.getCountry());
 
         // Convert the list of partners to a list of strings
         List<String> partnerNames = new ArrayList<>();

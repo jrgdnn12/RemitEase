@@ -49,13 +49,13 @@ public class RecipientController {
     @FXML
     private TextField addressTextField;
 
-	private Recipient newRecipient;
+	Recipient newRecipient = null ;
 
     User user = SessionManager.getInstance().getCurrentUser();
 
     @FXML
-    void handleContinueButtonAction(ActionEvent event) {
-        openTransaction();
+    void handleContinueButtonAction(ActionEvent event ) {
+        openTransaction(this.newRecipient);
         closeRecipientWindow();
     }
 
@@ -79,24 +79,20 @@ public class RecipientController {
         addressTextField.clear();
     }
 
-    private void openTransaction() {
+    
+ 
+    
+    private void openTransaction(Recipient recipient) {
         try {
         	
         	Continue();
         	
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/projectfiles/view/Transaction.fxml"));
+        	FXMLLoader loader = new FXMLLoader(getClass().getResource("/projectfiles/view/Transaction.fxml"));
             Parent root = loader.load();
-
-            // Get the controller instance
             TransactionController transactionController = loader.getController();
-
-            // Pass the entered country to the TransactionController
-            
-            transactionController.setRecipient(newRecipient);
-            // Show the transaction view
+            transactionController.setRecipient(recipient);  // Set the recipient
             Stage stage = new Stage();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
+            stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -166,7 +162,7 @@ public class RecipientController {
     }
     
 
-	private int insertUserData(Recipient recipient) throws SQLException {
+	private Recipient insertUserData(Recipient recipient) throws SQLException {
    
 		    // Initialize DAO for recipient
 		    RecipientDAOImpl recipientDAO = new RecipientDAOImpl();
@@ -174,10 +170,14 @@ public class RecipientController {
 		    int recipientId = recipientDAO.addRecipient(recipient);
 		    recipient.setId(recipientId);
 		    this.newRecipient = recipient;
-			return recipientId;
+			return recipient;
+				
+			
 		    
 		}
 		
+		
+	
 		private boolean isFirstNameEmpty() {
 	        return firstNameTextField.getText().isEmpty();
 	    }

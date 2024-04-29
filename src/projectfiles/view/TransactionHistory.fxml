@@ -12,7 +12,7 @@
    <children>
       <VBox prefHeight="500.0" prefWidth="700.0">
          <children>
-            <Label text="Recipient History">
+            <Label prefHeight="38.0" prefWidth="257.0" text="Transaction History">
                <VBox.margin>
                   <Insets left="220.0" />
                </VBox.margin>

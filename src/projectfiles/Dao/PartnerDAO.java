@@ -20,7 +20,7 @@ public interface PartnerDAO {
      * @param Country The ID of the Partner to retrieve.
      * @return The Partner object if found, otherwise null.
      */
-    List<Partner> getPartnerById(String Country) throws SQLException;
+    List<Partner> getPartnerByCountry(String Country) throws SQLException;
 
     /**
      * Update the details of a partner in the Partner database. 

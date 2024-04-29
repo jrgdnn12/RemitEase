@@ -63,7 +63,7 @@ public class PartnerDAOImpl implements PartnerDAO {
      * @throws SQLException If no partner is found with the given ID.
      */
     @Override
-    public List<Partner> getPartnerById(String countryId) throws SQLException {
+    public List<Partner> getPartnerByCountry(String countryId) throws SQLException {
         String sql = "SELECT PartnerId, Name, Type, Country, City, Address FROM Partner WHERE Country = ?";  // Exclude password for security
         try (Connection conn = DatabaseCreds.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -152,7 +152,7 @@ public class PartnerDAOImpl implements PartnerDAO {
      */
     @Override
     public Partner getPartnerById(String countryId) throws SQLException {
-        String sql = "SELECT PartnerId, Name, Type, Country, City, Address FROM Partner WHERE Country = ?";  // Exclude password for security
+        String sql = "SELECT PartnerId, Name, Type, Country, City, Address FROM Partner WHERE PartnerId = ?";  // Exclude password for security
         try (Connection conn = DatabaseCreds.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, countryId);
