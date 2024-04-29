@@ -50,7 +50,7 @@ public class RecipientController {
     @FXML
     private TextField addressTextField;
 
-	private int recipientId;
+	private Recipient newRecipient;
 
     @FXML
     void handleContinueButtonAction(ActionEvent event) {
@@ -90,9 +90,8 @@ public class RecipientController {
             TransactionController transactionController = loader.getController();
 
             // Pass the entered country to the TransactionController
-            //DAO recipient
-            RecipientDAOImpl recipientDAO = new RecipientDAOImpl();
-            transactionController.setRecipient(recipientDAO.getRecipientById(recipientId));
+            
+            transactionController.setRecipient(newRecipient);
 
             // Show the transaction view
             Stage stage = new Stage();
@@ -173,7 +172,8 @@ public class RecipientController {
 		    RecipientDAOImpl recipientDAO = new RecipientDAOImpl();
 		    // Add recipient
 		    int recipientId = recipientDAO.addRecipient(recipient);
-		    this.recipientId = recipientId;
+		    recipient.setId(recipientId);
+		    this.newRecipient = recipient;
 			return recipientId;
 		    
 		}
