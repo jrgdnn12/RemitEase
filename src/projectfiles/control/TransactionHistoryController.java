@@ -95,16 +95,20 @@ public class TransactionHistoryController {
 
         //delimter for adress
         Text delimiter = new Text(" - ");
+        Text delimiter2 = new Text(" - ");
+        Text delimiter3 = new Text(" - ");
+        Text delimiter4 = new Text(" - ");
+        
         
         
         Button sendAgainButton = new Button("Send Again");
-        Button updateButton = new Button("Update");
+        Button updateButton = new Button("Cancel");
         Pane pane = new Pane();
         Pane pane2 = new Pane();
 
         public RecipientCell() {
             super();
-            hbox.getChildren().addAll(TransactionId, delimiter, Recipient ,delimiter, Amount, delimiter, Date, delimiter, Status, pane, sendAgainButton, updateButton);
+            hbox.getChildren().addAll(TransactionId, delimiter, Recipient ,delimiter2, Amount, delimiter3, Date, delimiter4, Status, pane, sendAgainButton, updateButton);
             HBox.setHgrow(pane, Priority.ALWAYS);
         }
 
@@ -131,7 +135,7 @@ public class TransactionHistoryController {
                 Parent root = loader.load();  // Load the FXML and instantiate the controller
 
                 RecipientUpdateController controller = loader.getController();
-                controller.setRecipient(recipient);  // Set the recipient
+                controller.setRecipient(remittance );  // Set the recipient
                 controller.postInitialize();  // Manually initialize the parts of the controller that need the recipient
 
                 Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
