@@ -20,15 +20,28 @@
                   <Insets left="200.0" />
                </VBox.margin>
             </Label>
-            <Label fx:id="nameLabel" text="Name:">
+            <TextField fx:id="firstNameTextField" maxHeight="25.6" maxWidth="300.0">
+               <VBox.margin>
+                  <Insets left="150.0" top="20.0" />
+               </VBox.margin>
+            </TextField>
+            <Label fx:id="firstNameLabel" text="First Name:">
+               <VBox.margin>
+                  <Insets left="20.0" top="-25.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lastNameLabel" text="Last Name:">
                <font>
                   <Font size="14.0" />
                </font>
                <VBox.margin>
-                  <Insets left="20.0" top="10.0" />
+                  <Insets left="20.0" top="20.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="nameTextField" maxWidth="300.0">
+            <TextField fx:id="lastNameTextField" maxWidth="300.0">
                <VBox.margin>
                   <Insets left="150.0" top="-20.0" />
                </VBox.margin>
@@ -98,7 +111,7 @@
                   <Insets left="150.0" top="-22.0" />
                </VBox.margin>
             </TextField>
-            <Label fx:id="statusRecipient" prefHeight="30.0" prefWidth="634.0">
+            <Label fx:id="statusLabel" prefHeight="30.0" prefWidth="634.0">
                <VBox.margin>
                   <Insets left="30.0" top="30.0" />
                </VBox.margin>
