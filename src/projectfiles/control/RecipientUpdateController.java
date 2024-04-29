@@ -17,7 +17,7 @@ import projectfiles.Dao.RecipientDAOImpl;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class RecipientUpdateController2 {
+public class RecipientUpdateController {
 
     @FXML
     private TextField firstNameTextField;
@@ -53,8 +53,17 @@ public class RecipientUpdateController2 {
 
     @FXML
     void handleContinueButtonAction(ActionEvent event) {
-        openTransaction();
-        closeRecipientWindow();
+    	try {
+    		Continue();
+            Parent root = FXMLLoader.load(getClass().getResource("/projectfiles/view/RecipientHistory.fxml"));
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+       
     }
 
     @FXML
@@ -64,56 +73,8 @@ public class RecipientUpdateController2 {
 
     @FXML
     void handleBackButtonAction(ActionEvent event) {
-        openSendMoney(event);
-    }
-
-    private void clearFields() {
-        firstNameTextField.clear();
-        lastNameTextField.clear();
-        emailTextField.clear();
-        phoneNumberTextField.clear();
-        countryTextField.clear();
-        cityTextField.clear();
-        addressTextField.clear();
-    }
-
-    private void openTransaction() {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/projectfiles/view/Transaction.fxml"));
-            Stage stage = new Stage();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    
-    private void openTransaction(String country) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/projectfiles/view/Transaction.fxml"));
-            Parent root = loader.load();
-
-            // Get the controller instance
-            TransactionController transactionController = loader.getController();
-
-      
-
-            // Show the transaction view
-            Stage stage = new Stage();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    
-
-    private void openSendMoney(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/projectfiles/view/SendMoney.fxml"));
+    	try {
+            Parent root = FXMLLoader.load(getClass().getResource("/projectfiles/view/RecipientHistory.fxml"));
             Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -122,6 +83,19 @@ public class RecipientUpdateController2 {
             e.printStackTrace();
         }
     }
+
+    private void clearFields() {
+        firstNameTextField.setText(recipient.getFirstName());
+        lastNameTextField.setText(recipient.getLastName());
+        emailTextField.setText(recipient.getEmail());
+        phoneNumberTextField.setText(recipient.getPhoneNumber());
+        countryTextField.setText(recipient.getCountry());
+        cityTextField.setText(recipient.getCity());
+        addressTextField.setText(recipient.getAddress());
+    }
+
+   
+
     
 
     
@@ -285,10 +259,7 @@ public class RecipientUpdateController2 {
 	    }
         
 
-	    private void closeRecipientWindow() {
-	        Stage stage = (Stage) firstNameTextField.getScene().getWindow();
-	        stage.close();
-	    }
+	 
 
 	    public void postInitialize() {
 	        if (recipient == null) {

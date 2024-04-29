@@ -43,16 +43,23 @@ public class RecipientsListController {
 
     
     private void openWelcomePage(ActionEvent event) {
-    	 try {
-             Parent root = FXMLLoader.load(getClass().getResource("/projectfiles/view/WelcomePage.fxml"));
-             Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-             Scene scene = new Scene(root);
-             stage.setScene(scene);
-             stage.show();
-         } catch (IOException e) {
-             e.printStackTrace();
-         }
-    }
+      
+        	 try {
+                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/projectfiles/view/MainMenu.fxml"));
+                 Parent root = loader.load();
+                 Stage stage = new Stage();
+                 stage.setScene(new Scene(root));
+                 stage.setTitle("Main Menu");
+                 stage.show();
+
+
+             } catch (IOException e) {
+                 e.printStackTrace();
+             }
+        }
+    
+    
+    
 
 
     public void initialize() {
@@ -92,13 +99,15 @@ public class RecipientsListController {
     static class RecipientCell extends ListCell<Recipient> {
         HBox hbox = new HBox();
         Text name = new Text();
+        Text address = new Text();
         Button sendAgainButton = new Button("Send Again");
         Button updateButton = new Button("Update");
         Pane pane = new Pane();
+        Pane pane2 = new Pane();
 
         public RecipientCell() {
             super();
-            hbox.getChildren().addAll(name, pane, sendAgainButton, updateButton);
+            hbox.getChildren().addAll(name, address ,pane, sendAgainButton, updateButton);
             HBox.setHgrow(pane, Priority.ALWAYS);
         }
 
@@ -110,6 +119,7 @@ public class RecipientsListController {
                 setGraphic(null);
             } else {
                 name.setText(recipient.getFirstName() + " " + recipient.getLastName());
+                address.setText(recipient.getAddress());
                 sendAgainButton.setOnAction(event -> recipient.sendEmailUpdate("Sending Again!"));
                 updateButton.setOnAction(event -> updateRecipient( event, recipient));
                 setGraphic(hbox);
