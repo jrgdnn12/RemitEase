@@ -165,6 +165,7 @@ public class TransactionController {
     private void handlePartnerComboBoxChanged() {
         String selectedPartner = partnerComboBox.getValue();
         selectedPartnerLabel.setText(selectedPartner);
+        
     }
 
 
