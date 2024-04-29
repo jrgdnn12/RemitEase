@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import projectfiles.model.Recipient;
 
 import java.io.IOException;
 
@@ -30,6 +31,8 @@ public class RecipientUpdateController {
     @FXML
     private TextField addressTextField;
 
+    private Recipient recipient;
+
     @FXML
     void handleContinueButtonAction(ActionEvent event) {
         openTransaction();
@@ -48,8 +51,14 @@ public class RecipientUpdateController {
     
     @FXML
     private void initialize() {
-        // Add action listeners for buttons
-        resetButton.setOnAction(event -> resetFields());
+        //fill text fields with recipient data
+        nameTextField.setText(recipient.getFirstName() + " " + recipient.getLastName());
+        emailTextField.setText(recipient.getEmail());
+        phoneNumberTextField.setText(recipient.getPhoneNumber());
+        countryTextField.setText(recipient.getCountry());
+        cityTextField.setText(recipient.getCity());
+        addressTextField.setText(recipient.getAddress());
+        
     }
     
     private void clearFields() {
@@ -88,5 +97,9 @@ public class RecipientUpdateController {
     private void closeRecipientWindow() {
         Stage stage = (Stage) nameTextField.getScene().getWindow();
         stage.close();
+    }
+
+    public void setRecipient(Recipient recipient) {
+        this.recipient = recipient;
     }
 }

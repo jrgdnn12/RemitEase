@@ -122,6 +122,9 @@ public class RecipientsListController {
                  Scene scene = new Scene(root);
                  stage.setScene(scene);
                  stage.show();
+                 //send recipient obect over
+                RecipientUpdateController controller = new RecipientUpdateController();
+                controller.setRecipient(recipient);
              } catch (IOException e) {
                  e.printStackTrace();
              }
