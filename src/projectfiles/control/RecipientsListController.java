@@ -42,6 +42,7 @@ public class RecipientsListController {
     public void handleBackButtonAction(ActionEvent event) {
         openWelcomePage(event);
     }
+   
     User user = SessionManager.getInstance().getCurrentUser();
     
     private void openWelcomePage(ActionEvent event) {

@@ -90,9 +90,10 @@ public class RecipientController {
         	FXMLLoader loader = new FXMLLoader(getClass().getResource("/projectfiles/view/Transaction.fxml"));
             Parent root = loader.load();
             TransactionController transactionController = loader.getController();
-            transactionController.setRecipient(recipient);  // Set the recipient
+            transactionController.setRecipient(newRecipient);  // Set the recipient
             //post intialization
             transactionController.postInitialize();
+            System.out.println(newRecipient.getId());
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();

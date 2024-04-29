@@ -90,7 +90,7 @@ public class TransactionController {
     @FXML
     private Button continueButton;
 
-	Recipient newRecipient = null ;
+	Recipient newRecipient = new Recipient();
 
     User user = SessionManager.getInstance().getCurrentUser();
 
@@ -106,7 +106,7 @@ public class TransactionController {
 
     @FXML
     void handleContinueButtonAction(ActionEvent event) throws SQLException{
-        openConfirmation(event);
+        openConfirmation(event, newRecipient );
     }
 
    
@@ -130,19 +130,21 @@ public class TransactionController {
     }
     
     @FXML
-    void initialize() throws SQLException{
+    void initialize(Recipient recipient) throws SQLException{
         // Populate the partner combo box
-        populatePartnerComboBox();
+        populatePartnerComboBox(newRecipient);
+        System.out.println(newRecipient.getId() + " I n rhw initialize trans contorllwe");
 
         // Add event listener to the partner combo box
         partnerComboBox.setOnAction(event -> handlePartnerComboBoxChanged());
     }
 
-    private void populatePartnerComboBox() throws SQLException {
+    private void populatePartnerComboBox(Recipient recipient) throws SQLException {
     	 if (newRecipient == null) {
     	        System.out.println("Recipient data is not available.");
     	        return; // or handle this case appropriately
     	    }
+    	 System.out.println(newRecipient.getId()+ " In the trans controller");
         //Dao Partner by ID
         PartnerDAOImpl partnerDAO = new PartnerDAOImpl();
         //partner array list
@@ -177,7 +179,7 @@ public class TransactionController {
         totalChargeTextField.setText("");
     }
 
-    private void openConfirmation(ActionEvent event) throws SQLException {
+    private void openConfirmation(ActionEvent event, Recipient recipient ) throws SQLException {
         try {
 
             //partner DAO 
@@ -237,17 +239,17 @@ public class TransactionController {
 
     public void postInitialize() {
         // Set the labels
-        sendCurrency.setText("USD");
-        localCurrencyLabel.setText(newRecipient.getCountry());
-        amountSendLabel.setText("Amount to send in USD");
-        amountReceiveLabel.setText("Amount to receive in " + newRecipient.getCountry());
-        partnerLabel.setText("Select a partner to send money to");
-
-        // Set the text fields
-        amountToBeSentTextField.setText(amountSendTextField.getText());
-        amountToBeReceivedTextField.setText(amountReceiveTextField.getText());
-        extraChargeTextField.setText("0.00");
-        totalChargeTextField.setText(amountSendTextField.getText());
+//        sendCurrency.setText("USD");
+//        localCurrencyLabel.setText(newRecipient.getCountry());
+//        amountSendLabel.setText("Amount to send in USD");
+//        amountReceiveLabel.setText("Amount to receive in " + newRecipient.getCountry());
+//        partnerLabel.setText("Select a partner to send money to");
+//
+//        // Set the text fields
+//        amountToBeSentTextField.setText(amountSendTextField.getText());
+//        amountToBeReceivedTextField.setText(amountReceiveTextField.getText());
+//        extraChargeTextField.setText("0.00");
+//        totalChargeTextField.setText(amountSendTextField.getText());
     }
 
 
