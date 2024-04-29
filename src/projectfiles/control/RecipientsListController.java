@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -115,20 +116,26 @@ public class RecipientsListController {
             }
         }
 
-        private void updateRecipient(ActionEvent event , Recipient recipient) {
-        	 try {
-                 Parent root = FXMLLoader.load(getClass().getResource("/projectfiles/view/RecipientUpdate.fxml"));
-                 Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-                 Scene scene = new Scene(root);
-                 stage.setScene(scene);
-                 stage.show();
-                 //send recipient obect over
-                RecipientUpdateController controller = new RecipientUpdateController();
-                controller.setRecipient(recipient);
-             } catch (IOException e) {
-                 e.printStackTrace();
-             }
+        private void updateRecipient(ActionEvent event, Recipient recipient) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/projectfiles/view/RecipientUpdate.fxml"));
+                Parent root = loader.load();  // Load the FXML and instantiate the controller
+
+                RecipientUpdateController controller = loader.getController();
+                controller.setRecipient(recipient);  // Set the recipient
+                controller.postInitialize();  // Manually initialize the parts of the controller that need the recipient
+
+                Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-    }
+
+
+
+    }}
     
-}
+
