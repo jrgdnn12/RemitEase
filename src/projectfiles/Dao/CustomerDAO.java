@@ -15,9 +15,9 @@ public interface CustomerDAO {
      * Adds a new customer object to the database.
      * @param customer the {@link Customer} object to be added.
      * @throws SQLException If an error occurs during the database operation.
-     * @return void
+     * @return boolean true if the customer was added successfully, false otherwise.
      */
-	void addCustomer(Customer customer) throws SQLException; 
+	boolean addCustomer(Customer customer) throws SQLException; 
 
     /**
      * Customer method for retrieving a {@link Customer} object by their {@link Customer#getId() CustomerID}.

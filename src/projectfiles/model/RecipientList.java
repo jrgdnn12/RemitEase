@@ -38,4 +38,22 @@ public class RecipientList {
         }
         return null;
     }
+
+
+    /**
+     * Method to extract a list of recipients form a {@link RemittanceList} 
+     * @param remittanceList The list of remittances to extract recipients from
+     * @return An ArrayList of recipients
+     */
+
+    public ArrayList<Recipient> extractRecipientsFromRemittanceList(RemittanceList remittanceList) {
+        ArrayList<Recipient> recipients = new ArrayList<>();
+        for (Remittance remittance : remittanceList.getRemittanceList()) {
+            Recipient recipient = remittance.getRecipientID();
+            if (!recipients.contains(recipient)) {
+                recipients.add(recipient);
+            }
+        }
+        return recipients;
+    }
 }
