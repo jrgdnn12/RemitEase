@@ -1,5 +1,6 @@
 package projectfiles.model;
 
+import java.util.Objects;
 
 public class Recipient  {
     private int recipientId;
@@ -186,5 +187,18 @@ public class Recipient  {
     public void sendSMSupdate() {
     	// actual implementation for sending sms is to be done here
     	
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Recipient recipient = (Recipient) obj;
+        return recipientId == recipient.getId();  // or equals if 'id' is not a primitive type
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(recipientId);
     }
 }

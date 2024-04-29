@@ -35,7 +35,7 @@ public interface RecipientDAO {
         * @throws SQLException If no recipient is found with the given ID.
         * @return void
         */
-        void updateRecipient(Recipient recipient) throws SQLException;
+        boolean updateRecipient(Recipient recipient) throws SQLException;
     
 
 }

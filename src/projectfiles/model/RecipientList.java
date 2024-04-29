@@ -46,14 +46,14 @@ public class RecipientList {
      * @return An ArrayList of recipients
      */
 
-    public ArrayList<Recipient> extractRecipientsFromRemittanceList(RemittanceList remittanceList) {
-        ArrayList<Recipient> recipients = new ArrayList<>();
+     public void extractRecipientsFromRemittanceList(RemittanceList remittanceList) {
         for (Remittance remittance : remittanceList.getRemittanceList()) {
             Recipient recipient = remittance.getRecipientID();
-            if (!recipients.contains(recipient)) {
-                recipients.add(recipient);
+            if (!recipientsList.contains(recipient)) {
+                recipientsList.add(recipient);
             }
         }
-        return recipients;
+    
     }
+
 }

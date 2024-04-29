@@ -87,7 +87,7 @@ public class RecipientDAOImpl implements RecipientDAO {
      * @return void
      */
     @Override
-    public void updateRecipient(Recipient recipient) throws SQLException {
+    public boolean updateRecipient(Recipient recipient) throws SQLException {
         String sql = "UPDATE Recipient SET FirstName = ?, LastName = ?, PhoneNumber = ?, Email = ?, Country = ?, City = ?, Address = ? WHERE RecipientId = ?";
 
         try (Connection conn = DatabaseCreds.getConnection();
@@ -104,9 +104,12 @@ public class RecipientDAOImpl implements RecipientDAO {
            
             if (pstm.getUpdateCount() == 0) {
                 throw new SQLException("SQL Error: No Recipient with ID " + recipient.getId() + " found. ");
-            }
+            }else   {
+            return true;
             
         }
 
     }
+}
+    
 }
