@@ -78,7 +78,7 @@ public class TransactionController {
     @FXML
     private Button continueButton;
 
-	private Recipient recipient;
+	private Recipient newRecipient;
 
     @FXML
     void handleBackButtonAction(ActionEvent event) {
@@ -118,6 +118,7 @@ public class TransactionController {
     }
 
     private void populatePartnerComboBox() {
+    	
         ObservableList<String> partners = FXCollections.observableArrayList(
                 "EcuadorPartner1",
                 "EcuadorPartner2",
@@ -156,10 +157,9 @@ public class TransactionController {
         }
     }
 
-    
 
 	public void setRecipient(Recipient recipient) {
-		this.recipient = recipient;
+		this.newRecipient = recipient;
 		
 	}
 }
