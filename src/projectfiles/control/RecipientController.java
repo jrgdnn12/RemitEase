@@ -55,7 +55,7 @@ public class RecipientController {
 
     @FXML
     void handleContinueButtonAction(ActionEvent event ) {
-        openTransaction(this.newRecipient);
+        openTransaction();
         closeRecipientWindow();
     }
 
@@ -82,7 +82,7 @@ public class RecipientController {
     
  
     
-    private void openTransaction(Recipient recipient) {
+    private void openTransaction() {
         try {
         	
         	Continue();
@@ -91,9 +91,9 @@ public class RecipientController {
             Parent root = loader.load();
             TransactionController transactionController = loader.getController();
             transactionController.setRecipient(newRecipient);  // Set the recipient
-            //post intialization
-            transactionController.postInitialize();
             System.out.println(newRecipient.getId());
+            //post intialization
+            transactionController.postInitialize(newRecipient);
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();
@@ -180,62 +180,62 @@ public class RecipientController {
 		}
 		
 		
-	
-		private boolean isFirstNameEmpty() {
-	        return firstNameTextField.getText().isEmpty();
-	    }
-
-	    private void displayFirstNameEmptyError() {
-	        statusLabel.setText("Error: First Name cannot be empty. Please enter your first name.");
-	    }
-	    
-	    private boolean isLastNameEmpty() {
-	    	return lastNameTextField.getText().isEmpty();
-	    }
-	    
-	    private void displayLastNameEmptyError() {
-	        statusLabel.setText("Error: First Name cannot be empty. Please enter your first name.");
-	    }
-	    
-	    private boolean isEmailEmpty() {
-	        return emailTextField.getText().isEmpty();
-	    }
-
-	    private void displayEmailEmptyError() {
-	        statusLabel.setText("Error: Email cannot be empty. Please enter your email.");
-	    }
-	    
-	    private boolean isPhoneNumberEmpty() {
-	        return phoneNumberTextField.getText().isEmpty();
-	    }
-
-	    private void displayPhoneNumberEmptyError() {
-	        statusLabel.setText("Error: Phone Number cannot be empty. Please enter your phone number.");
-	    }
-	    
-	    private boolean isCountryEmpty() {
-	        return countryTextField.getText().isEmpty();
-	    }
-
-	    private void displayCountryEmptyError() {
-	        statusLabel.setText("Error: Country cannot be empty. Please enter your country.");
-	    }
-	    
-	    private boolean isAddressEmpty() {
-	        return addressTextField.getText().isEmpty();
-	    }
-
-	    private void displayAddressEmptyError() {
-	        statusLabel.setText("Error: Address cannot be empty. Please enter your address.");
-	    }
-	    
-	    private boolean isCityEmpty() {
-	        return cityTextField.getText().isEmpty();
-	    }
-
-	    private void displayCityEmptyError() {
-	        statusLabel.setText("Error: City cannot be empty. Please enter your city.");
-	    }
+//	
+//		private boolean isFirstNameEmpty() {
+//	        return firstNameTextField.getText().isEmpty();
+//	    }
+//
+//	    private void displayFirstNameEmptyError() {
+//	        statusLabel.setText("Error: First Name cannot be empty. Please enter your first name.");
+//	    }
+//	    
+//	    private boolean isLastNameEmpty() {
+//	    	return lastNameTextField.getText().isEmpty();
+//	    }
+//	    
+//	    private void displayLastNameEmptyError() {
+//	        statusLabel.setText("Error: First Name cannot be empty. Please enter your first name.");
+//	    }
+//	    
+//	    private boolean isEmailEmpty() {
+//	        return emailTextField.getText().isEmpty();
+//	    }
+//
+//	    private void displayEmailEmptyError() {
+//	        statusLabel.setText("Error: Email cannot be empty. Please enter your email.");
+//	    }
+//	    
+//	    private boolean isPhoneNumberEmpty() {
+//	        return phoneNumberTextField.getText().isEmpty();
+//	    }
+//
+//	    private void displayPhoneNumberEmptyError() {
+//	        statusLabel.setText("Error: Phone Number cannot be empty. Please enter your phone number.");
+//	    }
+//	    
+//	    private boolean isCountryEmpty() {
+//	        return countryTextField.getText().isEmpty();
+//	    }
+//
+//	    private void displayCountryEmptyError() {
+//	        statusLabel.setText("Error: Country cannot be empty. Please enter your country.");
+//	    }
+//	    
+//	    private boolean isAddressEmpty() {
+//	        return addressTextField.getText().isEmpty();
+//	    }
+//
+//	    private void displayAddressEmptyError() {
+//	        statusLabel.setText("Error: Address cannot be empty. Please enter your address.");
+//	    }
+//	    
+//	    private boolean isCityEmpty() {
+//	        return cityTextField.getText().isEmpty();
+//	    }
+//
+//	    private void displayCityEmptyError() {
+//	        statusLabel.setText("Error: City cannot be empty. Please enter your city.");
+//	    }
         
 
 	    private void closeRecipientWindow() {

@@ -90,7 +90,7 @@ public class TransactionController {
     @FXML
     private Button continueButton;
 
-	Recipient newRecipient = new Recipient();
+	public Recipient newRecipient2 ;
 
     User user = SessionManager.getInstance().getCurrentUser();
 
@@ -106,7 +106,7 @@ public class TransactionController {
 
     @FXML
     void handleContinueButtonAction(ActionEvent event) throws SQLException{
-        openConfirmation(event, newRecipient );
+        openConfirmation(event, newRecipient2 );
     }
 
    
@@ -130,25 +130,25 @@ public class TransactionController {
     }
     
     @FXML
-    void initialize(Recipient recipient) throws SQLException{
+    void initialize( ) throws SQLException{
         // Populate the partner combo box
-        populatePartnerComboBox(newRecipient);
-        System.out.println(newRecipient.getId() + " I n rhw initialize trans contorllwe");
+        populatePartnerComboBox(newRecipient2);
+        //System.out.println(newRecipient2.getCountry() + " I n rhw initialize trans contorllwe");
 
         // Add event listener to the partner combo box
         partnerComboBox.setOnAction(event -> handlePartnerComboBoxChanged());
     }
 
     private void populatePartnerComboBox(Recipient recipient) throws SQLException {
-    	 if (newRecipient == null) {
+    	 if (recipient == null) {
     	        System.out.println("Recipient data is not available.");
     	        return; // or handle this case appropriately
     	    }
-    	 System.out.println(newRecipient.getId()+ " In the trans controller");
+    	 System.out.println(newRecipient2.getId()+ " In the trans controller");
         //Dao Partner by ID
         PartnerDAOImpl partnerDAO = new PartnerDAOImpl();
         //partner array list
-        List<Partner> partners = partnerDAO.getPartnerByCountry(newRecipient.getCountry());
+        List<Partner> partners = partnerDAO.getPartnerByCountry(newRecipient2.getCountry());
 
         // Convert the list of partners to a list of strings
         List<String> partnerNames = new ArrayList<>();
@@ -189,8 +189,8 @@ public class TransactionController {
             Remittance SendRemittance = new Remittance(
             0,
             customerDAO.getCustomerById(user.getId()),
-            newRecipient,
-            partnerDAO.getPartnerByNameAndCountry(selectedPartnerLabel.getText(),newRecipient.getCountry()),
+            newRecipient2,
+            partnerDAO.getPartnerByNameAndCountry(selectedPartnerLabel.getText(),newRecipient2.getCountry()),
             Double.parseDouble(amountSendTextField.getText()),
             Double.parseDouble(amountReceiveTextField.getText()),
             "USD",
@@ -233,23 +233,21 @@ public class TransactionController {
 
 
 	public void setRecipient(Recipient recipient) {
-		this.newRecipient = recipient;
-		
+		this.newRecipient2 = recipient;
+	
 	}
 
-    public void postInitialize() {
-        // Set the labels
-//        sendCurrency.setText("USD");
-//        localCurrencyLabel.setText(newRecipient.getCountry());
-//        amountSendLabel.setText("Amount to send in USD");
-//        amountReceiveLabel.setText("Amount to receive in " + newRecipient.getCountry());
-//        partnerLabel.setText("Select a partner to send money to");
-//
-//        // Set the text fields
-//        amountToBeSentTextField.setText(amountSendTextField.getText());
-//        amountToBeReceivedTextField.setText(amountReceiveTextField.getText());
-//        extraChargeTextField.setText("0.00");
-//        totalChargeTextField.setText(amountSendTextField.getText());
+    public void postInitialize(Recipient recipient) throws SQLException {
+    	setRecipient(recipient);
+    	
+    	 // Populate the partner combo box
+        populatePartnerComboBox(newRecipient2);
+        System.out.println(newRecipient2.getCountry() + " I n rhw initialize trans contorllwe");
+
+        // Add event listener to the partner combo box
+        partnerComboBox.setOnAction(event -> handlePartnerComboBoxChanged());
+    	
+       
     }
 
 
