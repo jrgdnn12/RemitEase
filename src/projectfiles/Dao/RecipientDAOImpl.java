@@ -45,7 +45,7 @@ public class RecipientDAOImpl implements RecipientDAO {
     }
 
     /**
-     * Recipient method for retrieving a {@link Recipient} object by their {@link Recipient#getId() RecipientId}.
+     * Recipient method for retrieving a {@link Recipient} object by their {@link Recipient# RecipientId}.
      * @param recipientId The ID of the Recipient to retrieve.
      * @throws SQLException If an error occurs during the database operation.
      * @throws SQLException If no recipient is found with the given ID.

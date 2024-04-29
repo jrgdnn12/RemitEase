@@ -14,12 +14,12 @@ public interface PartnerDAO {
 	void addPartner(Partner partner) throws SQLException;  // Now correctly declaring the exception
 
     /**
-     * Partner method for retrieving a {@link Partner} object by their {@link Partner#getPartnerId() PartnerId}.
+     * Partner method for retrieving a {@link Partner} object by their {@link Partner#getCountry() Country}.
      * See {@link PartnerDAOImpl#getPartnerById(String) getPartnerById(String)}
-     * @param PartnerId The ID of the Partner to retrieve.
+     * @param Country The ID of the Partner to retrieve.
      * @return The Partner object if found, otherwise null.
      */
-    Partner getPartnerById(String PartnerId) throws SQLException;
+    Partner getPartnerById(String Country) throws SQLException;
 
     /**
      * Update the details of a partner in the Partner database. 

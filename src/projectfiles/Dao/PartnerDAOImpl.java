@@ -55,17 +55,17 @@ public class PartnerDAOImpl implements PartnerDAO {
 
     /**
      * Retrieve a {@link Partner} object from the database using the {@link Partner#getId() PartnerId}.
-     * @param partnerId The ID of the partner to retrieve.
+     * @param countryId The ID of the partner to retrieve.
      * @return The partner object if found, otherwise null.
      * @throws SQLException If an error occurs during the database operation.
      * @throws SQLException If no partner is found with the given ID.
      */
     @Override
-    public Partner getPartnerById(String partnerId) throws SQLException {
-        String sql = "SELECT PartnerId, Name, Type, Country, City, Address FROM Partner WHERE PartnerId = ?";  // Exclude password for security
+    public Partner getPartnerById(String countryId) throws SQLException {
+        String sql = "SELECT PartnerId, Name, Type, Country, City, Address FROM Partner WHERE Country = ?";  // Exclude password for security
         try (Connection conn = DatabaseCreds.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, partnerId);
+            pstmt.setString(1, countryId);
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
                     return new Partner(
@@ -79,7 +79,7 @@ public class PartnerDAOImpl implements PartnerDAO {
                         rs.getString("Address")
                     );
                 }else{
-                    throw new SQLException("Partner not found with partnerID: "+ partnerId );
+                    throw new SQLException("Partner not found with partnerID: "+ countryId );
                     }
                 }   
             }
