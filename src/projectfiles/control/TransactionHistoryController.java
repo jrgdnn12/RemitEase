@@ -16,6 +16,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import projectfiles.model.Recipient;
 import projectfiles.model.RecipientList;
+import projectfiles.model.Remittance;
 import projectfiles.model.RemittanceList;
 import projectfiles.Dao.RemittanceDAOImpl;
 import projectfiles.Dao.RemittanceListDAOImpl;
@@ -28,13 +29,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 
 
-public class RecipientsListController {
+public class TransactionHistoryController {
     @FXML
     private Button backButton;
 
 	
     @FXML
-    private ListView<Recipient> recipientsListView;
+    private ListView<Remittance> recipientsListView;
     
     @FXML
     public void handleBackButtonAction(ActionEvent event) {
@@ -84,12 +85,17 @@ public class RecipientsListController {
         		
 
 
-    static class RecipientCell extends ListCell<Recipient> {
+    static class RecipientCell extends ListCell<Remittance> {
         HBox hbox = new HBox();
-        Text name = new Text();
+        Text TransactionId = new Text();
+        Text Amount = new Text();
+        Text Date = new Text();
+        Text Status = new Text();
+        Text Recipient = new Text();
+
         //delimter for adress
         Text delimiter = new Text(" - ");
-        Text address = new Text();
+        
         
         Button sendAgainButton = new Button("Send Again");
         Button updateButton = new Button("Update");
@@ -98,26 +104,28 @@ public class RecipientsListController {
 
         public RecipientCell() {
             super();
-            hbox.getChildren().addAll(name, delimiter, address ,pane, sendAgainButton, updateButton);
+            hbox.getChildren().addAll(TransactionId, delimiter, Recipient ,delimiter, Amount, delimiter, Date, delimiter, Status, pane, sendAgainButton, updateButton);
             HBox.setHgrow(pane, Priority.ALWAYS);
         }
 
         @Override
-        protected void updateItem(Recipient recipient, boolean empty) {
-            super.updateItem(recipient, empty);
-            if (empty || recipient == null) {
+        protected void updateItem(Remittance remittance, boolean empty) {
+            if (empty || remittance == null) {
                 setText(null);
                 setGraphic(null);
             } else {
-                name.setText(recipient.getFirstName() + " " + recipient.getLastName());
-                address.setText(recipient.getAddress());
-                sendAgainButton.setOnAction(event -> recipient.sendEmailUpdate("Sending Again!"));
-                updateButton.setOnAction(event -> updateRecipient( event, recipient));
+                TransactionId.setText("RE" + remittance.getTransactionId());
+                Recipient.setText(remittance.getRecipientID().getFirstName() + " " + remittance.getRecipientID().getLastName());
+                Amount.setText("$" + remittance.getAmountSent());
+                Date.setText(remittance.getCreatedAt().toString()); // Convert LocalDateTime to string
+                Status.setText(remittance.getStatus());
+                sendAgainButton.setOnAction(event -> remittance.sendEmailUpdate("Sending Again!"));
+                updateButton.setOnAction(event -> CancelRemittance(event, remittance));
                 setGraphic(hbox);
             }
         }
 
-        private void updateRecipient(ActionEvent event, Recipient recipient) {
+        private void CancelRemittance(ActionEvent event, Remittance remittance) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/projectfiles/view/RecipientUpdate.fxml"));
                 Parent root = loader.load();  // Load the FXML and instantiate the controller
