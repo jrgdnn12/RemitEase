@@ -2,19 +2,25 @@ package projectfiles.control;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import projectfiles.model.Recipient;
 import projectfiles.model.RecipientList;
 import projectfiles.model.RemittanceList;
 import projectfiles.Dao.RemittanceDAOImpl;
 import projectfiles.Dao.RemittanceListDAOImpl;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javafx.fxml.FXML;
@@ -25,23 +31,26 @@ public class RecipientsListController {
     @FXML
     private Button backButton;
 
-
-    @FXML
-    void handlebackbutton(ActionEvent event) {
-    }
 	
     @FXML
     private ListView<Recipient> recipientsListView;
     
     @FXML
     public void handleBackButtonAction(ActionEvent event) {
-        openWelcomePage();
+        openWelcomePage(event);
     }
 
     
-    private void openWelcomePage() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'openWelcomePage'");
+    private void openWelcomePage(ActionEvent event) {
+    	 try {
+             Parent root = FXMLLoader.load(getClass().getResource("/projectfiles/view/WelcomePage.fxml"));
+             Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+             Scene scene = new Scene(root);
+             stage.setScene(scene);
+             stage.show();
+         } catch (IOException e) {
+             e.printStackTrace();
+         }
     }
 
 
@@ -63,7 +72,11 @@ public class RecipientsListController {
         //Instantiate a DAO for remittance list
         RemittanceListDAOImpl remittanceListDAO = new RemittanceListDAOImpl();
         
-        remittanceList = remittanceListDAO.getRemittanceList("CSR100"); 
+        try {
+        	remittanceList = remittanceListDAO.getRemittanceList("CSR100");
+        }catch (SQLException e) {
+    	}
+    
         recipients.extractRecipientsFromRemittanceList(remittanceList);
 
         recipientsListView.getItems().addAll(recipients.getRecipientsList());
@@ -97,14 +110,21 @@ public class RecipientsListController {
             } else {
                 name.setText(recipient.getFirstName() + " " + recipient.getLastName());
                 sendAgainButton.setOnAction(event -> recipient.sendEmailUpdate("Sending Again!"));
-                updateButton.setOnAction(event -> updateRecipient(recipient));
+                updateButton.setOnAction(event -> updateRecipient( event, recipient));
                 setGraphic(hbox);
             }
         }
 
-        private void updateRecipient(Recipient recipient) {
-            // Implementation for updating recipient
-            System.out.println("Update requested for: " + recipient.getEmail());
+        private void updateRecipient(ActionEvent event , Recipient recipient) {
+        	 try {
+                 Parent root = FXMLLoader.load(getClass().getResource("/projectfiles/view/RecipientUpdate.fxml"));
+                 Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+                 Scene scene = new Scene(root);
+                 stage.setScene(scene);
+                 stage.show();
+             } catch (IOException e) {
+                 e.printStackTrace();
+             }
         }
     }
     
