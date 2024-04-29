@@ -170,6 +170,10 @@ public class TransactionController {
             totalChargeTextField.setText(String.format("%.2f", totalAmount));
             extraChargeTextField.setText(String.format("%.2f", totalfees));
             amountTheyReceiveLabel.setText(String.format("%.2f", amountReceived));
+            
+            // Add currency labels
+            sendCurrency.setText("USD");
+            localCurrencyLabel.setText(exchangerate.getTargetCurrency());
         } catch (NumberFormatException e) {
             System.out.println("Invalid input for amount.");
         }
