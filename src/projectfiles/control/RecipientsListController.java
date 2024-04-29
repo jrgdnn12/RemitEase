@@ -99,7 +99,10 @@ public class RecipientsListController {
     static class RecipientCell extends ListCell<Recipient> {
         HBox hbox = new HBox();
         Text name = new Text();
+        //delimter for adress
+        Text delimiter = new Text(" - ");
         Text address = new Text();
+        
         Button sendAgainButton = new Button("Send Again");
         Button updateButton = new Button("Update");
         Pane pane = new Pane();
@@ -107,7 +110,7 @@ public class RecipientsListController {
 
         public RecipientCell() {
             super();
-            hbox.getChildren().addAll(name, address ,pane, sendAgainButton, updateButton);
+            hbox.getChildren().addAll(name, delimiter, address ,pane, sendAgainButton, updateButton);
             HBox.setHgrow(pane, Priority.ALWAYS);
         }
 
