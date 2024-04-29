@@ -3,20 +3,23 @@ package projectfiles.control;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import projectfiles.Dao.RecipientDAOImpl;
+import projectfiles.Dao.CustomerDAOImpl;
+import projectfiles.model.Customer;
 import projectfiles.model.Recipient;
+import projectfiles.Dao.UserDAOImpl;
+import projectfiles.Dao.RecipientDAOImpl;
 
-import java.awt.Label;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class RecipientUpdateController {
+public class RecipientUpdateController2 {
 
-	@FXML
+    @FXML
     private TextField firstNameTextField;
     
     @FXML
@@ -46,8 +49,7 @@ public class RecipientUpdateController {
     @FXML
     private TextField addressTextField;
 
-    @FXML
-    private Recipient recipient;
+	private Recipient recipient;
 
     @FXML
     void handleContinueButtonAction(ActionEvent event) {
@@ -57,28 +59,22 @@ public class RecipientUpdateController {
 
     @FXML
     void handleResetButtonAction(ActionEvent event) {
-        ResetFields();
+        clearFields();
     }
 
     @FXML
     void handleBackButtonAction(ActionEvent event) {
         openSendMoney(event);
     }
-    
-    @FXML
-    private void initialize() {
-  
-        
-    }
-    
-    private void ResetFields() {
-    	firstNameTextField.setText(recipient.getFirstName());
-        lastNameTextField.setText(recipient.getLastName());
-        emailTextField.setText(recipient.getEmail());
-        phoneNumberTextField.setText(recipient.getPhoneNumber());
-        countryTextField.setText(recipient.getCountry());
-        cityTextField.setText(recipient.getCity());
-        addressTextField.setText(recipient.getAddress());
+
+    private void clearFields() {
+        firstNameTextField.clear();
+        lastNameTextField.clear();
+        emailTextField.clear();
+        phoneNumberTextField.clear();
+        countryTextField.clear();
+        cityTextField.clear();
+        addressTextField.clear();
     }
 
     private void openTransaction() {
@@ -92,6 +88,28 @@ public class RecipientUpdateController {
             e.printStackTrace();
         }
     }
+    
+    private void openTransaction(String country) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/projectfiles/view/Transaction.fxml"));
+            Parent root = loader.load();
+
+            // Get the controller instance
+            TransactionController transactionController = loader.getController();
+
+      
+
+            // Show the transaction view
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    
 
     private void openSendMoney(ActionEvent event) {
         try {
@@ -105,6 +123,7 @@ public class RecipientUpdateController {
         }
     }
     
+
     
     private void Continue() {
     	
@@ -182,6 +201,17 @@ public class RecipientUpdateController {
 
 
 
+    private void resetFieldsExceptStatusLabel() {
+        firstNameTextField.clear();
+        lastNameTextField.clear();
+        emailTextField.clear();
+        phoneNumberTextField.clear();
+        countryTextField.clear();
+        cityTextField.clear();
+        addressTextField.clear();
+    }
+    
+
 	private boolean insertUserData(Recipient recipient) {
     
 		try {
@@ -195,6 +225,8 @@ public class RecipientUpdateController {
 		    return false;
 		}
 		}
+	
+	
 		
 		private boolean isFirstNameEmpty() {
 	        return firstNameTextField.getText().isEmpty();
@@ -251,32 +283,30 @@ public class RecipientUpdateController {
 	    private void displayCityEmptyError() {
 	        statusLabel.setText("Error: City cannot be empty. Please enter your city.");
 	    }
-
+        
 
 	    private void closeRecipientWindow() {
 	        Stage stage = (Stage) firstNameTextField.getScene().getWindow();
 	        stage.close();
 	    }
 
+	    public void postInitialize() {
+	        if (recipient == null) {
+	            System.out.println("Warning: Recipient is null in post-initialization.");
+	            return;
+	        }
+	        firstNameTextField.setText(recipient.getFirstName());
+	        lastNameTextField.setText(recipient.getLastName());
+	        emailTextField.setText(recipient.getEmail());
+	        phoneNumberTextField.setText(recipient.getPhoneNumber());
+	        countryTextField.setText(recipient.getCountry());
+	        cityTextField.setText(recipient.getCity());
+	        addressTextField.setText(recipient.getAddress());
+	    }
 
-    public void postInitialize() {
-        if (recipient == null) {
-            System.out.println("Warning: Recipient is null in post-initialization.");
-            return;
-        }
-        firstNameTextField.setText(recipient.getFirstName());
-        lastNameTextField.setText(recipient.getLastName());
-        emailTextField.setText(recipient.getEmail());
-        phoneNumberTextField.setText(recipient.getPhoneNumber());
-        countryTextField.setText(recipient.getCountry());
-        cityTextField.setText(recipient.getCity());
-        addressTextField.setText(recipient.getAddress());
-    }
-
-	public void setRecipient(Recipient recipient) {
-		this.recipient = recipient;
+		public void setRecipient(Recipient recipient) {
+			this.recipient = recipient;
+			
+		}
 		
-	}
-
-
 }

@@ -14,7 +14,7 @@ import java.awt.Label;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class RecipientUpdateController {
+public class RecipiengfdgdtUpdateController {
 
 	@FXML
     private TextField firstNameTextField;
