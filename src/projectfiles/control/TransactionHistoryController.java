@@ -101,11 +101,12 @@ public class TransactionHistoryController {
         
         
         Button sendAgainButton = new Button("Send Again");
+        Button updateButton = new Button("Cancel"); // Declare and initialize the updateButton variable
         Pane pane = new Pane();
 
         public RecipientCell() {
             super();
-            hbox.getChildren().addAll(TransactionId, delimiter, Recipient ,delimiter2, Amount, delimiter3, Date, delimiter4, Status, pane, sendAgainButton);
+            hbox.getChildren().addAll(TransactionId, delimiter, Recipient ,delimiter2, Amount, delimiter3, Date, delimiter4, Status, pane, sendAgainButton, updateButton);
             HBox.setHgrow(pane, Priority.ALWAYS);
         }
 
@@ -114,43 +115,56 @@ public class TransactionHistoryController {
             if (empty || remittance == null) {
             setText(null);
             setGraphic(null);
-            Button updateButton = new Button("Cancel"); // Declare and initialize the updateButton variable
+            }else {
+            
+            TransactionId.setText("RE" + remittance.getTransactionId());
+            Recipient.setText(remittance.getRecipientID().getFirstName() + " " + remittance.getRecipientID().getLastName());
+            Amount.setText("$" + remittance.getAmountSent());
+            Date.setText(remittance.getCreatedAt().toString()); // Convert LocalDateTime to string
+            Status.setText(remittance.getStatus());
             updateButton.setOnAction(event -> CancelRemittance(event, remittance));
-            // Rest of the code...
+            if (!remittance.getStatus().equals("Pending")) {
+            	hbox.getChildren().remove(updateButton);
+            } 
+                
+         
+            sendAgainButton.setOnAction(event -> remittance.sendEmailUpdate("Sending Again!"));
+            setGraphic(hbox);
+            }
         }
 
         private void CancelRemittance(ActionEvent event, Remittance remittance) {
-            try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/projectfiles/view/RecipientUpdate.fxml"));
-            Parent root = loader.load();  // Load the FXML and instantiate the controller
-
-            RecipientUpdateController controller = loader.getController();
-            controller.setRecipient(remittance );  // Set the recipient
-            controller.postInitialize();  // Manually initialize the parts of the controller that need the recipient
-
-            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-            } catch (IOException e) {
-            e.printStackTrace();
-            }
-        
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/projectfiles/view/RecipientUpdate.fxml"));
-                Parent root = loader.load();  // Load the FXML and instantiate the controller
-
-                RecipientUpdateController controller = loader.getController();
-                controller.setRecipient(remittance );  // Set the recipient
-                controller.postInitialize();  // Manually initialize the parts of the controller that need the recipient
-
-                Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+//            try {
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/projectfiles/view/RecipientUpdate.fxml"));
+//            Parent root = loader.load();  // Load the FXML and instantiate the controller
+//
+//            RecipientUpdateController controller = loader.getController();
+//            controller.setRecipient(remittance );  // Set the recipient
+//            controller.postInitialize();  // Manually initialize the parts of the controller that need the recipient
+//
+//            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+//            Scene scene = new Scene(root);
+//            stage.setScene(scene);
+//            stage.show();
+//            } catch (IOException e) {
+//            e.printStackTrace();
+//            }
+//        
+//            try {
+//                FXMLLoader loader = new FXMLLoader(getClass().getResource("/projectfiles/view/RecipientUpdate.fxml"));
+//                Parent root = loader.load();  // Load the FXML and instantiate the controller
+//
+//                RecipientUpdateController controller = loader.getController();
+//                controller.setRecipient(remittance );  // Set the recipient
+//                controller.postInitialize();  // Manually initialize the parts of the controller that need the recipient
+//
+//                Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+//                Scene scene = new Scene(root);
+//                stage.setScene(scene);
+//                stage.show();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
         }
 
 
