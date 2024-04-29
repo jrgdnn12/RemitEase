@@ -235,5 +235,20 @@ public class TransactionController {
 		
 	}
 
+    public void postInitialize() {
+        // Set the labels
+        sendCurrency.setText("USD");
+        localCurrencyLabel.setText(newRecipient.getCountry());
+        amountSendLabel.setText("Amount to send in USD");
+        amountReceiveLabel.setText("Amount to receive in " + newRecipient.getCountry());
+        partnerLabel.setText("Select a partner to send money to");
+
+        // Set the text fields
+        amountToBeSentTextField.setText(amountSendTextField.getText());
+        amountToBeReceivedTextField.setText(amountReceiveTextField.getText());
+        extraChargeTextField.setText("0.00");
+        totalChargeTextField.setText(amountSendTextField.getText());
+    }
+
 
 }

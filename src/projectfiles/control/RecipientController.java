@@ -91,6 +91,8 @@ public class RecipientController {
             Parent root = loader.load();
             TransactionController transactionController = loader.getController();
             transactionController.setRecipient(recipient);  // Set the recipient
+            //post intialization
+            transactionController.postInitialize();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();
