@@ -311,6 +311,7 @@ public class DatabaseSetup {
                          "TargetCurrency VARCHAR(255), " +
                          "Rate DOUBLE, " +
                          "UpdatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,");
+    
             
             
             //Insert into Exchange Rate Table
