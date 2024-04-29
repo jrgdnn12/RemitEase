@@ -76,7 +76,53 @@ public class DatabaseSetup {
             stmt.execute("INSERT INTO User VALUES ('PRT101','7352', 2)");
             stmt.execute("INSERT INTO User VALUES ('PRT102','7352', 2)");
             stmt.execute("INSERT INTO User VALUES ('PRT103','7352', 2)");
-           
+            stmt.execute("INSERT INTO User VALUES ('PT104','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT105','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT106','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT107','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT108','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT109','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT110','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT111','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT112','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT113','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT114','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT115','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT116','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT117','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT118','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT119','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT120','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT121','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT122','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT123','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT124','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT125','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT126','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT127','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT128','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT129','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT130','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT131','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT132','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT133','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT134','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT135','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT136','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT137','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT138','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT139','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT140','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT141','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT142','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT143','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT144','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT145','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT146','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT147','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT148','7352', 2);");
+            stmt.execute("INSERT INTO User VALUES ('PT149','7352', 2);");
+
             
          // Customer Table
             stmt.execute("CREATE TABLE IF NOT EXISTS Customer (" +
@@ -184,6 +230,53 @@ public class DatabaseSetup {
             stmt.execute("INSERT INTO Partner VALUES ('PRT101','Barclays Bank','Money Transfer','Ecuador','Quito','124 Royal Street')");
             stmt.execute("INSERT INTO Partner VALUES ('PRT102','Bank of Ghana','Money Transfer','Ghana','Kumasi','567 Hilton Parkway')");
             stmt.execute("INSERT INTO Partner VALUES ('PRT103','Ecobank','Money Transfer','Ghana','Accra','843 Queen Circle')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT104', 'Bank of Argentina', 'National Bank', 'Argentina', 'Comodoro Rivadavia', '450 Stone Circle')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT105', 'Swift Money Express', 'Money Transfer', 'Argentina', 'Mendoza', '743 Key Circle')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT106', 'Bank of Columbia', 'Federal Bank', 'Columbia', 'Tunja', '429 Phone Arena')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT107', 'Columbia Money Transfer', 'Money Transfer', 'Columbia', 'Pasto', '482 Stand Hill')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT108', 'Bank of Kenya', 'National Bank', 'Kenya', 'Nairobi', '7932 Press Road')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT109', 'Nairobi Money Express', 'Money Transfer', 'Kenya', 'Nairobi', '842 Halt Road')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT110', 'Bank of Nigeria', 'National Bank', 'Nigeria', 'Lagos', '321 School District')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT111', 'Barclays Bank', 'Money Transfer', 'Nigeria', 'Abuja', '3832 Calc Road')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT112', 'Bank of Canada', 'National Bank', 'Canada', 'Ottawa', '8594 Phone Street')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT113', 'Canadian Money Express', 'Money Transfer', 'Canada', 'Ontario', '482 Book Circle')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT114', 'Bank of Brazil', 'National Bank', 'Brazil', 'Marcelo', '732 Study Grove')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT115', 'Brazil Money Transfer', 'Money Transfer', 'Brazil', 'Marcapa', '3923 Diff Song')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT116', 'Bank of France', 'National Bank', 'France', 'Paris', '449 Solid Ave')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT117', 'Fidelity Bank', 'Money Transfer', 'France', 'Nice', '382 Eat Ave')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT118', 'Austria National Bank', 'National Bank', 'Austria', 'Vienna', '873 Type Grove')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT119', 'AUB Bank', 'Money Transfer', 'Austria', 'Graz', '820 University Road')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT120', 'Bank of Germany', 'National Bank', 'Germany', 'Munich', '921 School Road')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT121', 'Swift Money Exchange', 'Money Transfer', 'Germany', 'Dresden', '842 Market Circle')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT122', 'Bank of Ireland', 'National Bank', 'Ireland', 'Derry', '832 Paint Corner')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT123', 'Swift Money Exchange', 'Money Transfer', 'Ireland', 'Galway', '302 Drive Ave')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT124', 'Federal Bank of Italy', 'National Bank', 'Italy', 'Rome', '830 Peace District')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT125', 'Rome Bank Express', 'Money Transfer', 'Italy', 'Rome', '9573 Drive Highway')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT126', 'National Bank of Netherlands', 'National Bank', 'Netherlands', 'Amsterdam', '382 Freeway Circle')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT127', 'Amsterdam Money Express', 'Money Transfer', 'Netherlands', 'Amsterdam', '930 Button Ave')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT128', 'Bank of Portugal', 'National Bank', 'Portugal', 'Lisbon', '832 Cook Road')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT129', 'Mobile Money Bank', 'Money Transfer', 'Portugal', 'Porto', '214 Restaurant Circle')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT130', 'Federal Bank of Spain', 'National Bank', 'Spain', 'Madrid', '394 Freeze Ave')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT131', 'Madrid Money Transfer', 'Money Transfer', 'Spain', 'Barcelona', '4920 Hot Circle')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT132', 'Bank of Slovenia', 'National Bank', 'Slovenia', 'Koper', '942 Trentham Road')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT133', 'Slovenia Money Transfer', 'Money Transfer', 'Slovenia', 'Kranj', '3920 Flamingo Road')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT134', 'Bank of Slovekia', 'National Bank', 'Slovekia', 'Poprad', '9283 Water Circle')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT135', 'Swift Money Exchange', 'Money Transfer', 'Slovekia', 'Bojnice', '474 Wood Wridge')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT136', 'Bank of Greece', 'National Bank', 'Greece', 'Athens', '493 Metal Corner')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT137', 'Greece Mobile Money', 'Money Transfer', 'Greece', 'Patras', '832 Type Setting')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT138', 'National Bank of Estonia', 'National Bank', 'Estonia', 'Tartu', '8320 David Road')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT139', 'Vodafone Money Exchange', 'Money Transfer', 'Estonia', 'Narva', '958 Long Street')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT140', 'Luxemborg Bank', 'National Bank', 'Luxemborg', 'Vianden', '932 Herald Grove')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT141', 'Fast Money Express', 'Money Transfer', 'Luxemborg', 'Wiltz', '843 Yell Street')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT142', 'Malta Bank', 'National Bank', 'Malta', 'Mdina', '958 Peace Highway')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT143', 'Speed Money Express', 'Money Transfer', 'Malta', 'Mosta', '8372 Rest Field')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT144', 'Federal Bank of Cyprus', 'National Bank', 'Cyprus', 'Paphos', '485 Grove Street')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT145', 'Cyprus Money Exchange', 'Money Transfer', 'Cyprus', 'Nicosia', '947 Freeze Point')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT146', 'Belgium Bank', 'National Bank', 'Belgium', 'Brussels', '9472 Mouse Pad')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT147', 'Cal Bank', 'Money Transfer', 'Belgium', 'Bruges', '218 Kitchen Plate')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT148', 'Bank of Finland', 'National Bank', 'Finland', 'Turku', '842 Record Break')");
+            stmt.execute("INSERT INTO Partner VALUES ('PT149', 'Finland Money Express', 'Money Transfer', 'Finland', 'Pori', '942 Read Ave')");
+
 
 
             
