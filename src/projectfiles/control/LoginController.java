@@ -10,6 +10,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import projectfiles.Dao.UserDAOImpl;
+import projectfiles.model.User;
 import javafx.event.ActionEvent;
 
 public class LoginController {
@@ -64,19 +66,26 @@ public class LoginController {
     }
 
     private void login() {
-//        String userID = userIDTextField.getText();
-//        String password = passwordTextField.getText();
-//
-//        // Here you would check if the userID and password match those in the database
-//        // For demonstration purposes, let's assume userID is "admin" and password is "password"
-//        if (userID.equals("admin") && password.equals("password")) {
-//            statusLabel.setText("Login successful");
-//            openMainMenu();
-//        } else {
-//            statusLabel.setText("Error: User ID or Password is incorrect.");
-//        }
+       User localuser = new User(
+       userIDTextField.getText(),
+       passwordTextField.getText(),
+       1
+       );
+
+        //dao for user
+        UserDAOImpl userDAO = new UserDAOImpl();
+        User remoteUser = userDAO.getUserById(userIDTextField.getText());
+
+
+       // Here you would check if the userID and password match those in the database
+       // For demonstration purposes, let's assume userID is "admin" and password is "password"
+       if (localuser.authenticate(remoteUser.getPassword())) {
+           statusLabel.setText("Login successful");
+           openMainMenu();
+       } else {
+           statusLabel.setText("Error: User ID or Password is incorrect.");
+       }
    
-    	 openMainMenu();
     }
     
     
