@@ -25,10 +25,10 @@ public class CustomerDAOImpl implements CustomerDAO {
      * @param customer The customer object to be added.
      * @throws SQLException If an error occurs during the database operation.
      * @throws SQLException If the user already exists in the database. Handled by the {@link UserDAO#doesUserExist(String)} method.
-     * @return void
+     * @return boolean true if the customer was added successfully, false otherwise.
      */
     @Override
-    public void addCustomer(Customer customer) throws SQLException {
+    public boolean addCustomer(Customer customer) throws SQLException {
         // Check if the user already exists using the provided UserDAO
         // no need to check if user exists as it is handled in the UserDAO
             userDAO.addUser(customer);  // This handles the insertion into the 'users' table
@@ -45,13 +45,10 @@ public class CustomerDAOImpl implements CustomerDAO {
                 pstmt.setString(7, customer.getCountry());
                 pstmt.setString(8, customer.getCity());
                 pstmt.setString(9, customer.getAddress());
-                pstmt.executeUpdate();
-                
+                int rowsAffected = pstmt.executeUpdate();
+                return rowsAffected > 0;
             } 
-        
         }
-    
-
     /**
      * Customer method for retrieving a {@link Customer} object by their {@link Customer#getId() CustomerID}.
      * @param customerId The ID of the customer to retrieve.

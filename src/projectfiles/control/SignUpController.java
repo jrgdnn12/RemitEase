@@ -9,37 +9,26 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javafx.scene.Node;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import projectfiles.app.RunApp;
+import projectfiles.Dao.CustomerDAOImpl;
+import projectfiles.Dao.UserDAOImpl;
+import projectfiles.model.Customer;
 
 public class SignUpController {
 	
-	// Database Connection Parameters
-    private static final String URL = "jdbc:mysql://remitease.cr2esock8dpy.us-west-2.rds.amazonaws.com:3306/RemitEaseDev?useSSL=false&serverTimezone=UTC";
-    private static final String USER = "admin";
-    private static final String PASSWORD = "rEmitEase$";
     
 	private Stage primaryStage;
+
+    public Customer customer;
 
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }
 	
-	// Declare a Connection object
-    private Connection connection;
 
     @FXML
     private TextField firstNameTextField;
@@ -86,6 +75,8 @@ public class SignUpController {
     @FXML
     private void openWelcomePage(ActionEvent event) {
         try {
+
+            signUp(); // Call the signUp method
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/projectfiles/view/WelcomePage.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage();
@@ -138,6 +129,25 @@ public class SignUpController {
         String address = addressTextField.getText();
         String city = cityTextField.getText();
 
+        //Create a new customer object
+        Customer customer = new Customer (
+            userID,
+            password,
+            1,
+            email,
+            firstName,
+            lastName,
+            phoneNumber,
+            0.0,
+            country,
+            city,
+            address
+        );
+        
+        // Make the customer object available to other methods in the class
+        this.customer = customer;
+        
+
         // Validate password match
         if (!password.equals(repeatPassword)) {
             statusLabel.setText("Error: The passwords you entered do not match");
@@ -145,14 +155,14 @@ public class SignUpController {
         }
 
         // Validate if userID already exists in the database
-        if (userIDExists(userID)) {
+        if (userIDExists(customer)) {
             statusLabel.setText("Error: The User ID already exists");
             return;
         }
         
         
         // Insert user data into the database
-        boolean success = insertUserData(connection, firstName, lastName, userID, password, email, phoneNumber, country, address, city);
+        boolean success = insertUserData();
 
         if (success) {
             statusLabel.setText("Your account has been successfully created");
@@ -223,6 +233,8 @@ public class SignUpController {
             return;
         }
         
+        
+
         // After successfully creating the account
         statusLabel.setText("Your account has been successfully created");
         resetFieldsExceptStatusLabel();
@@ -231,42 +243,16 @@ public class SignUpController {
     }
     
 
-    private boolean userIDExists(String userID) {
-        Connection connection = null;
-        PreparedStatement stmt = null;
-        ResultSet resultSet = null;
-
+    private boolean userIDExists(Customer customer) {
+        
         try {
-            // Establish a database connection
-            connection = DriverManager.getConnection(URL, USER, PASSWORD);
-
-            // Create a prepared statement to execute the query
-            String query = "SELECT COUNT(*) FROM User WHERE userID = ?";
-            stmt = connection.prepareStatement(query);
-            stmt.setString(1, userID);
-
-            // Execute the query and retrieve the result set
-            resultSet = stmt.executeQuery();
-
-            // Check if any row is returned (userID exists)
-            if (resultSet.next()) {
-                int count = resultSet.getInt(1);
-                return count > 0;
-            }
-            
+           //dao for user
+           UserDAOImpl userDAO = new UserDAOImpl(); 
+           boolean test = userDAO.doesUserExist(customer.getId());
+              return test;
         } catch (SQLException e) {
             e.printStackTrace(); // Handle the exception appropriately
             
-        } finally {
-        	
-            // Close the result set, statement, and connection
-            try {
-                if (resultSet != null) resultSet.close();
-                if (stmt != null) stmt.close();
-                if (connection != null) connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace(); // Handle the exception appropriately
-            }
         }
 
         // Return false by default or if an exception occurred
@@ -367,26 +353,15 @@ public class SignUpController {
         cityTextField.clear();
     }
     
-    private boolean insertUserData(Connection connection, String firstName, String lastName, String userID, String password, String email,
-                                       String phoneNumber, String country, String address, String city) {
-        String query = "INSERT INTO User (firstName, lastName, userID, password, email, phoneNumber, country, address, city) " +
-                       "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
+    private boolean insertUserData() {
+        
         try {
-            PreparedStatement statement = connection.prepareStatement(query);
-
-            statement.setString(1, firstName);
-            statement.setString(2, lastName);
-            statement.setString(3, userID);
-            statement.setString(4, password);
-            statement.setString(5, email);
-            statement.setString(6, phoneNumber);
-            statement.setString(7, country);
-            statement.setString(8, address);
-            statement.setString(9, city);
-
-            int rowsInserted = statement.executeUpdate();
-            return rowsInserted > 0;
+    
+            //intialize dao for custome
+            CustomerDAOImpl customerDAO = new CustomerDAOImpl();
+            //add customer
+            boolean test = customerDAO.addCustomer(customer);
+            return test;
         } catch (SQLException e) {
             e.printStackTrace();
             return false;

@@ -10,7 +10,7 @@ public class CustomerTestDAO {
     public static void main(String[] args) {
         // Create a test customer
         Customer testCustomer = new Customer(
-            "fghdsdffgfhddfgfsd", // Assuming 'testUsedfgdfgrId123' does not exist in your DB
+            "fghdsdeeffgfhddfgfsd", // Assuming 'testUsedfgdfgrId123' does not exist in your DB
             "password",
             1,
             "test@example.com",
@@ -25,6 +25,8 @@ public class CustomerTestDAO {
 
         // Instantiate the DAO implementation
         CustomerDAOImpl customerDAO = new CustomerDAOImpl();
+
+       
 
         // Test adding a customer
         try {
