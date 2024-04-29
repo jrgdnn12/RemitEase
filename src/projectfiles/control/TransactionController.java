@@ -12,9 +12,21 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import projectfiles.Dao.CustomerDAO;
+import projectfiles.Dao.CustomerDAOImpl;
+import projectfiles.Dao.PartnerDAOImpl;
+import projectfiles.Dao.RecipientDAOImpl;
+import projectfiles.Dao.RemittanceDAOImpl;
+import projectfiles.app.SessionManager;
+import projectfiles.model.Partner;
 import projectfiles.model.Recipient;
+import projectfiles.model.Remittance;
+import projectfiles.model.User;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TransactionController {
 
@@ -80,6 +92,8 @@ public class TransactionController {
 
 	private Recipient newRecipient;
 
+    User user = SessionManager.getInstance().getCurrentUser();
+
     @FXML
     void handleBackButtonAction(ActionEvent event) {
         openRecipient(event);
@@ -91,9 +105,16 @@ public class TransactionController {
     }
 
     @FXML
-    void handleContinueButtonAction(ActionEvent event) {
+    void handleContinueButtonAction(ActionEvent event) throws SQLException{
         openConfirmation(event);
     }
+
+   
+
+    
+    
+    
+
     
 
     private void openRecipient(ActionEvent event) {
@@ -109,7 +130,7 @@ public class TransactionController {
     }
     
     @FXML
-    void initialize() {
+    void initialize() throws SQLException{
         // Populate the partner combo box
         populatePartnerComboBox();
 
@@ -117,15 +138,22 @@ public class TransactionController {
         partnerComboBox.setOnAction(event -> handlePartnerComboBoxChanged());
     }
 
-    private void populatePartnerComboBox() {
-    	
-        ObservableList<String> partners = FXCollections.observableArrayList(
-                "EcuadorPartner1",
-                "EcuadorPartner2",
-                "GhanaPartner1",
-                "GhanaPartner2"
-        );
-        partnerComboBox.setItems(partners);
+    private void populatePartnerComboBox() throws SQLException {
+        //Dao Partner by ID
+        PartnerDAOImpl partnerDAO = new PartnerDAOImpl();
+        //partner array list
+        List<Partner> partners = partnerDAO.getPartnerById(newRecipient.getCountry());
+
+        // Convert the list of partners to a list of strings
+        List<String> partnerNames = new ArrayList<>();
+        for (Partner partner : partners) {
+            partnerNames.add(partner.getName());
+        }
+
+        //Observable list of partners
+        ObservableList<String> obspartners = FXCollections.observableArrayList(partnerNames);
+
+        partnerComboBox.setItems(obspartners);
     }
 
     private void handlePartnerComboBoxChanged() {
@@ -145,9 +173,49 @@ public class TransactionController {
         totalChargeTextField.setText("");
     }
 
-    private void openConfirmation(ActionEvent event) {
+    private void openConfirmation(ActionEvent event) throws SQLException {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/projectfiles/view/Confirmation.fxml"));
+
+            //partner DAO 
+            PartnerDAOImpl partnerDAO = new PartnerDAOImpl();
+            CustomerDAOImpl customerDAO = new CustomerDAOImpl();
+            //Remittance object
+            Remittance SendRemittance = new Remittance(
+            0,
+            customerDAO.getCustomerById(user.getId()),
+            newRecipient,
+            partnerDAO.getPartnerByNameAndCountry(selectedPartnerLabel.getText(),newRecipient.getCountry()),
+            Double.parseDouble(amountSendTextField.getText()),
+            Double.parseDouble(amountReceiveTextField.getText()),
+            "USD",
+            "USD",
+            "Pending",
+            null,
+            null,
+            "None",
+            "None"
+
+        );
+
+        //send remiitance
+        RemittanceDAOImpl remittanceDAO = new RemittanceDAOImpl();
+        int RemittanceID = remittanceDAO.addRemittance(SendRemittance);
+        
+        //set new remittance id
+        SendRemittance.setTransactionId(RemittanceID);
+        
+        
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/projectfiles/view/Confirmation.fxml"));
+            Parent root = loader.load();
+        //get the controller isntance
+         // Get the controller instance
+         ConfirmationController transactionController = loader.getController();
+        
+         // Pass the entered Remittance to the confirmation
+         
+         transactionController.setRemittance(SendRemittance);
+        
             Stage stage = (Stage) continueButton.getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -162,4 +230,6 @@ public class TransactionController {
 		this.newRecipient = recipient;
 		
 	}
+
+
 }

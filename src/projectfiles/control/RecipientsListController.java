@@ -17,8 +17,10 @@ import javafx.stage.Stage;
 import projectfiles.model.Recipient;
 import projectfiles.model.RecipientList;
 import projectfiles.model.RemittanceList;
+import projectfiles.model.User;
 import projectfiles.Dao.RemittanceDAOImpl;
 import projectfiles.Dao.RemittanceListDAOImpl;
+import projectfiles.app.SessionManager;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -40,7 +42,7 @@ public class RecipientsListController {
     public void handleBackButtonAction(ActionEvent event) {
         openWelcomePage(event);
     }
-
+    User user = SessionManager.getInstance().getCurrentUser();
     
     private void openWelcomePage(ActionEvent event) {
       
@@ -81,7 +83,7 @@ public class RecipientsListController {
         RemittanceListDAOImpl remittanceListDAO = new RemittanceListDAOImpl();
         
         try {
-        	remittanceList = remittanceListDAO.getRemittanceList("CSR100");
+        	remittanceList = remittanceListDAO.getRemittanceList(user.getId());
         }catch (SQLException e) {
     	}
     

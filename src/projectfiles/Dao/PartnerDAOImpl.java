@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -61,14 +63,15 @@ public class PartnerDAOImpl implements PartnerDAO {
      * @throws SQLException If no partner is found with the given ID.
      */
     @Override
-    public Partner getPartnerById(String countryId) throws SQLException {
+    public List<Partner> getPartnerById(String countryId) throws SQLException {
         String sql = "SELECT PartnerId, Name, Type, Country, City, Address FROM Partner WHERE Country = ?";  // Exclude password for security
         try (Connection conn = DatabaseCreds.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, countryId);
             try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    return new Partner(
+                List<Partner> partners = new ArrayList<>();
+                while (rs.next()) {
+                    Partner partner = new Partner(
                         rs.getString("PartnerId"),
                         "",
                         2,
@@ -78,11 +81,11 @@ public class PartnerDAOImpl implements PartnerDAO {
                         rs.getString("City"),
                         rs.getString("Address")
                     );
-                }else{
-                    throw new SQLException("Partner not found with partnerID: "+ countryId );
-                    }
-                }   
+                    partners.add(partner);
+                }
+                return partners;
             }
+        }
     }
 
     /**
@@ -110,6 +113,66 @@ public class PartnerDAOImpl implements PartnerDAO {
         }else {
             throw new SQLException("Partner not found with partnerID: "+ partner.getId());
         }
+    }
+
+
+
+    @Override
+    public Partner getPartnerByNameAndCountry(String name, String country) throws SQLException {
+        String sql = "SELECT PartnerId, Name, Type, Country, City, Address FROM Partner WHERE Name = ? AND Country = ?";  // Exclude password for security
+        try (Connection conn = DatabaseCreds.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, name);
+            pstmt.setString(2, country);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    Partner partner = new Partner(
+                        rs.getString("PartnerId"),
+                        "",
+                        2,
+                        rs.getString("Name"),
+                        rs.getString("Type"),
+                        rs.getString("Country"),
+                        rs.getString("City"),
+                        rs.getString("Address")
+                    );
+                    return partner;
+                }
+            }
+        }
+        return null;
+        }
+    
+/**
+     * Retrieve a {@link Partner} object from the database using the {@link Partner#getId() PartnerId}.
+     * @param countryId The ID of the partner to retrieve.
+     * @return The partner object if found, otherwise null.
+     * @throws SQLException If an error occurs during the database operation.
+     * @throws SQLException If no partner is found with the given ID.
+     */
+    @Override
+    public Partner getPartnerById(String countryId) throws SQLException {
+        String sql = "SELECT PartnerId, Name, Type, Country, City, Address FROM Partner WHERE Country = ?";  // Exclude password for security
+        try (Connection conn = DatabaseCreds.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, countryId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return new Partner(
+                        rs.getString("PartnerId"),
+                        "",
+                        2,
+                        rs.getString("Name"),
+                        rs.getString("Type"),
+                        rs.getString("Country"),
+                        rs.getString("City"),
+                        rs.getString("Address")
+                    );
+                }else{
+                    throw new SQLException("Partner not found with partnerID: "+ countryId );
+                    }
+                }   
+            }
     }
 
 }

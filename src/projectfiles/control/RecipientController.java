@@ -8,11 +8,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import projectfiles.Dao.CustomerDAOImpl;
-import projectfiles.model.Customer;
 import projectfiles.model.Recipient;
-import projectfiles.Dao.UserDAOImpl;
+import projectfiles.model.User;
 import projectfiles.Dao.RecipientDAOImpl;
+import projectfiles.app.SessionManager;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -51,6 +50,8 @@ public class RecipientController {
     private TextField addressTextField;
 
 	private Recipient newRecipient;
+
+    User user = SessionManager.getInstance().getCurrentUser();
 
     @FXML
     void handleContinueButtonAction(ActionEvent event) {
@@ -92,7 +93,6 @@ public class RecipientController {
             // Pass the entered country to the TransactionController
             
             transactionController.setRecipient(newRecipient);
-
             // Show the transaction view
             Stage stage = new Stage();
             Scene scene = new Scene(root);
@@ -101,7 +101,7 @@ public class RecipientController {
         } catch (IOException e) {
             e.printStackTrace();
         } catch (SQLException e) {
-			// TODO Auto-generated catch block
+			// what to do whriawblkugfawbhlrgaerg
 			e.printStackTrace();
 		}
     }

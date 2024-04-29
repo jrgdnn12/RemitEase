@@ -4,7 +4,6 @@ import java.sql.SQLException;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import projectfiles.Dao.UserDAOImpl;
+import projectfiles.app.SessionManager;
 import projectfiles.model.User;
 import javafx.event.ActionEvent;
 
@@ -88,8 +88,9 @@ public class LoginController {
        // Here you would check if the userID and password match those in the database
        // For demonstration purposes, let's assume userID is "admin" and password is "password"
        if (localuser.authenticate(remoteUser.getPassword())) {
-           statusLabel.setText("Login successful");
-           openMainMenu();
+            SessionManager.getInstance().setCurrentUser(remoteUser);
+            statusLabel.setText("Login successful");
+            openMainMenu();
        } else {
            statusLabel.setText("Error: User ID or Password is incorrect.");
        }

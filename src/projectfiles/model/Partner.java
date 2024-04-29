@@ -154,4 +154,6 @@ public class Partner extends User {
     public void addPartner(Partner partner) {
         // Implementation for adding a partner
     }
-}
+
+    
+}   

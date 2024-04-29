@@ -2,6 +2,7 @@ package projectfiles.Dao;
 
 import java.sql.SQLException;
 
+import projectfiles.model.Partner;
 import projectfiles.model.Recipient;
 
 /**
@@ -36,6 +37,7 @@ public interface RecipientDAO {
         * @return void
         */
         boolean updateRecipient(Recipient recipient) throws SQLException;
-    
+        
+        
 
 }

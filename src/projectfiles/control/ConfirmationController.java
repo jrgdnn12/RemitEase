@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import projectfiles.model.Remittance;
 
 import java.io.IOException;
 
@@ -31,5 +32,10 @@ public class ConfirmationController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void setRemittance(Remittance sendRemittance) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setRemittance'");
     }
 }
