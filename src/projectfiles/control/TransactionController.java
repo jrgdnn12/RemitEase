@@ -14,10 +14,12 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import projectfiles.Dao.CustomerDAO;
 import projectfiles.Dao.CustomerDAOImpl;
+import projectfiles.Dao.ExchangeRateDAOImpl;
 import projectfiles.Dao.PartnerDAOImpl;
 import projectfiles.Dao.RecipientDAOImpl;
 import projectfiles.Dao.RemittanceDAOImpl;
 import projectfiles.app.SessionManager;
+import projectfiles.model.ExchangeRateManager;
 import projectfiles.model.Partner;
 import projectfiles.model.Recipient;
 import projectfiles.model.Remittance;
@@ -30,12 +32,13 @@ import java.util.List;
 
 public class TransactionController {
 
+	@FXML
+	private Label amountTheyReceiveLabel;
     @FXML
     private TextField amountSendTextField;
 
     @FXML
     private Label sendCurrency;
-
     @FXML
     private Label amountSendLabel;
 
@@ -138,6 +141,41 @@ public class TransactionController {
         // Add event listener to the partner combo box
         partnerComboBox.setOnAction(event -> handlePartnerComboBoxChanged());
     }
+    
+    private void calculateTotal() throws SQLException {
+        if (amountSendTextField.getText().isEmpty() || partnerComboBox.getValue() == null) {
+            return; // Do not calculate if there is no amount or no partner selected
+        }
+
+        try {
+            double amountToSend = Double.parseDouble(amountSendTextField.getText());
+            String selectedPartner = partnerComboBox.getValue();
+            if (selectedPartner == null) {
+                return; // Exit if no partner is selected
+            }
+            
+            //DAO to bring in exchange rate
+            ExchangeRateDAOImpl exchangeRateDAO = new ExchangeRateDAOImpl();
+            
+            ExchangeRateManager exchangerate = exchangeRateDAO.getExchangeRateByCountry(newRecipient2.getCountry());
+
+            double conversionRate = exchangerate.getExchangeRate();  // Assume this method exists
+            double additionalCharges = 4.99;  // Assume this method exists
+        	double percentageccharge = .01;
+            double amountReceived = amountToSend * conversionRate;
+            double totalAmount = amountToSend + additionalCharges + amountToSend*percentageccharge;
+            double totalfees = additionalCharges + amountToSend*percentageccharge;
+            amountToBeReceivedTextField.setText(String.format("%.2f", amountReceived));
+            amountToBeSentTextField.setText(String.format("%.2f", amountToSend));
+            totalChargeTextField.setText(String.format("%.2f", totalAmount));
+            extraChargeTextField.setText(String.format("%.2f", totalfees));
+            amountTheyReceiveLabel.setText(String.format("%.2f", amountReceived));
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input for amount.");
+        }
+    }
+
+   
 
     private void populatePartnerComboBox(Recipient recipient) throws SQLException {
     	 if (recipient == null) {
@@ -247,6 +285,19 @@ public class TransactionController {
 
         // Add event listener to the partner combo box
         partnerComboBox.setOnAction(event -> handlePartnerComboBoxChanged());
+        
+        // Add listener to amountSendTextField to react to text changes
+        amountSendTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {  // Regex to ensure only numbers are entered
+                amountSendTextField.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+            try {
+				calculateTotal();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} // Recalculate whenever the text changes
+        });
     	
        
     }
