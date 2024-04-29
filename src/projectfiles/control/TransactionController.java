@@ -12,6 +12,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import projectfiles.model.Recipient;
 
 import java.io.IOException;
 
@@ -76,6 +77,8 @@ public class TransactionController {
 
     @FXML
     private Button continueButton;
+
+	private Recipient recipient;
 
     @FXML
     void handleBackButtonAction(ActionEvent event) {
@@ -154,17 +157,9 @@ public class TransactionController {
     }
 
     
-    private String country; // Variable to store the entered country
-    
-   
-    // Method to set the entered country received from the RecipientController
-    public void setCountry(String country) {
-        this.country = country;
-    }
 
-    // Method to perform database operations using the entered country
-    private void saveCountryToDatabase() {
-        // Perform database operations here using the 'country' variable
-        // For example, you can insert the 'country' value into the database
-    }
+	public void setRecipient(Recipient recipient) {
+		this.recipient = recipient;
+		
+	}
 }
