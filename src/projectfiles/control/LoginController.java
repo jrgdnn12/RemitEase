@@ -1,5 +1,6 @@
 package projectfiles.control;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -74,7 +75,14 @@ public class LoginController {
 
         //dao for user
         UserDAOImpl userDAO = new UserDAOImpl();
-        User remoteUser = userDAO.getUserById(userIDTextField.getText());
+        
+        User remoteUser = new User();
+        try { 
+        	remoteUser = userDAO.getUserById(localuser.getId());
+    		
+        }catch (SQLException e) {
+        	
+        }
 
 
        // Here you would check if the userID and password match those in the database
