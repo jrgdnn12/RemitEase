@@ -165,11 +165,11 @@ public class TransactionController {
             double amountReceived = amountToSend * conversionRate;
             double totalAmount = amountToSend + additionalCharges + amountToSend*percentageccharge;
             double totalfees = additionalCharges + amountToSend*percentageccharge;
-            amountToBeReceivedTextField.setText(String.format("%.2f", amountReceived));
-            amountToBeSentTextField.setText(String.format("%.2f", amountToSend));
-            totalChargeTextField.setText(String.format("%.2f", totalAmount));
-            extraChargeTextField.setText(String.format("%.2f", totalfees));
-            amountTheyReceiveLabel.setText(String.format("%.2f", amountReceived));
+            amountToBeReceivedTextField.setText(String.format("%.2f USD", amountReceived));
+            amountToBeSentTextField.setText(String.format("%.2f %s", amountToSend, exchangerate.getTargetCurrency()));
+            totalChargeTextField.setText(String.format("%.2f USD", totalAmount));
+            extraChargeTextField.setText(String.format("%.2f USD", totalfees));
+            amountTheyReceiveLabel.setText(String.format("%.2f USD", amountReceived));
             
             // Add currency labels
             sendCurrency.setText("USD");
