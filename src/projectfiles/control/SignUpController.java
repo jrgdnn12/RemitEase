@@ -23,7 +23,7 @@ public class SignUpController {
     
 	private Stage primaryStage;
 
-    public Customer customer;
+
 
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -76,7 +76,7 @@ public class SignUpController {
     private void openWelcomePage(ActionEvent event) {
         try {
 
-            signUp(); // Call the signUp method
+           
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/projectfiles/view/WelcomePage.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage();
@@ -95,6 +95,7 @@ public class SignUpController {
     @FXML
     private void openLoginPage(ActionEvent event) {
         try {
+        	signUp(); // Call the signUp method
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/projectfiles/view/Login.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage();
@@ -144,9 +145,8 @@ public class SignUpController {
             address
         );
         
-        // Make the customer object available to other methods in the class
-        this.customer = customer;
-        
+
+      
 
         // Validate password match
         if (!password.equals(repeatPassword)) {
@@ -154,22 +154,22 @@ public class SignUpController {
             return;
         }
 
-        // Validate if userID already exists in the database
-        if (userIDExists(customer)) {
-            statusLabel.setText("Error: The User ID already exists");
-            return;
-        }
-        
+//        // Validate if userID already exists in the database
+//        if (userIDExists(customer)) {
+//            statusLabel.setText("Error: The User ID already exists");
+//            return;
+//        }
+//        
         
         // Insert user data into the database
-        boolean success = insertUserData();
+        boolean success = insertUserData(customer);
 
         if (success) {
             statusLabel.setText("Your account has been successfully created");
         } else {
             statusLabel.setText("Error occurred while creating your account. Please try again.");
         }
-    
+
         
         // Check if First Name is empty
         if (isFirstNameEmpty()) {
@@ -243,21 +243,21 @@ public class SignUpController {
     }
     
 
-    private boolean userIDExists(Customer customer) {
-        
-        try {
-           //dao for user
-           UserDAOImpl userDAO = new UserDAOImpl(); 
-           boolean test = userDAO.doesUserExist(customer.getId());
-              return test;
-        } catch (SQLException e) {
-            e.printStackTrace(); // Handle the exception appropriately
-            
-        }
-
-        // Return false by default or if an exception occurred
-        return false;
-    }
+//    private boolean userIDExists(Customer customer) {
+//        
+//        try {
+//           //dao for user
+//           UserDAOImpl userDAO = new UserDAOImpl(); 
+//           boolean test = userDAO.doesUserExist(customer.getId());
+//              return test;
+//        } catch (SQLException e) {
+//            e.printStackTrace(); // Handle the exception appropriately
+//            
+//        }
+//
+//        // Return false by default or if an exception occurred
+//        return false;
+//    }
     
     
     private boolean isFirstNameEmpty() {
@@ -353,7 +353,7 @@ public class SignUpController {
         cityTextField.clear();
     }
     
-    private boolean insertUserData() {
+    private boolean insertUserData(Customer customer) {
         
         try {
     
