@@ -220,32 +220,32 @@ public class DatabaseSetup {
                          "UpdatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,");
             
             
-            // Insert into the Exchange Rate Table
-            stmt.execute("INSERT INTO ExchangeRate VALUES ('EXC100', 'Ecuador', 'USD', 1.00)");
-            stmt.execute("INSERT INTO ExchangeRate VALUES ('EXC101', 'Ghana', 'Cedis', 13.53)");
-            stmt.execute("INSERT INTO ExchangeRate VALUES ('EXC102', 'Argentina', 'Argentina Peso', 874.5)");
-            stmt.execute("INSERT INTO ExchangeRate VALUES ('EXC103', 'Columbia', 'Columbian Pesos', 3892.17)");
-            stmt.execute("INSERT INTO ExchangeRate VALUES ('EXC104', 'Kenya', 'Kenyan Shilling', 134.5)");
-            stmt.execute("INSERT INTO ExchangeRate VALUES ('EXC105', 'Nigeria', 'Naira', 780)");
-            stmt.execute("INSERT INTO ExchangeRate VALUES ('EXC106', 'Canada', 'CAD', 1.36)");
-            stmt.execute("INSERT INTO ExchangeRate VALUES ('EXC107', 'Brazil', 'Brazillizian Real', 5.12)");
-            stmt.execute("INSERT INTO ExchangeRate VALUES ('EXC108', 'France', 'Euro', 0.93)");
-            stmt.execute("INSERT INTO ExchangeRate VALUES ('EXC109', 'Austria', 'Euro', 0.93)");
-            stmt.execute("INSERT INTO ExchangeRate VALUES ('EXC110', 'Germany', 'Euro', 0.93)");
-            stmt.execute("INSERT INTO ExchangeRate VALUES ('EXC111', 'Ireland', 'Euro', 0.93)");
-            stmt.execute("INSERT INTO ExchangeRate VALUES ('EXC112', 'Italy', 'Euro', 0.93)");
-            stmt.execute("INSERT INTO ExchangeRate VALUES ('EXC113', 'Netherlands', 'Euro', 0.93)");
-            stmt.execute("INSERT INTO ExchangeRate VALUES ('EXC114', 'Portugal', 'Euro', 0.93)");
-            stmt.execute("INSERT INTO ExchangeRate VALUES ('EXC115', 'Spain', 'Euro', 0.93)");
-            stmt.execute("INSERT INTO ExchangeRate VALUES ('EXC116', 'Slovenia', 'Euro', 0.93)");
-            stmt.execute("INSERT INTO ExchangeRate VALUES ('EXC117', 'Slovekia', 'Euro', 0.93)");
-            stmt.execute("INSERT INTO ExchangeRate VALUES ('EXC118', 'Greece', 'Euro', 0.93)");
-            stmt.execute("INSERT INTO ExchangeRate VALUES ('EXC119', 'Estonia', 'Euro', 0.93)");
-            stmt.execute("INSERT INTO ExchangeRate VALUES ('EXC120', 'Luxemborg', 'Euro', 0.93)");
-            stmt.execute("INSERT INTO ExchangeRate VALUES ('EXC121', 'Malta', 'Euro', 0.93)");
-            stmt.execute("INSERT INTO ExchangeRate VALUES ('EXC122', 'Cyprus', 'Euro', 0.93)");
-            stmt.execute("INSERT INTO ExchangeRate VALUES ('EXC123', 'Belgium', 'Euro', 0.93)");
-            stmt.execute("INSERT INTO ExchangeRate VALUES ('EXC124', 'Finland', 'Euro', 0.93)");
+            //Insert into Exchange Rate Table
+            stmt.execute("INSERT INTO ExchangeRate VALUES ('Ecuador', 'USD', 1)");
+            stmt.execute("INSERT INTO ExchangeRate VALUES ('Ghana', 'Cedis', 13.53)");
+            stmt.execute("INSERT INTO ExchangeRate VALUES ('Argentina', 'Argentina Peso', 874.5)");
+            stmt.execute("INSERT INTO ExchangeRate VALUES ('Columbia', 'Columbian Pesos', 3892.17)");
+            stmt.execute("INSERT INTO ExchangeRate VALUES ('Kenya', 'Kenyan Shilling', 134.5)");
+            stmt.execute("INSERT INTO ExchangeRate VALUES ('Nigeria', 'Naira', 780)");
+            stmt.execute("INSERT INTO ExchangeRate VALUES ('Canada', 'CAD', 1.36)");
+            stmt.execute("INSERT INTO ExchangeRate VALUES ('Brazil', 'Brazillizian Real', 5.12)");
+            stmt.execute("INSERT INTO ExchangeRate VALUES ('France', 'Euro', 0.93)");
+            stmt.execute("INSERT INTO ExchangeRate VALUES ('Austria', 'Euro', 0.93)");
+            stmt.execute("INSERT INTO ExchangeRate VALUES ('Germany', 'Euro', 0.93)");
+            stmt.execute("INSERT INTO ExchangeRate VALUES ('Ireland', 'Euro', 0.93)");
+            stmt.execute("INSERT INTO ExchangeRate VALUES ('Italy', 'Euro', 0.93)");
+            stmt.execute("INSERT INTO ExchangeRate VALUES ('Netherlands', 'Euro', 0.93)");
+            stmt.execute("INSERT INTO ExchangeRate VALUES ('Portugal', 'Euro', 0.93)");
+            stmt.execute("INSERT INTO ExchangeRate VALUES ('Spain', 'Euro', 0.93)");
+            stmt.execute("INSERT INTO ExchangeRate VALUES ('Slovenia', 'Euro', 0.93)");
+            stmt.execute("INSERT INTO ExchangeRate VALUES ('Slovekia', 'Euro', 0.93)");
+            stmt.execute("INSERT INTO ExchangeRate VALUES ('Greece', 'Euro', 0.93)");
+            stmt.execute("INSERT INTO ExchangeRate VALUES ('Estonia', 'Euro', 0.93)");
+            stmt.execute("INSERT INTO ExchangeRate VALUES ('Luxemborg', 'Euro', 0.93)");
+            stmt.execute("INSERT INTO ExchangeRate VALUES ('Malta', 'Euro', 0.93)");
+            stmt.execute("INSERT INTO ExchangeRate VALUES ('Cyprus', 'Euro', 0.93)");
+            stmt.execute("INSERT INTO ExchangeRate VALUES ('Belgium', 'Euro', 0.93)");
+            stmt.execute("INSERT INTO ExchangeRate VALUES ('Finland', 'Euro', 0.93)");
 
 
         }
