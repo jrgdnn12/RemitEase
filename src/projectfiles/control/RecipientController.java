@@ -50,6 +50,8 @@ public class RecipientController {
     @FXML
     private TextField addressTextField;
 
+	private int recipientId;
+
     @FXML
     void handleContinueButtonAction(ActionEvent event) {
         openTransaction();
@@ -78,18 +80,9 @@ public class RecipientController {
 
     private void openTransaction() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/projectfiles/view/Transaction.fxml"));
-            Stage stage = new Stage();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    
-    private void openTransaction(String country) {
-        try {
+        	
+        	Continue();
+        	
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/projectfiles/view/Transaction.fxml"));
             Parent root = loader.load();
 
@@ -97,7 +90,9 @@ public class RecipientController {
             TransactionController transactionController = loader.getController();
 
             // Pass the entered country to the TransactionController
-            transactionController.setCountry(country);
+            //DAO recipient
+            RecipientDAOImpl recipientDAO = new RecipientDAOImpl();
+            transactionController.setRecipient(recipientDAO.getRecipientById(recipientId));
 
             // Show the transaction view
             Stage stage = new Stage();
@@ -106,7 +101,10 @@ public class RecipientController {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     
@@ -124,7 +122,7 @@ public class RecipientController {
     }
     
     
-    private void Continue() {
+    private void Continue() throws SQLException {
         String firstname = firstNameTextField.getText();      
         String lastname = lastNameTextField.getText();      
         String email = emailTextField.getText();
@@ -146,59 +144,11 @@ public class RecipientController {
         );
         
         // Insert user data into the database
-        boolean success = insertUserData(recipient);
-
-        if (success) {
-            statusLabel.setText("Recipient successfully added");
-        } else {
-            statusLabel.setText("Error occurred while adding recipient. Please try again.");
-        }
-
-        
-        // Check if First Name is empty
-        if (isFirstNameEmpty()) {
-            displayFirstNameEmptyError();
-            return;
-        }
-        
-        // Check if First Name is empty
-        if (isLastNameEmpty()) {
-            displayLastNameEmptyError();
-            return;
-        }
-        
-        // Check if Email is empty
-        if (isEmailEmpty()) {
-            displayEmailEmptyError();
-            return;
-        }
-        
-        // Check if Phone Number is empty
-        if (isPhoneNumberEmpty()) {
-            displayPhoneNumberEmptyError();
-            return;
-        }
-        
-        // Check if Country is empty
-        if (isCountryEmpty()) {
-            displayCountryEmptyError();
-            return;
-        }
-        
-        // Check if Address is empty
-        if (isAddressEmpty()) {
-            displayAddressEmptyError();
-            return;
-        }
-        
-        // Check if City is empty
-        if (isCityEmpty()) {
-            displayCityEmptyError();
-            return;
-        }
-        
+        insertUserData(recipient);
         
 
+
+        
      // After successfully adding the recipient
         statusLabel.setText("Your recipient has been successfully added");
         resetFieldsExceptStatusLabel();
@@ -217,22 +167,15 @@ public class RecipientController {
     }
     
 
-	private boolean insertUserData(Recipient recipient) {
-    
-		try {
+	private int insertUserData(Recipient recipient) throws SQLException {
+   
 		    // Initialize DAO for recipient
 		    RecipientDAOImpl recipientDAO = new RecipientDAOImpl();
 		    // Add recipient
-		    int test = recipientDAO.addRecipient(recipient);
-		    if (test == 0) {
-		        return false;
-		    } else {
-		        return true;
-		    }
-		} catch (SQLException e) {
-		    e.printStackTrace();
-		    return false;
-		}
+		    int recipientId = recipientDAO.addRecipient(recipient);
+		    this.recipientId = recipientId;
+			return recipientId;
+		    
 		}
 		
 		private boolean isFirstNameEmpty() {
