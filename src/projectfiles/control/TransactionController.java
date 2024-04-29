@@ -1,5 +1,7 @@
 package projectfiles.control;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,7 +36,7 @@ public class TransactionController {
     private TextField amountReceiveTextField;
 
     @FXML
-    private ComboBox<?> partnerComboBox;
+    private ComboBox<String> partnerComboBox;
 
     @FXML
     private Label partnerLabel;
@@ -89,6 +91,7 @@ public class TransactionController {
     void handleContinueButtonAction(ActionEvent event) {
         openConfirmation(event);
     }
+    
 
     private void openRecipient(ActionEvent event) {
         try {
@@ -101,6 +104,31 @@ public class TransactionController {
             e.printStackTrace();
         }
     }
+    
+    @FXML
+    void initialize() {
+        // Populate the partner combo box
+        populatePartnerComboBox();
+
+        // Add event listener to the partner combo box
+        partnerComboBox.setOnAction(event -> handlePartnerComboBoxChanged());
+    }
+
+    private void populatePartnerComboBox() {
+        ObservableList<String> partners = FXCollections.observableArrayList(
+                "EcuadorPartner1",
+                "EcuadorPartner2",
+                "GhanaPartner1",
+                "GhanaPartner2"
+        );
+        partnerComboBox.setItems(partners);
+    }
+
+    private void handlePartnerComboBoxChanged() {
+        String selectedPartner = partnerComboBox.getValue();
+        selectedPartnerLabel.setText(selectedPartner);
+    }
+
 
     private void resetFields() {
         amountSendTextField.clear();
@@ -123,5 +151,20 @@ public class TransactionController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    
+    private String country; // Variable to store the entered country
+    
+   
+    // Method to set the entered country received from the RecipientController
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    // Method to perform database operations using the entered country
+    private void saveCountryToDatabase() {
+        // Perform database operations here using the 'country' variable
+        // For example, you can insert the 'country' value into the database
     }
 }

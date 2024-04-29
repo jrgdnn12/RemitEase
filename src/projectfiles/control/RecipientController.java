@@ -86,6 +86,29 @@ public class RecipientController {
             e.printStackTrace();
         }
     }
+    
+    private void openTransaction(String country) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/projectfiles/view/Transaction.fxml"));
+            Parent root = loader.load();
+
+            // Get the controller instance
+            TransactionController transactionController = loader.getController();
+
+            // Pass the entered country to the TransactionController
+            transactionController.setCountry(country);
+
+            // Show the transaction view
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    
 
     private void openSendMoney(ActionEvent event) {
         try {
@@ -266,8 +289,6 @@ public class RecipientController {
 	    private void displayCityEmptyError() {
 	        statusLabel.setText("Error: City cannot be empty. Please enter your city.");
 	    }
-
-
         
 
 	    private void closeRecipientWindow() {

@@ -180,10 +180,10 @@ public class DatabaseSetup {
 
             	
             // Insert into Partner's Table
-            stmt.execute("INSERT INTO Partner VALUES ('PRT100','EcuadorPartner1','Money Transfer','Ecuador','Ambato','123 King Street')");
-            stmt.execute("INSERT INTO Partner VALUES ('PRT101','EcuadorPartner2','Money Transfer','Ecuador','Quito','124 Royal Street')");
-            stmt.execute("INSERT INTO Partner VALUES ('PRT102','GhanaPartner1','Money Transfer','Ghana','Kumasi','567 Hilton Parkway')");
-            stmt.execute("INSERT INTO Partner VALUES ('PRT103','GhanaPartner2','Money Transfer','Ghana','Accra','843 Queen Circle')");
+            stmt.execute("INSERT INTO Partner VALUES ('PRT100','Bank of Ecuador','Money Transfer','Ecuador','Ambato','123 King Street')");
+            stmt.execute("INSERT INTO Partner VALUES ('PRT101','Barclays Bank','Money Transfer','Ecuador','Quito','124 Royal Street')");
+            stmt.execute("INSERT INTO Partner VALUES ('PRT102','Bank of Ghana','Money Transfer','Ghana','Kumasi','567 Hilton Parkway')");
+            stmt.execute("INSERT INTO Partner VALUES ('PRT103','Ecobank','Money Transfer','Ghana','Accra','843 Queen Circle')");
 
 
             
