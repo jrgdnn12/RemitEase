@@ -149,7 +149,7 @@ public class TransactionController {
     }
     
     private void calculateTotal() throws SQLException {
-        if (amountSendTextField.getText().isEmpty() || partnerComboBox.getValue() == null) {
+        if (amountSendTextField.getText().isEmpty() && partnerComboBox.getValue() == null) {
             return; // Do not calculate if there is no amount or no partner selected
         }
 
