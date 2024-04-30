@@ -118,82 +118,58 @@ public class SignUpController {
         resetButton.setOnAction(event -> resetFields());
     }
 
-    private void signUp() {
-        String firstName = firstNameTextField.getText();
-        String lastName = lastNameTextField.getText();
-        String userID = userIDTextField.getText();
-        String password = passwordTextField.getText();
-        String repeatPassword = repeatPasswordTextField.getText();
-        String email = emailTextField.getText();
-        String phoneNumber = phoneNumberTextField.getText();
-        String country = countryTextField.getText();
-        String address = addressTextField.getText();
-        String city = cityTextField.getText();
+    private boolean isFieldEmpty(TextField field, String errorMessage) {
+        if (field.getText().isEmpty()) {
+            statusLabel.setText(errorMessage);
+            return true;
+        }
+        return false;
+    }
     
-        // Check if any mandatory field is empty and display appropriate error message
-        if (firstName.isEmpty()) {
-            displayFirstNameEmptyError();
-            return;
+    private void signUp() {
+        // Consolidated field empty checks
+        if (isFieldEmpty(firstNameTextField, "Error: First Name cannot be empty. Please enter your first name.") ||
+            isFieldEmpty(lastNameTextField, "Error: Last Name cannot be empty. Please enter your last name.") ||
+            isFieldEmpty(userIDTextField, "Error: User ID cannot be empty. Please enter your user ID.") ||
+            isFieldEmpty(passwordTextField, "Error: Password cannot be empty. Please enter your password.") ||
+            isFieldEmpty(repeatPasswordTextField, "Error: Repeat your password.") ||
+            isFieldEmpty(emailTextField, "Error: Email cannot be empty. Please enter your email.") ||
+            isFieldEmpty(phoneNumberTextField, "Error: Phone Number cannot be empty. Please enter your phone number.") ||
+            isFieldEmpty(countryTextField, "Error: Country cannot be empty. Please enter your country.") ||
+            isFieldEmpty(addressTextField, "Error: Address cannot be empty. Please enter your address.") ||
+            isFieldEmpty(cityTextField, "Error: City cannot be empty. Please enter your city.")) {
+            return; // Exit if any field is empty
         }
-        if (lastName.isEmpty()) {
-            displayLastNameEmptyError();
-            return;
-        }
-        if (userID.isEmpty()) {
-            displayUserIDEmptyError();
-            return;
-        }
-        if (password.isEmpty()) {
-            displayPasswordEmptyError();
-            return;
-        }
-        if (repeatPassword.isEmpty()) {
-            displayRepeatPasswordEmptyError();
-            return;
-        }
-        if (email.isEmpty()) {
-            displayEmailEmptyError();
-            return;
-        }
-        if (phoneNumber.isEmpty()) {
-            displayPhoneNumberEmptyError();
-            return;
-        }
-        if (country.isEmpty()) {
-            displayCountryEmptyError();
-            return;
-        }
-        if (address.isEmpty()) {
-            displayAddressEmptyError();
-            return;
-        }
-        if (city.isEmpty()) {
-            displayCityEmptyError();
-            return;
-        }
+
+        //does suwer exist
+        
     
         // Validate password match
-        if (!password.equals(repeatPassword)) {
+        if (!passwordTextField.getText().equals(repeatPasswordTextField.getText())) {
             statusLabel.setText("Error: The passwords you entered do not match");
             return;
         }
     
         // Create a new customer object
         Customer customer = new Customer(
-            userID,
-            password,
-            1,  // Assuming '1' is some sort of default value for a status or type field
-            email,
-            firstName,
-            lastName,
-            phoneNumber,
-            0.0,  // Assuming this might be an initial balance or similar field
-            country,
-            city,
-            address
+            userIDTextField.getText(),
+            passwordTextField.getText(),
+            1,
+            emailTextField.getText(),
+            firstNameTextField.getText(),
+            lastNameTextField.getText(),
+            phoneNumberTextField.getText(),
+            0.0,
+            countryTextField.getText(),
+            cityTextField.getText(),
+            addressTextField.getText()
         );
+
+        if (userIDExists(customer)) {
+            statusLabel.setText("Error: The user ID you entered already exists. Please enter a different user ID.");
+            return;
+        }
     
-        // Insert user data into the database and update status
         if (insertUserData(customer)) {
             statusLabel.setText("Your account has been successfully created");
             resetFieldsExceptStatusLabel();
@@ -208,8 +184,8 @@ public class SignUpController {
        try {
           //dao for user
           UserDAOImpl userDAO = new UserDAOImpl(); 
-          boolean test = userDAO.doesUserExist(customer.getId());
-             return test;
+          userDAO.doesUserExist(customer.getId());
+          
        } catch (SQLException e) {
            e.printStackTrace(); // Handle the exception appropriately
            
@@ -220,85 +196,6 @@ public class SignUpController {
    }
     
     
-    private boolean isFirstNameEmpty() {
-        return firstNameTextField.getText().isEmpty();
-    }
-
-    private void displayFirstNameEmptyError() {
-        statusLabel.setText("Error: First Name cannot be empty. Please enter your first name.");
-    }
- 
-    private boolean isLastNameEmpty() {
-        return lastNameTextField.getText().isEmpty();
-    }
-
-    private void displayLastNameEmptyError() {
-        statusLabel.setText("Error: Last Name cannot be empty. Please enter your last name.");
-    }
-
-    private boolean isUserIDEmpty() {
-        return userIDTextField.getText().isEmpty();
-    }
-
-    private void displayUserIDEmptyError() {
-        statusLabel.setText("Error: User ID cannot be empty. Please enter your user ID.");
-    }
-    
-    private boolean isPasswordEmpty() {
-        return passwordTextField.getText().isEmpty();
-    }
-
-    private void displayPasswordEmptyError() {
-        statusLabel.setText("Error: Password cannot be empty. Please enter your password.");
-    }
-    
-    private boolean isRepeatPasswordEmpty() {
-        return repeatPasswordTextField.getText().isEmpty();
-    }
-
-    private void displayRepeatPasswordEmptyError() {
-        statusLabel.setText("Error: Repeat your password.");
-    }
-    
-    private boolean isEmailEmpty() {
-        return emailTextField.getText().isEmpty();
-    }
-
-    private void displayEmailEmptyError() {
-        statusLabel.setText("Error: Email cannot be empty. Please enter your email.");
-    }
-    
-    private boolean isPhoneNumberEmpty() {
-        return phoneNumberTextField.getText().isEmpty();
-    }
-
-    private void displayPhoneNumberEmptyError() {
-        statusLabel.setText("Error: Phone Number cannot be empty. Please enter your phone number.");
-    }
-    
-    private boolean isCountryEmpty() {
-        return countryTextField.getText().isEmpty();
-    }
-
-    private void displayCountryEmptyError() {
-        statusLabel.setText("Error: Country cannot be empty. Please enter your country.");
-    }
-    
-    private boolean isAddressEmpty() {
-        return addressTextField.getText().isEmpty();
-    }
-
-    private void displayAddressEmptyError() {
-        statusLabel.setText("Error: Address cannot be empty. Please enter your address.");
-    }
-    
-    private boolean isCityEmpty() {
-        return cityTextField.getText().isEmpty();
-    }
-
-    private void displayCityEmptyError() {
-        statusLabel.setText("Error: City cannot be empty. Please enter your city.");
-    }
     
     private void resetFieldsExceptStatusLabel() {
         firstNameTextField.clear();
