@@ -11,8 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21">
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projectfiles.control.PaymentController">
    <children>
       <VBox fx:id="paymentVBox" prefHeight="500.0" prefWidth="700.0">
          <children>
@@ -135,12 +134,12 @@
                   <Insets top="100.0" />
                </VBox.margin>
                <children>
-                  <Button fx:id="backButton" maxWidth="100.0" mnemonicParsing="false" text="Back">
+                  <Button fx:id="backButton" maxWidth="100.0" mnemonicParsing="false" onAction="#handleBackButtonAction" text="Back">
                      <GridPane.margin>
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button fx:id="continueButton" maxWidth="100.0" mnemonicParsing="false" text="Continue" GridPane.columnIndex="1">
+                  <Button fx:id="continueButton" maxWidth="100.0" mnemonicParsing="false" onAction="#handleContinueButtonAction" text="Continue" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets left="220.0" />
                      </GridPane.margin>

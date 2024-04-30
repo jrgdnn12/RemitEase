@@ -13,7 +13,7 @@ public class PaymentController {
 
     @FXML
     private void handleBackButtonAction(ActionEvent event) {
-        openUpdateRecipient(event);
+        openTransaction(event);
     }
 
     @FXML
@@ -21,9 +21,9 @@ public class PaymentController {
         openConfirmation(event);
     }
 
-    private void openUpdateRecipient(ActionEvent event) {
+    private void openTransaction(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/projectfiles/view/UpdateRecipient.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/projectfiles/view/Transaction.fxml"));
             Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -36,12 +36,16 @@ public class PaymentController {
     private void openConfirmation(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/projectfiles/view/Confirmation.fxml"));
-            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            Stage stage = new Stage();
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+	         
+        // Close the current Payment.fxml window
+	        Stage currentStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+	        currentStage.close();
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
     }
 }

@@ -22,7 +22,7 @@ public class Customer extends User {
      * @param email the email address of the sender
      * @param password The customer's password for authentication purposes.
      * @param name The full name of the customer.
-     * @param phoneNumber The contact phoner number of the customer
+     * @param phoneNumber The contact phone number of the customer
      */
 
     public Customer(String id, String password ,int permissionLevel , String email, String firstName, String lastName, String phoneNumber, double balance, String country, String city, String address) {

@@ -77,7 +77,8 @@ public class TransactionController {
 
     @FXML
     private Button continueButton;
-
+    
+    @FXML
 	private Recipient recipient;
 
     @FXML
@@ -92,7 +93,7 @@ public class TransactionController {
 
     @FXML
     void handleContinueButtonAction(ActionEvent event) {
-        openConfirmation(event);
+        openPayment(event);
     }
     
 
@@ -108,29 +109,29 @@ public class TransactionController {
         }
     }
     
-    @FXML
-    void initialize() {
-        // Populate the partner combo box
-        populatePartnerComboBox();
-
-        // Add event listener to the partner combo box
-        partnerComboBox.setOnAction(event -> handlePartnerComboBoxChanged());
-    }
-
-    private void populatePartnerComboBox() {
-        ObservableList<String> partners = FXCollections.observableArrayList(
-                "EcuadorPartner1",
-                "EcuadorPartner2",
-                "GhanaPartner1",
-                "GhanaPartner2"
-        );
-        partnerComboBox.setItems(partners);
-    }
-
-    private void handlePartnerComboBoxChanged() {
-        String selectedPartner = partnerComboBox.getValue();
-        selectedPartnerLabel.setText(selectedPartner);
-    }
+//    @FXML
+//    void initialize() {
+//        // Populate the partner combo box
+//        populatePartnerComboBox();
+//
+//        // Add event listener to the partner combo box
+//        partnerComboBox.setOnAction(event -> handlePartnerComboBoxChanged());
+//    }
+//
+//    private void populatePartnerComboBox() {
+//        ObservableList<String> partners = FXCollections.observableArrayList(
+//                "EcuadorPartner1",
+//                "EcuadorPartner2",
+//                "GhanaPartner1",
+//                "GhanaPartner2"
+//        );
+//        partnerComboBox.setItems(partners);
+//    }
+//
+//    private void handlePartnerComboBoxChanged() {
+//        String selectedPartner = partnerComboBox.getValue();
+//        selectedPartnerLabel.setText(selectedPartner);
+//    }
 
 
     private void resetFields() {
@@ -144,9 +145,9 @@ public class TransactionController {
         totalChargeTextField.setText("");
     }
 
-    private void openConfirmation(ActionEvent event) {
+    private void openPayment(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/projectfiles/view/Confirmation.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/projectfiles/view/Payment.fxml"));
             Stage stage = (Stage) continueButton.getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
