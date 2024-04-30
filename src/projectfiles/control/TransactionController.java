@@ -311,13 +311,7 @@ public class TransactionController {
 				e.printStackTrace();
 			} // Recalculate whenever the text changes
 
-            // Manually trigger calculation at least once during initialization
-            try {
-                amountSendTextField.setText("Initial value"); // Set an initial value if necessary
-                calculateTotal();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            
         });
     	
        
@@ -330,6 +324,12 @@ public class TransactionController {
     public void setPartnerComboBoxValue(Remittance remittance) {
         partnerComboBox.setValue(remittance.getPartnerID().getName());
         selectedPartnerLabel.setText(remittance.getPartnerID().getName());
+        try {
+            calculateTotal();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
     }
 
