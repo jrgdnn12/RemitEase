@@ -305,4 +305,24 @@ public class Remittance {
     public void sendSMSUpdate(String message) {
         // Implementation for sending SMS update
     }
+    
+    @Override
+    public String toString() {
+        return "Transaction Details: \n" +
+               "Transaction ID: " + transactionId + ".\n" +
+               "Sender: " + senderID.getId() + ".\n" +
+               "Recipient: " + recipientID.getId() + ".\n" +
+               "Partner: " + partnerID.getId() + ".\n" +
+               "Amount Sent: " + amountSent + " " + SourceCurrency + ".\n" +
+               "Amount Received: " + amountReceived + " " + targetCurrency + ".\n" +
+               "Transaction Status: " + status + ".\n" +
+               "Transaction was created on: " + createdAt + " and last updated on: " + updatedAt + ".\n" +
+               (cancellationReason != null && !cancellationReason.isEmpty() ? "Cancellation Reason: " + cancellationReason + ".\n" : "") +
+               (confirmationDetails != null && !confirmationDetails.isEmpty() ? "Confirmation Details: " + confirmationDetails + ".\n" : "") +
+               "\nYour transaction " + transactionId + " has been processed. " +
+               "Details: Amount of " + amountSent + " " + SourceCurrency +
+               " was sent and " + amountReceived + " " + targetCurrency +
+               " was received. Current transaction status: " + status + ".";
+    }
+
 }

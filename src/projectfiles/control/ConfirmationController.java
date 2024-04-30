@@ -7,15 +7,29 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import projectfiles.model.Recipient;
 import projectfiles.model.Remittance;
 
+
+//Correct import
+import javafx.scene.control.TextArea;
+
+import java.awt.TextField;
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class ConfirmationController {
 
     @FXML
     private Button mainMenuButton;
+	
+    private Remittance newRemittance;
+    
+    @FXML
+    private TextField confirmationText;
 
+
+  
     @FXML
     void handleMainMenuButtonAction(ActionEvent event) {
         openMainMenu(event);
@@ -35,7 +49,22 @@ public class ConfirmationController {
     }
 
     public void setRemittance(Remittance sendRemittance) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setRemittance'");
+        this.newRemittance = sendRemittance;
+        
     }
-}
+    
+    public void postInitialize(Remittance remittance) throws SQLException {
+    	setRemittance(remittance);
+
+    }
+    
+//    private void updateConfirmationText() {
+//        // Check if newRemittance is not null to avoid NullPointerException
+//        if (newRemittance != null) {
+//            confirmationText.setText(newRemittance.toString());
+//
+//        }else {
+//        	System.out.print(newRemittance.getTransactionId());
+//        }
+    }
+
