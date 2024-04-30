@@ -121,20 +121,20 @@
                   <Insets left="600.0" />
                </VBox.margin>
             </Button>
-            
             <Button fx:id="resetButton" mnemonicParsing="false" onAction="#handleResetButtonAction" text="Reset">
                <VBox.margin>
                   <Insets left="300.0" top="-25.0" />
                </VBox.margin>
             </Button>
-             <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#handleDeleteButtonAction" text="Delete">
-               <VBox.margin>
-                  <Insets left="20.0" top="10.0" />
-               </VBox.margin>
-            </Button>
-            <Button fx:id="backButton" mnemonicParsing="false" onAction="#handleBackButtonAction" prefHeight="26.0" prefWidth="50.0" text="Back">
+            <Button fx:id="backButton" mnemonicParsing="false" onAction="#handleBackButtonAction" text="Back">
                <VBox.margin>
                   <Insets left="20.0" top="-25.0" />
+               </VBox.margin>
+            </Button>
+        
+            <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#handleDeleteButtonAction" text="Delete">
+               <VBox.margin>
+                  <Insets left="20.0" top="10.0" />
                </VBox.margin>
             </Button>
          </children>
