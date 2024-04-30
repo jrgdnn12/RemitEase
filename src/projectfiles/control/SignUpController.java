@@ -159,30 +159,13 @@ public class SignUpController {
         resetButton.setOnAction(event -> resetFields());
     }
 
-    private boolean isFieldEmpty(TextField field, String errorMessage) {
-        if (field.getText().isEmpty()) {
-            statusLabel.setText(errorMessage);
-            return true;
-        }
-        return false;
-    }
+    
     
     private boolean signUp() {
-        // Consolidated field empty checks
-        if (isFieldEmpty(firstNameTextField, "Error: First Name cannot be empty. Please enter your first name.") ||
-            isFieldEmpty(lastNameTextField, "Error: Last Name cannot be empty. Please enter your last name.") ||
-            isFieldEmpty(userIDTextField, "Error: User ID cannot be empty. Please enter your user ID.") ||
-            isFieldEmpty(passwordTextField, "Error: Password cannot be empty. Please enter your password.") ||
-            isFieldEmpty(repeatPasswordTextField, "Error: Repeat your password.") ||
-            isFieldEmpty(emailTextField, "Error: Email cannot be empty. Please enter your email.") ||
-            isFieldEmpty(phoneNumberTextField, "Error: Phone Number cannot be empty. Please enter your phone number.") ||
-            isFieldEmpty(countryTextField, "Error: Country cannot be empty. Please enter your country.") ||
-            isFieldEmpty(addressTextField, "Error: Address cannot be empty. Please enter your address.") ||
-            isFieldEmpty(cityTextField, "Error: City cannot be empty. Please enter your city.")) {
-            return false; // Exit if any field is empty
-        }
-        
 
+        clearErrorLabels();
+    
+    
         boolean isValid = true;
 
     // Clear all error labels first
@@ -281,7 +264,7 @@ public class SignUpController {
         errorCity.setText("");
         statusLabel.setText("");
     }
-    
+
     private boolean isFieldEmpty(TextField field, Label errorLabel, String errorMessage) {
         if (field.getText().isEmpty()) {
             errorLabel.setText(errorMessage);
