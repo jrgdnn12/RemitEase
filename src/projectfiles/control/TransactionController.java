@@ -169,7 +169,8 @@ public class TransactionController {
             amountToBeSentTextField.setText(String.format("%.2f %s", amountToSend, exchangerate.getTargetCurrency()));
             totalChargeTextField.setText(String.format("%.2f USD", totalAmount));
             extraChargeTextField.setText(String.format("%.2f USD", totalfees));
-            amountTheyReceiveLabel.setText(String.format("%.2f USD", amountReceived));
+            amountTheyReceiveLabel.setText(String.format("%.2f", amountReceived));           
+            
             
             // Add currency labels
             sendCurrency.setText("USD");
@@ -235,9 +236,9 @@ public class TransactionController {
             newRecipient2,
             partnerDAO.getPartnerByNameAndCountry(selectedPartnerLabel.getText(),newRecipient2.getCountry()),
             Double.parseDouble(amountSendTextField.getText()),
-            Double.parseDouble(amountReceiveTextField.getText()),
+            Double.parseDouble(amountTheyReceiveLabel.getText()),
             "USD",
-            "USD",
+            localCurrencyLabel.getText(),
             "Pending",
             null,
             null,
@@ -264,7 +265,9 @@ public class TransactionController {
          // Pass the entered Remittance to the confirmation
          
          transactionController.setRemittance(SendRemittance);
-        
+         transactionController.postInitialize(SendRemittance);
+         
+         
             Stage stage = (Stage) continueButton.getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
