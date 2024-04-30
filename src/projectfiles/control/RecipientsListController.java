@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Tooltip;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -12,6 +13,8 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import projectfiles.model.Recipient;
@@ -98,48 +101,76 @@ public class RecipientsListController {
     }		
         		
 
+static class RecipientCell extends ListCell<Recipient> {
+    private final HBox hbox = new HBox(10); // Add spacing between elements
+    private final Text name = new Text();
+    private final Text address = new Text();
+    private final Text city = new Text();
+    private final Text country = new Text();
+    private final Text email = new Text();
+    private final Text phone = new Text();
 
-    static class RecipientCell extends ListCell<Recipient> {
-        HBox hbox = new HBox();
-        Text name = new Text();
-        //delimter for adress
-        Text delimiter = new Text(" - ");
-        Text delimiter2 = new Text(" - ");
-        Text delimiter3 = new Text(" - ");
-        Text delimiter4 = new Text(" - ");
-        Text address = new Text();
-        Text city = new Text();
-        Text country = new Text();
+    private final Text delimiter = new Text(" - ");
 
-        
-        Button sendAgainButton = new Button("Send Again");
-        Button updateButton = new Button("Update");
-        Pane pane = new Pane();
-        Pane pane2 = new Pane();
+    private final Button sendAgainButton = new Button("Send Again");
+    private final Button updateButton = new Button("Update");
+    private final Pane spacer = new Pane();
 
-        public RecipientCell() {
-            super();
-            hbox.getChildren().addAll(name, delimiter, address ,delimiter2,  city, delimiter3,  country ,pane, sendAgainButton, updateButton);
-            HBox.setHgrow(pane, Priority.ALWAYS);
+    public RecipientCell() {
+        super();
+        configureTextStyles();
+        configureButtons();
+        hbox.getChildren().addAll(name, delimiter, address, city, country, phone, email, spacer, sendAgainButton, updateButton);
+        HBox.setHgrow(spacer, Priority.ALWAYS); // Ensure the buttons stay right-aligned
+    }
+
+    private void configureTextStyles() {
+        name.setFont(Font.font("Arial", FontWeight.BOLD, 12));
+        address.setFont(Font.font("Arial", FontWeight.NORMAL, 12));
+        city.setFont(Font.font("Arial", FontWeight.NORMAL, 12));
+        country.setFont(Font.font("Arial", FontWeight.NORMAL, 12));
+        email.setFont(Font.font("Arial", FontWeight.NORMAL, 12));
+        phone.setFont(Font.font("Arial", FontWeight.NORMAL, 12));
+    }
+
+    private void configureButtons() {
+        sendAgainButton.setStyle("-fx-background-color: #28a745; -fx-text-fill: white;");
+        updateButton.setStyle("-fx-background-color: #007bff; -fx-text-fill: white;");
+        sendAgainButton.setTooltip(new Tooltip("Click to send the information again to the recipient"));
+        updateButton.setTooltip(new Tooltip("Click to update recipient details"));
+    }
+
+    @Override
+    protected void updateItem(Recipient recipient, boolean empty) {
+        super.updateItem(recipient, empty);
+        if (empty || recipient == null) {
+            setText(null);
+            setGraphic(null);
+        } else {
+            name.setText(formatName(recipient));
+            address.setText(safeText(recipient.getAddress()));
+            city.setText(safeText(recipient.getCity()));
+            country.setText(safeText(recipient.getCountry()));
+            email.setText(safeText(recipient.getEmail()));
+            phone.setText(safeText(recipient.getPhoneNumber()));
+            sendAgainButton.setOnAction(event -> recipient.sendEmailUpdate("Sending Again!"));
+            updateButton.setOnAction(event -> updateRecipient(event, recipient));
+            setGraphic(hbox);
         }
+    }
 
-        @Override
-        protected void updateItem(Recipient recipient, boolean empty) {
-            super.updateItem(recipient, empty);
-            if (empty || recipient == null) {
-                setText(null);
-                setGraphic(null);
-            } else {
-                name.setText(recipient.getFirstName() + " " + recipient.getLastName());
-                address.setText(recipient.getAddress());
-                city.setText(recipient.getCity());
-                country.setText(recipient.getCountry());  
-                sendAgainButton.setOnAction(event -> recipient.sendEmailUpdate("Sending Again!"));
-                updateButton.setOnAction(event -> updateRecipient( event, recipient));
-                setGraphic(hbox);
-            }
-        }
+    private String formatName(Recipient recipient) {
+        return recipient.getFirstName() + " " + recipient.getLastName();
+    }
 
+    private String safeText(String text) {
+        return text != null ? text : "";
+    }
+
+    private void updateRecipient(ActionEvent event, Recipient recipient) {
+        // Placeholder for updating recipient
+    }
+}
         private void updateRecipient(ActionEvent event, Recipient recipient) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/projectfiles/view/RecipientUpdate.fxml"));
@@ -160,6 +191,6 @@ public class RecipientsListController {
 
 
 
-    }}
+    }
     
 
