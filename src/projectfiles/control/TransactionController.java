@@ -220,7 +220,7 @@ public class TransactionController {
 
     private void resetFields() {
         amountSendTextField.clear();
-        amountReceiveTextField.clear();
+     
         partnerComboBox.getSelectionModel().clearSelection();
         selectedPartnerLabel.setText("");
         amountToBeSentTextField.setText("");
