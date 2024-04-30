@@ -130,17 +130,23 @@ public class SignUpController {
     @FXML
     private void openLoginPage(ActionEvent event) {
         try {
-        	signUp(); // Call the signUp method
+
+            if (signUp()) {
+                     // Call the signUp method
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/projectfiles/view/Login.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.setTitle("Login");
             stage.show();
+
             
-         // Close the current sign-up window
+            // Close the current sign-up window
             Stage signUpStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             signUpStage.close();
+            }
+        	
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -161,7 +167,7 @@ public class SignUpController {
         return false;
     }
     
-    private void signUp() {
+    private boolean signUp() {
         // Consolidated field empty checks
         if (isFieldEmpty(firstNameTextField, "Error: First Name cannot be empty. Please enter your first name.") ||
             isFieldEmpty(lastNameTextField, "Error: Last Name cannot be empty. Please enter your last name.") ||
@@ -173,7 +179,7 @@ public class SignUpController {
             isFieldEmpty(countryTextField, "Error: Country cannot be empty. Please enter your country.") ||
             isFieldEmpty(addressTextField, "Error: Address cannot be empty. Please enter your address.") ||
             isFieldEmpty(cityTextField, "Error: City cannot be empty. Please enter your city.")) {
-            return; // Exit if any field is empty
+            return false; // Exit if any field is empty
         }
 
         //does suwer exist
@@ -182,7 +188,7 @@ public class SignUpController {
         // Validate password match
         if (!passwordTextField.getText().equals(repeatPasswordTextField.getText())) {
             statusLabel.setText("Error: The passwords you entered do not match");
-            return;
+            return false;
         }
     
         // Create a new customer object
@@ -202,14 +208,17 @@ public class SignUpController {
 
         if (userIDExists(customer)) {
             statusLabel.setText("Error: The user ID you entered already exists. Please enter a different user ID.");
-            return;
+            return false;
         }
     
         if (insertUserData(customer)) {
             statusLabel.setText("Your account has been successfully created");
-            resetFieldsExceptStatusLabel();
+            return true;
+            
+
         } else {
             statusLabel.setText("Error occurred while creating your account. Please try again.");
+            return false;
         }
     }
     
