@@ -316,7 +316,7 @@ public class TransactionController {
     }
 
     public void setsendAmount(double amountSent) {
-        amountSendTextField.setText(String.format("%f", amountSent));
+        amountSendTextField.setText(String.format("%.0f", amountSent));
     }
 
     public void setPartnerComboBoxValue(Remittance remittance) {
