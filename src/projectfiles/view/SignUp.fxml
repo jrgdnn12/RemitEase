@@ -62,9 +62,9 @@
                 <Label fx:id="errorCity" textFill="red"/>
             </HBox>
             <HBox spacing="20" alignment="CENTER_RIGHT">
-                <Button text="Sign Up" onAction="#openLoginPage" minWidth="100"/>
-                <Button text="Reset" onAction="#resetFields" minWidth="100"/>
-                <Button text="Back" onAction="#openWelcomePage" minWidth="100"/>
+                <Button fx:id="signUpButton" text="Sign Up" onAction="#openLoginPage" minWidth="100"/>
+                <Button fx:id="resetButton" text="Reset" onAction="#resetFields" minWidth="100"/>
+                <Button fx:id="backButton" text="Back" onAction="#openWelcomePage" minWidth="100"/>
             </HBox>
             <Label fx:id="statusLabel" textFill="red" maxWidth="700" wrapText="true"/>
         </VBox>
