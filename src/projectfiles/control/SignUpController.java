@@ -277,7 +277,7 @@ public class SignUpController {
        try {
           //dao for user
           UserDAOImpl userDAO = new UserDAOImpl(); 
-          return !userDAO.doesUserExist(customer.getId());
+          return userDAO.doesUserExist(customer.getId());
        } catch (SQLException e) {
            e.printStackTrace(); // Handle the exception appropriately
            
