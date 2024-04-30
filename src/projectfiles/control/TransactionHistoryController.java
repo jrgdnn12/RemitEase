@@ -89,54 +89,64 @@ public class TransactionHistoryController {
 
 
     static class RecipientCell extends ListCell<Remittance> {
-        HBox hbox = new HBox();
-        Text TransactionId = new Text();
-        Text Amount = new Text();
-        Text Date = new Text();
-        Text Status = new Text();
-        Text Recipient = new Text();
-
-        //delimter for adress
-        Text delimiter = new Text(" - ");
-        Text delimiter2 = new Text(" - ");
-        Text delimiter3 = new Text(" - ");
-        Text delimiter4 = new Text(" - ");
+        HBox hbox = new HBox(10);  // Added spacing
+        Text transactionId = new Text();
+        Text amount = new Text();
+        Text date = new Text();
+        Text status = new Text();
+        Text recipientName = new Text();
         
+        Text delimiter = new Text(" - ");
         
         Button sendAgainButton = new Button("Send Again");
-        Button updateButton = new Button("Cancel"); // Declare and initialize the updateButton variable
-        Pane pane = new Pane();
-
+        Button cancelButton = new Button("Cancel");
+        Pane spacer = new Pane();
+    
         public RecipientCell() {
             super();
-            hbox.getChildren().addAll(TransactionId, delimiter, Recipient ,delimiter2, Amount, delimiter3, Date, delimiter4, Status, pane, sendAgainButton, updateButton);
-            HBox.setHgrow(pane, Priority.ALWAYS);
+            hbox.getChildren().addAll(transactionId, delimiter, recipientName, amount, date, status, spacer, sendAgainButton, cancelButton);
+            HBox.setHgrow(spacer, Priority.ALWAYS);
+            configureButtons();
         }
-
+    
+        private void configureButtons() {
+            cancelButton.setStyle("-fx-background-color: #dc3545; -fx-text-fill: white;");
+            sendAgainButton.setStyle("-fx-background-color: #28a745; -fx-text-fill: white;");
+        }
+    
         @Override
         protected void updateItem(Remittance remittance, boolean empty) {
+            super.updateItem(remittance, empty);
             if (empty || remittance == null) {
-            setText(null);
-            setGraphic(null);
-            }else {
-            
-            TransactionId.setText("RE" + remittance.getTransactionId());
-            Recipient.setText(remittance.getRecipientID().getFirstName() + " " + remittance.getRecipientID().getLastName());
-            Amount.setText("$" + remittance.getAmountSent());
-            Date.setText(remittance.getCreatedAt().toString()); // Convert LocalDateTime to string
-            Status.setText(remittance.getStatus());
-            updateButton.setOnAction(event -> CancelRemittance(event, remittance));
-            if (!remittance.getStatus().equals("Pending")) {
-            	hbox.getChildren().remove(updateButton);
-            } 
-                
-         
-            sendAgainButton.setOnAction(event -> remittance.sendEmailUpdate("Sending Again!"));
-            setGraphic(hbox);
+                setText(null);
+                setGraphic(null);
+            } else {
+                transactionId.setText("RE" + remittance.getTransactionId());
+                recipientName.setText(formatName(remittance.getRecipientID()));
+                amount.setText(String.format("$%.2f", remittance.getAmountSent()));
+                date.setText(remittance.getCreatedAt().toString());
+                status.setText(remittance.getStatus());
+    
+                sendAgainButton.setOnAction(e -> remittance.sendEmailUpdate("Sending Again!"));
+                cancelButton.setOnAction(e -> cancelRemittance(e, remittance));
+    
+                // Enable or disable cancel button based on the status
+                cancelButton.setDisable(!"Pending".equals(remittance.getStatus()));
+    
+                setGraphic(hbox);
             }
         }
+    
+        private String formatName(Recipient recipient) {
+            return recipient != null ? recipient.getFirstName() + " " + recipient.getLastName() : "Unknown";
+        }
+    
+        private void cancelRemittance(ActionEvent event, Remittance remittance) {
+            // Placeholder for cancellation logic
+        }
+    }
 
-        private void CancelRemittance(ActionEvent event, Remittance remittance) {
+//       private void CancelRemittance(ActionEvent event, Remittance remittance) {
 //            try {
 //            FXMLLoader loader = new FXMLLoader(getClass().getResource("/projectfiles/view/RecipientUpdate.fxml"));
 //            Parent root = loader.load();  // Load the FXML and instantiate the controller
@@ -168,10 +178,10 @@ public class TransactionHistoryController {
 //            } catch (IOException e) {
 //                e.printStackTrace();
 //            }
-        }
+        
 
 
 
-    }}
+    }
     
 
