@@ -104,6 +104,9 @@ public class RecipientsListController {
         Text name = new Text();
         //delimter for adress
         Text delimiter = new Text(" - ");
+        Text delimiter2 = new Text(" - ");
+        Text delimiter3 = new Text(" - ");
+        Text delimiter4 = new Text(" - ");
         Text address = new Text();
         Text city = new Text();
         Text country = new Text();
@@ -116,7 +119,7 @@ public class RecipientsListController {
 
         public RecipientCell() {
             super();
-            hbox.getChildren().addAll(name, delimiter, address , city, country ,pane, sendAgainButton, updateButton);
+            hbox.getChildren().addAll(name, delimiter, address ,delimiter2,  city, delimiter3,  country ,pane, sendAgainButton, updateButton);
             HBox.setHgrow(pane, Priority.ALWAYS);
         }
 
