@@ -5,10 +5,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
@@ -26,6 +29,7 @@ import projectfiles.app.SessionManager;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Optional;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
@@ -142,42 +146,50 @@ public class TransactionHistoryController {
         }
     
         private void cancelRemittance(ActionEvent event, Remittance remittance) {
-            // Placeholder for cancellation logic
-        }
+    // Create a confirmation dialog
+    Alert confirmDialog = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to cancel this remittance?");
+    confirmDialog.setHeaderText("Confirm Cancellation");
+    confirmDialog.setTitle("Cancellation Confirmation");
+
+    Optional<ButtonType> result = confirmDialog.showAndWait();
+    if (result.isPresent() && result.get() == ButtonType.OK) {
+        // Prompt for cancellation reason
+        TextInputDialog reasonDialog = new TextInputDialog();
+        reasonDialog.setTitle("Cancellation Reason");
+        reasonDialog.setHeaderText("Enter the reason for cancellation:");
+        reasonDialog.setContentText("Reason:");
+
+        Optional<String> reason = reasonDialog.showAndWait();
+        reason.ifPresent(r -> {
+            remittance.setCancellationReason(r);
+            remittance.setStatus("Cancelled");
+
+            try {
+                // Update remittance in the database using the DAO implementation
+                RemittanceDAOImpl remittanceDAO = new RemittanceDAOImpl();
+                remittanceDAO.updateRemittance(remittance);
+
+                // Update UI elements
+                status.setText(remittance.getStatus());
+                cancelButton.setDisable(true);
+
+                // Notify user of successful cancellation
+                Alert successAlert = new Alert(Alert.AlertType.INFORMATION, "Remittance successfully cancelled.");
+                successAlert.setHeaderText(null);
+                successAlert.showAndWait();
+            } catch (SQLException e) {
+                // Handle SQL errors during update
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR, "Failed to cancel remittance: " + e.getMessage());
+                errorAlert.setHeaderText(null);
+                errorAlert.showAndWait();
+                e.printStackTrace();
+            }
+        });
+    }
+}
+
     }
 
-//       private void CancelRemittance(ActionEvent event, Remittance remittance) {
-//            try {
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/projectfiles/view/RecipientUpdate.fxml"));
-//            Parent root = loader.load();  // Load the FXML and instantiate the controller
-//
-//            RecipientUpdateController controller = loader.getController();
-//            controller.setRecipient(remittance );  // Set the recipient
-//            controller.postInitialize();  // Manually initialize the parts of the controller that need the recipient
-//
-//            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-//            Scene scene = new Scene(root);
-//            stage.setScene(scene);
-//            stage.show();
-//            } catch (IOException e) {
-//            e.printStackTrace();
-//            }
-//        
-//            try {
-//                FXMLLoader loader = new FXMLLoader(getClass().getResource("/projectfiles/view/RecipientUpdate.fxml"));
-//                Parent root = loader.load();  // Load the FXML and instantiate the controller
-//
-//                RecipientUpdateController controller = loader.getController();
-//                controller.setRecipient(remittance );  // Set the recipient
-//                controller.postInitialize();  // Manually initialize the parts of the controller that need the recipient
-//
-//                Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-//                Scene scene = new Scene(root);
-//                stage.setScene(scene);
-//                stage.show();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
         
 
 

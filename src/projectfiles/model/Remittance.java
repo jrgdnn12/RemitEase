@@ -256,6 +256,10 @@ public class Remittance {
         this.cancellationReason = cancellationReason;
     }
 
+
+    public void cancel() {
+        this.status = "Cancelled";
+    }
     /**
      * Getter for the confirmation details of the remittance
      * @return A string containing the confirmation details of the remittance.
