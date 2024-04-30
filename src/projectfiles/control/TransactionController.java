@@ -316,13 +316,12 @@ public class TransactionController {
     }
 
     public void setsendAmount(double amountSent) {
-        amountSendTextField.setText(String.valueOf(amountSent));
+        amountSendTextField.setText(String.format("%f", amountSent));
     }
 
     public void setPartnerComboBoxValue(Remittance remittance) {
         partnerComboBox.setValue(remittance.getPartnerID().getName());
-       
-
+        selectedPartnerLabel.setText(remittance.getPartnerID().getName());
 
     }
 
