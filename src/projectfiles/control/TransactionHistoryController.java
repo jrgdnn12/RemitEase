@@ -131,7 +131,7 @@ public class TransactionHistoryController {
                 date.setText(remittance.getCreatedAt().toString());
                 status.setText(remittance.getStatus());
     
-                sendAgainButton.setOnAction(e -> remittance.sendEmailUpdate("Sending Again!"));
+                sendAgainButton.setOnAction(e ->sendAgain(remittance));
                 cancelButton.setOnAction(e -> cancelRemittance(e, remittance));
     
                 // Enable or disable cancel button based on the status
@@ -145,7 +145,7 @@ public class TransactionHistoryController {
             return recipient != null ? recipient.getFirstName() + " " + recipient.getLastName() : "Unknown";
         }
     
-        private void cancelRemittance(ActionEvent event, Remittance remittance) {
+    private void cancelRemittance(ActionEvent event, Remittance remittance) {
     // Create a confirmation dialog
     Alert confirmDialog = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to cancel this remittance?");
     confirmDialog.setHeaderText("Confirm Cancellation");
@@ -185,8 +185,42 @@ public class TransactionHistoryController {
                 e.printStackTrace();
             }
         });
+         }   
     }
-}
+
+    private void sendAgain(Remittance remittance) {
+        try {
+            // Logic to handle what "Sending Again" should do
+            // For example, reloading transaction data or sending a notification
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/projectfiles/view/Transaction.fxml"));
+            Parent root = loader.load();
+            TransactionController transactionController = loader.getController();
+            
+            // Assuming transactionController has a method to set and handle the recipient
+            transactionController.setRecipient(remittance.getRecipientID());
+            transactionController.setsendAmount(remittance.getAmountSent());
+            
+            // If there's any initialization needed after setting the recipient
+            transactionController.postInitialize(remittance.getRecipientID());
+            
+            // Display the transaction interface
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Resend Transaction"); // Set a meaningful title
+            stage.show();
+            
+            // Optionally, send an email or another form of notification
+            //deprecated by me jorge, what you gonna do?
+            //recipient.sendEmailUpdate("Sending transaction details again to: " + recipient.getEmail());
+    
+        } catch (IOException e) {
+            System.out.println("Failed to load the transaction view.");
+            e.printStackTrace();
+        } catch (Exception e) { // Catch other possible exceptions
+            System.out.println("An error occurred while sending the transaction again.");
+            e.printStackTrace();
+        }
+    }
 
     }
 

@@ -315,5 +315,10 @@ public class TransactionController {
        
     }
 
+    public void setsendAmount(double amountSent) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setsendAmount'");
+    }
+
 
 }
