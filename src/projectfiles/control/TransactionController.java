@@ -316,9 +316,12 @@ public class TransactionController {
     }
 
     public void setsendAmount(double amountSent) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setsendAmount'");
+        amountSendTextField.setText(String.valueOf(amountSent));
     }
+
+    public void setPartnerComboBoxValue(Remittance remittance) {
+        partnerComboBox.setValue(remittance.getPartnerID().getName());
+       
 
 
 }

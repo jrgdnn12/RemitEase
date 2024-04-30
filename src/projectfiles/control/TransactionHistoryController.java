@@ -199,6 +199,7 @@ public class TransactionHistoryController {
             // Assuming transactionController has a method to set and handle the recipient
             transactionController.setRecipient(remittance.getRecipientID());
             transactionController.setsendAmount(remittance.getAmountSent());
+            transactionController.setPartnerComboBoxValue(remittance);
             
             // If there's any initialization needed after setting the recipient
             transactionController.postInitialize(remittance.getRecipientID());
