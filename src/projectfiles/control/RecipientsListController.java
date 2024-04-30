@@ -21,7 +21,6 @@ import projectfiles.model.Recipient;
 import projectfiles.model.RecipientList;
 import projectfiles.model.RemittanceList;
 import projectfiles.model.User;
-import projectfiles.Dao.RecipientDAOImpl;
 import projectfiles.Dao.RemittanceDAOImpl;
 import projectfiles.Dao.RemittanceListDAOImpl;
 import projectfiles.app.SessionManager;
@@ -101,39 +100,29 @@ public class RecipientsListController {
 
     }		
         		
-    static class RecipientCell extends ListCell<Recipient> {
-        private final HBox hbox = new HBox(10);
-        private final Text name = new Text();
-        private final Text address = new Text();
-        private final Text city = new Text();
-        private final Text country = new Text();
-        private final Text email = new Text();
-        private final Text phone = new Text();
-    
-        private final Button sendAgainButton = new Button("Send Again");
-        private final Button updateButton = new Button("Update");
-        private final Button deleteButton = new Button("Delete"); // Add delete button
-        private final Pane spacer = new Pane();
-    
-        public RecipientCell() {
-            super();
-            configureTextStyles();
-            configureButtons();
-            hbox.getChildren().addAll(name, new Text(" - "), address, city, country, phone, email, spacer, sendAgainButton, updateButton, deleteButton);
-            HBox.setHgrow(spacer, Priority.ALWAYS);
-        }
-    
-        private void configureButtons() {
-            sendAgainButton.setStyle("-fx-background-color: #28a745; -fx-text-fill: white;");
-            updateButton.setStyle("-fx-background-color: #007bff; -fx-text-fill: white;");
-            deleteButton.setStyle("-fx-background-color: #dc3545; -fx-text-fill: white;"); // Set delete button style
-            sendAgainButton.setTooltip(new Tooltip("Click to send the information again to the recipient"));
-            updateButton.setTooltip(new Tooltip("Click to update recipient details"));
-            deleteButton.setTooltip(new Tooltip("Click to delete this recipient")); // Set tooltip for delete button
-            deleteButton.setOnAction(event -> deleteRecipient(recipient)); // Set action on delete button
-        }
 
-  
+static class RecipientCell extends ListCell<Recipient> {
+    private final HBox hbox = new HBox(10); // Add spacing between elements
+    private final Text name = new Text();
+    private final Text address = new Text();
+    private final Text city = new Text();
+    private final Text country = new Text();
+    private final Text email = new Text();
+    private final Text phone = new Text();
+
+    private final Text delimiter = new Text(" - ");
+
+    private final Button sendAgainButton = new Button("Send Again");
+    private final Button updateButton = new Button("Update");
+    private final Pane spacer = new Pane();
+
+    public RecipientCell() {
+        super();
+        configureTextStyles();
+        configureButtons();
+        hbox.getChildren().addAll(name, delimiter, address, city, country, phone, email, spacer, sendAgainButton, updateButton);
+        HBox.setHgrow(spacer, Priority.ALWAYS); // Ensure the buttons stay right-aligned
+    }
 
     private void configureTextStyles() {
         name.setFont(Font.font("Arial", FontWeight.BOLD, 12));
@@ -144,20 +133,12 @@ public class RecipientsListController {
         phone.setFont(Font.font("Arial", FontWeight.NORMAL, 12));
     }
 
-   
-    private void deleteRecipient(Recipient recipient) {
-        if (recipient != null) {
-            RecipientDAOImpl recipientDao = new RecipientDAOImpl();
-            boolean isDeleted = recipientDao.deleteRecipient(recipient.getId());
-            if (isDeleted) {
-                // Refresh the list or handle UI updates accordingly
-                System.out.println("Recipient deleted successfully");
-            } else {
-                System.out.println("Failed to delete recipient");
-            }
-        }
+    private void configureButtons() {
+        sendAgainButton.setStyle("-fx-background-color: #28a745; -fx-text-fill: white;");
+        updateButton.setStyle("-fx-background-color: #007bff; -fx-text-fill: white;");
+        sendAgainButton.setTooltip(new Tooltip("Click to send the information again to the recipient"));
+        updateButton.setTooltip(new Tooltip("Click to update recipient details"));
     }
-
 
     @Override
     protected void updateItem(Recipient recipient, boolean empty) {
