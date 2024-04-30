@@ -183,8 +183,53 @@ public class SignUpController {
         }
         
 
-        //does suwer exist
-        
+        boolean isValid = true;
+
+    // Clear all error labels first
+    clearErrorLabels();
+
+    // Check if any mandatory field is empty and display appropriate error message
+    if (isFieldEmpty(firstNameTextField, errorFirstName, "First Name cannot be empty")) {
+        isValid = false;
+    }
+    if (isFieldEmpty(lastNameTextField, errorLastName, "Last Name cannot be empty")) {
+        isValid = false;
+    }
+    if (isFieldEmpty(userIDTextField, errorUserID, "User ID cannot be empty")) {
+        isValid = false;
+    }
+    if (isFieldEmpty(passwordTextField, errorPassword, "Password cannot be empty")) {
+        isValid = false;
+    }
+    if (isFieldEmpty(repeatPasswordTextField, errorRepeatPassword, "Repeat your password")) {
+        isValid = false;
+    }
+    if (isFieldEmpty(emailTextField, errorEmail, "Email cannot be empty")) {
+        isValid = false;
+    }
+    if (isFieldEmpty(phoneNumberTextField, errorPhoneNumber, "Phone Number cannot be empty")) {
+        isValid = false;
+    }
+    if (isFieldEmpty(countryTextField, errorCountry, "Country cannot be empty")) {
+        isValid = false;
+    }
+    if (isFieldEmpty(addressTextField, errorAddress, "Address cannot be empty")) {
+        isValid = false;
+    }
+    if (isFieldEmpty(cityTextField, errorCity, "City cannot be empty")) {
+        isValid = false;
+    }
+
+    // Validate password match
+    if (!passwordTextField.getText().equals(repeatPasswordTextField.getText())) {
+        errorRepeatPassword.setText("Passwords do not match");
+        isValid = false;
+    }
+
+    // Exit if any field is invalid
+    if (!isValid) {
+        return false;
+    }
     
         // Validate password match
         if (!passwordTextField.getText().equals(repeatPasswordTextField.getText())) {
@@ -223,7 +268,27 @@ public class SignUpController {
         }
     }
     
-
+    private void clearErrorLabels() {
+        errorFirstName.setText("");
+        errorLastName.setText("");
+        errorUserID.setText("");
+        errorPassword.setText("");
+        errorRepeatPassword.setText("");
+        errorEmail.setText("");
+        errorPhoneNumber.setText("");
+        errorCountry.setText("");
+        errorAddress.setText("");
+        errorCity.setText("");
+        statusLabel.setText("");
+    }
+    
+    private boolean isFieldEmpty(TextField field, Label errorLabel, String errorMessage) {
+        if (field.getText().isEmpty()) {
+            errorLabel.setText(errorMessage);
+            return true;
+        }
+        return false;
+    }
    private boolean userIDExists(Customer customer) {
        
        try {
