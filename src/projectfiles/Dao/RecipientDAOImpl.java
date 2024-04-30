@@ -111,5 +111,28 @@ public class RecipientDAOImpl implements RecipientDAO {
 
     }
 }
+
+    /**
+     * Delete a recipient from the database.
+     * @param recipientId The ID of the recipient to be deleted.
+     * @throws SQLException If an error occurs during the database operation.
+     * @throws SQLException If no recipient is found with the given ID.
+     * @return boolean value indicating if the recipient was successfully deleted.
+     */
+    @Override
+    public boolean deleteRecipient(int recipientId) throws SQLException {
+        String sql = "DELETE FROM Recipient WHERE RecipientId = ?";
+
+        try (Connection conn = DatabaseCreds.getConnection();
+            PreparedStatement pstm = conn.prepareStatement(sql)) {//try with resources
+            pstm.setInt(1, recipientId);
+            int rowsAffected = pstm.executeUpdate();
+            if (rowsAffected == 0) {
+                throw new SQLException("No recipient found with ID: " + recipientId);
+            } else {
+                return true;
+            }
+        }
+    }
     
 }

@@ -37,7 +37,15 @@ public interface RecipientDAO {
         * @return void
         */
         boolean updateRecipient(Recipient recipient) throws SQLException;
-        
+
+        /**
+         * Delete a recipient from the database.
+         * @param recipientId The ID of the recipient to be deleted.
+         * @throws SQLException If an error occurs during the database operation.
+         * @throws SQLException If no recipient is found with the given ID.
+         * @return boolean value indicating if the recipient was successfully deleted.
+         */
+        boolean deleteRecipient(int recipientId) throws SQLException;
         
 
 }
