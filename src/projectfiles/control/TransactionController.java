@@ -149,7 +149,7 @@ public class TransactionController {
     }
     
     private void calculateTotal() throws SQLException {
-        if (amountSendTextField.getText().isEmpty() && partnerComboBox.getValue() == null) {
+        if (amountSendTextField.getText().isEmpty() || partnerComboBox.getValue() == null) {
             return; // Do not calculate if there is no amount or no partner selected
         }
 
@@ -310,6 +310,14 @@ public class TransactionController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} // Recalculate whenever the text changes
+
+            // Manually trigger calculation at least once during initialization
+            try {
+                amountSendTextField.setText("Initial value"); // Set an initial value if necessary
+                calculateTotal();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         });
     	
        
