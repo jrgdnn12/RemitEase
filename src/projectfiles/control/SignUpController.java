@@ -29,6 +29,50 @@ public class SignUpController {
         this.primaryStage = primaryStage;
     }
 	
+    @FXML
+    private TextField addressTextField;
+
+    @FXML
+    private Button backButton;
+
+    @FXML
+    private TextField cityTextField;
+
+    @FXML
+    private TextField countryTextField;
+
+    @FXML
+    private TextField emailTextField;
+
+    @FXML
+    private Label errorAddress;
+
+    @FXML
+    private Label errorCity;
+
+    @FXML
+    private Label errorCountry;
+
+    @FXML
+    private Label errorEmail;
+
+    @FXML
+    private Label errorFirstName;
+
+    @FXML
+    private Label errorLastName;
+
+    @FXML
+    private Label errorPassword;
+
+    @FXML
+    private Label errorPhoneNumber;
+
+    @FXML
+    private Label errorRepeatPassword;
+
+    @FXML
+    private Label errorUserID;
 
     @FXML
     private TextField firstNameTextField;
@@ -37,40 +81,31 @@ public class SignUpController {
     private TextField lastNameTextField;
 
     @FXML
-    private TextField userIDTextField;
-
-    @FXML
     private TextField passwordTextField;
-
-    @FXML
-    private TextField repeatPasswordTextField;
-
-    @FXML
-    private TextField emailTextField;
 
     @FXML
     private TextField phoneNumberTextField;
 
     @FXML
-    private TextField countryTextField;
-
-    @FXML
-    private TextField addressTextField;
-
-    @FXML
-    private TextField cityTextField;
-
-    @FXML
-    private Button signUpButton;
+    private TextField repeatPasswordTextField;
 
     @FXML
     private Button resetButton;
 
     @FXML
-    private Button backButton;
+    private Button signUpButton;
 
     @FXML
     private Label statusLabel;
+
+    @FXML
+    private TextField userIDTextField;
+
+   
+    @FXML
+    void resetFields(ActionEvent event) {
+
+    }
     
     @FXML
     private void openWelcomePage(ActionEvent event) {
