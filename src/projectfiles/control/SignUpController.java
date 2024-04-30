@@ -129,135 +129,95 @@ public class SignUpController {
         String country = countryTextField.getText();
         String address = addressTextField.getText();
         String city = cityTextField.getText();
-
-        //Create a new customer object
-        Customer customer = new Customer (
-            userID,
-            password,
-            1,
-            email,
-            firstName,
-            lastName,
-            phoneNumber,
-            0.0,
-            country,
-            city,
-            address
-        );
-        
-
-      
-
+    
+        // Check if any mandatory field is empty and display appropriate error message
+        if (firstName.isEmpty()) {
+            displayFirstNameEmptyError();
+            return;
+        }
+        if (lastName.isEmpty()) {
+            displayLastNameEmptyError();
+            return;
+        }
+        if (userID.isEmpty()) {
+            displayUserIDEmptyError();
+            return;
+        }
+        if (password.isEmpty()) {
+            displayPasswordEmptyError();
+            return;
+        }
+        if (repeatPassword.isEmpty()) {
+            displayRepeatPasswordEmptyError();
+            return;
+        }
+        if (email.isEmpty()) {
+            displayEmailEmptyError();
+            return;
+        }
+        if (phoneNumber.isEmpty()) {
+            displayPhoneNumberEmptyError();
+            return;
+        }
+        if (country.isEmpty()) {
+            displayCountryEmptyError();
+            return;
+        }
+        if (address.isEmpty()) {
+            displayAddressEmptyError();
+            return;
+        }
+        if (city.isEmpty()) {
+            displayCityEmptyError();
+            return;
+        }
+    
         // Validate password match
         if (!password.equals(repeatPassword)) {
             statusLabel.setText("Error: The passwords you entered do not match");
             return;
         }
-
-//        // Validate if userID already exists in the database
-//        if (userIDExists(customer)) {
-//            statusLabel.setText("Error: The User ID already exists");
-//            return;
-//        }
-//        
-        
-        // Insert user data into the database
-        boolean success = insertUserData(customer);
-
-        if (success) {
+    
+        // Create a new customer object
+        Customer customer = new Customer(
+            userID,
+            password,
+            1,  // Assuming '1' is some sort of default value for a status or type field
+            email,
+            firstName,
+            lastName,
+            phoneNumber,
+            0.0,  // Assuming this might be an initial balance or similar field
+            country,
+            city,
+            address
+        );
+    
+        // Insert user data into the database and update status
+        if (insertUserData(customer)) {
             statusLabel.setText("Your account has been successfully created");
+            resetFieldsExceptStatusLabel();
         } else {
             statusLabel.setText("Error occurred while creating your account. Please try again.");
         }
-
-        
-        // Check if First Name is empty
-        if (isFirstNameEmpty()) {
-            displayFirstNameEmptyError();
-            return;
-        }
-        
-        
-        // Check if Last Name is empty
-        if (isLastNameEmpty()) {
-            displayLastNameEmptyError();
-            return;
-        }
-
-        // Check if User ID is empty
-        if (isUserIDEmpty()) {
-            displayUserIDEmptyError();
-            return;
-        }
-        
-        // Check if Password is empty
-        if (isPasswordEmpty()) {
-            displayPasswordEmptyError();
-            return;
-        }
-        
-        
-        // Check if Repeat Password is empty
-        if (isRepeatPasswordEmpty()) {
-            displayRepeatPasswordEmptyError();
-            return;
-        }
-        
-        // Check if Email is empty
-        if (isEmailEmpty()) {
-            displayEmailEmptyError();
-            return;
-        }
-        
-        // Check if Phone Number is empty
-        if (isPhoneNumberEmpty()) {
-            displayPhoneNumberEmptyError();
-            return;
-        }
-        
-        // Check if Country is empty
-        if (isCountryEmpty()) {
-            displayCountryEmptyError();
-            return;
-        }
-        
-        // Check if Address is empty
-        if (isAddressEmpty()) {
-            displayAddressEmptyError();
-            return;
-        }
-        
-        // Check if City is empty
-        if (isCityEmpty()) {
-            displayCityEmptyError();
-            return;
-        }
-        
-        
-
-        // After successfully creating the account
-        statusLabel.setText("Your account has been successfully created");
-        resetFieldsExceptStatusLabel();
-
-        
     }
     
 
-//    private boolean userIDExists(Customer customer) {
-//        
-//        try {
-//           //dao for user
-//           UserDAOImpl userDAO = new UserDAOImpl(); 
-//           boolean test = userDAO.doesUserExist(customer.getId());
-//              return test;
-//        } catch (SQLException e) {
-//            e.printStackTrace(); // Handle the exception appropriately
-//            
-//        }
-//
-//        // Return false by default or if an exception occurred
-//        return false;
-//    }
+   private boolean userIDExists(Customer customer) {
+       
+       try {
+          //dao for user
+          UserDAOImpl userDAO = new UserDAOImpl(); 
+          boolean test = userDAO.doesUserExist(customer.getId());
+             return test;
+       } catch (SQLException e) {
+           e.printStackTrace(); // Handle the exception appropriately
+           
+       }
+
+       // Return false by default or if an exception occurred
+       return false;
+   }
     
     
     private boolean isFirstNameEmpty() {
