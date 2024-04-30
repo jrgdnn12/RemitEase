@@ -105,6 +105,9 @@ public class RecipientsListController {
         //delimter for adress
         Text delimiter = new Text(" - ");
         Text address = new Text();
+        Text city = new Text();
+        Text country = new Text();
+
         
         Button sendAgainButton = new Button("Send Again");
         Button updateButton = new Button("Update");
@@ -113,7 +116,7 @@ public class RecipientsListController {
 
         public RecipientCell() {
             super();
-            hbox.getChildren().addAll(name, delimiter, address ,pane, sendAgainButton, updateButton);
+            hbox.getChildren().addAll(name, delimiter, address , city, country ,pane, sendAgainButton, updateButton);
             HBox.setHgrow(pane, Priority.ALWAYS);
         }
 
@@ -126,6 +129,8 @@ public class RecipientsListController {
             } else {
                 name.setText(recipient.getFirstName() + " " + recipient.getLastName());
                 address.setText(recipient.getAddress());
+                city.setText(recipient.getCity());
+                country.setText(recipient.getCountry());  
                 sendAgainButton.setOnAction(event -> recipient.sendEmailUpdate("Sending Again!"));
                 updateButton.setOnAction(event -> updateRecipient( event, recipient));
                 setGraphic(hbox);
