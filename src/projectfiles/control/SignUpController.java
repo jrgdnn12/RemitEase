@@ -141,9 +141,9 @@ public class SignUpController {
             stage.show();
 
             
-            // Close the current sign-up window
-            Stage signUpStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            signUpStage.close();
+         // Close the current sign-up window
+         Stage signUpStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+         signUpStage.close();
             }
         	
 
@@ -181,6 +181,7 @@ public class SignUpController {
             isFieldEmpty(cityTextField, "Error: City cannot be empty. Please enter your city.")) {
             return false; // Exit if any field is empty
         }
+        
 
         //does suwer exist
         
