@@ -298,7 +298,7 @@ public class DatabaseSetup {
                          "CancellationReason VARCHAR(255), " +
                          "ConfirmationDetails VARCHAR(255), " +
                          "FOREIGN KEY (SenderId) REFERENCES Customer(CustomerId), " +
-                         "FOREIGN KEY (RecipientId) REFERENCES Recipient(RecipientId), " +
+                         "FOREIGN KEY (RecipientId) REFERENCES Recipient(RecipientId) ON DELETE SET NULL, " +
                          "FOREIGN KEY (PartnerId) REFERENCES Partner(PartnerId));");
 
         	//Start transactionID at 1000
