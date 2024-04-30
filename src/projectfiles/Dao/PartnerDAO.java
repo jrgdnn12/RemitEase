@@ -50,4 +50,10 @@ public interface PartnerDAO {
     public Partner getPartnerById(String countryId) throws SQLException;
 
 
+    
+    public boolean countryServed(String country) throws SQLException;
+
+
+
+
 }

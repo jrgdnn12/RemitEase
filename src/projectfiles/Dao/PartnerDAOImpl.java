@@ -175,5 +175,26 @@ public class PartnerDAOImpl implements PartnerDAO {
             }
     }
 
+    /**
+     * Check if a country is served by a partner.
+     * @param country
+     * @return
+     */
+    public boolean countryServed(String country) throws SQLException {
+            String sql = "SELECT * FROM Partner WHERE Country = ?";
+            try (Connection conn = DatabaseCreds.getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                pstmt.setString(1, country);
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    if (rs.next()) {
+                        return true;
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return false;
+    }
+
 }
 

@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import projectfiles.model.Recipient;
 import projectfiles.model.User;
+import projectfiles.Dao.PartnerDAOImpl;
 import projectfiles.Dao.RecipientDAOImpl;
 import projectfiles.app.SessionManager;
 
@@ -120,14 +121,24 @@ public class RecipientController {
     }
     
     
+    
+    @FXML
     private void Continue() throws SQLException {
-        String firstname = firstNameTextField.getText();      
-        String lastname = lastNameTextField.getText();      
+        String firstname = firstNameTextField.getText();
+        String lastname = lastNameTextField.getText();
         String email = emailTextField.getText();
         String phoneNumber = phoneNumberTextField.getText();
         String country = countryTextField.getText();
         String address = addressTextField.getText();
         String city = cityTextField.getText();
+
+        // Check if the country is served before proceeding
+        if (!isCountryServed(country)) {
+            statusLabel.setText("Error: The country specified is not served.");
+            return; // Early return to stop processing
+        }
+
+        
         
       //Create a new recipient object
         Recipient recipient = new Recipient(
@@ -153,6 +164,18 @@ public class RecipientController {
         
         
     }
+
+    private boolean isCountryServed(String country) {
+        PartnerDAOImpl partnerDAO = new PartnerDAOImpl();
+        try {
+            return partnerDAO.countryServed(country);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } // This should return true if the country is served
+        return false;
+    }
+
 
     private void resetFieldsExceptStatusLabel() {
         firstNameTextField.clear();
