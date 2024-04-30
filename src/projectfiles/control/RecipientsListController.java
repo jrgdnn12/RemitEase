@@ -153,7 +153,7 @@ static class RecipientCell extends ListCell<Recipient> {
             country.setText(safeText(recipient.getCountry()));
             email.setText(safeText(recipient.getEmail()));
             phone.setText(safeText(recipient.getPhoneNumber()));
-            sendAgainButton.setOnAction(event -> recipient.sendEmailUpdate("Sending Again!"));
+            sendAgainButton.setOnAction(event -> sendAgain(recipient));
             updateButton.setOnAction(event -> updateRecipient(event, recipient));
             setGraphic(hbox);
         }
@@ -167,10 +167,8 @@ static class RecipientCell extends ListCell<Recipient> {
         return text != null ? text : "";
     }
 
-    private void updateRecipient(ActionEvent event, Recipient recipient) {
-        // Placeholder for updating recipient
-    }
-}
+    
+
         private void updateRecipient(ActionEvent event, Recipient recipient) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/projectfiles/view/RecipientUpdate.fxml"));
@@ -189,7 +187,39 @@ static class RecipientCell extends ListCell<Recipient> {
             }
         }
 
+        private void sendAgain(Recipient recipient) {
+            try {
+                // Logic to handle what "Sending Again" should do
+                // For example, reloading transaction data or sending a notification
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/projectfiles/view/Transaction.fxml"));
+                Parent root = loader.load();
+                TransactionController transactionController = loader.getController();
+                
+                // Assuming transactionController has a method to set and handle the recipient
+                transactionController.setRecipient(recipient);
+                
+                // If there's any initialization needed after setting the recipient
+                transactionController.postInitialize(recipient);
+                
+                // Display the transaction interface
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Resend Transaction"); // Set a meaningful title
+                stage.show();
+                
+                // Optionally, send an email or another form of notification
+                recipient.sendEmailUpdate("Sending transaction details again to: " + recipient.getEmail());
+        
+            } catch (IOException e) {
+                System.out.println("Failed to load the transaction view.");
+                e.printStackTrace();
+            } catch (Exception e) { // Catch other possible exceptions
+                System.out.println("An error occurred while sending the transaction again.");
+                e.printStackTrace();
+            }
+        }
 
+    }
 
     }
     
