@@ -51,6 +51,22 @@ public class RecipientUpdateController {
 
 	private Recipient recipient;
 
+
+    @FXML
+    void handleDeleteButtonAction(ActionEvent event) {
+        if (recipient == null) {
+            statusLabel.setText("No recipient selected for deletion.");
+            return;
+        }
+
+        if (deleteRecipient()) {
+            statusLabel.setText("Recipient deleted successfully.");
+            navigateTo("/projectfiles/view/RecipientList.fxml", event); // Assuming the FXML file for list is RecipientList.fxml
+        } else {
+            statusLabel.setText("Error occurred while deleting recipient. Please try again.");
+        }
+    }
+
     @FXML
     void handleContinueButtonAction(ActionEvent event) {
     	try {
@@ -278,6 +294,30 @@ public class RecipientUpdateController {
 		public void setRecipient(Recipient recipient) {
 			this.recipient = recipient;
 			
+
 		}
+
+
+    private boolean deleteRecipient() {
+        try {
+            RecipientDAOImpl recipientDAO = new RecipientDAOImpl();
+            return recipientDAO.deleteRecipient(recipient.getId());
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    private void navigateTo(String fxmlPath, ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 		
 }

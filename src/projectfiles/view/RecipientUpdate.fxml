@@ -121,6 +121,11 @@
                   <Insets left="600.0" />
                </VBox.margin>
             </Button>
+             <Button fx:id="continueButton" mnemonicParsing="false" onAction="#handleContinueButtonAction" text="Continue">
+               <VBox.margin>
+                  <Insets left="600.0" />
+               </VBox.margin>
+            </Button>
             <Button fx:id="resetButton" mnemonicParsing="false" onAction="#handleResetButtonAction" text="Reset">
                <VBox.margin>
                   <Insets left="300.0" top="-25.0" />
