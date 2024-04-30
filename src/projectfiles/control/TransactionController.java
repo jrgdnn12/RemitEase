@@ -99,7 +99,7 @@ public class TransactionController {
 
     @FXML
     void handleBackButtonAction(ActionEvent event) {
-        openRecipient(event);
+        openRecipient(event, newRecipient2);
     }
 
     @FXML
@@ -120,10 +120,16 @@ public class TransactionController {
 
     
 
-    private void openRecipient(ActionEvent event) {
+    private void openRecipient(ActionEvent event, Recipient recipient) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/projectfiles/view/Recipient.fxml"));
-            Stage stage = (Stage) backButton.getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/projectfiles/view/RecipientUpdate.fxml"));
+            Parent root = loader.load();  // Load the FXML and instantiate the controller
+
+            RecipientUpdateController controller = loader.getController();
+            controller.setRecipient(recipient);  // Set the recipient
+            controller.postInitialize();  // Manually initialize the parts of the controller that need the recipient
+
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
